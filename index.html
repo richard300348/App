@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1111ff">
+<meta name="description" content="Retro 90s–2000s interactive entertainment hub for music, games, videos, live breaking news and posts.">
+<title>RETRO HUB — Music • Games • Video • Live News</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">RETRO<span>HUB</span></div>
+  <nav>
+    <button onclick="show('home')">HOME</button>
+    <button onclick="show('music')">🎵 MUSIC</button>
+    <button onclick="show('games')">🎮 GAMES</button>
+    <button onclick="show('videos')">📺 VIDEOS</button>
+    <button class="live" onclick="show('news')">🔴 LIVE NEWS</button>
+    <button onclick="show('posts')">💬 POSTS</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="glow">WELCOME TO</div>
+    <h1>RETRO HUB</h1>
+    <p>Your 90s–2000s-style spot for music, games, videos, breaking news and posts.</p>
+    <div class="actions">
+      <button class="big" onclick="show('music')">▶ START MUSIC</button>
+      <button class="big live" onclick="show('news')">🔴 LIVE NEWS</button>
+    </div>
+  </div>
+  <div class="grid">
+    <article>🎵<h2>Background Music</h2><p>Music stays available while you browse.</p></article>
+    <article>🎮<h2>Games</h2><p>Play while your music keeps running.</p></article>
+    <article>📺<h2>Video</h2><p>Browse your video feed.</p></article>
+    <article class="breaking">🔴<h2>Breaking News</h2><p>Connect a live news stream here.</p></article>
+  </div>
+</section>
+
+<section id="music" class="page">
+  <h2>🎵 JUKEBOX</h2>
+  <div class="player">
+    <div class="disc">💿</div>
+    <h3 id="track">Retro Demo Track</h3>
+    <audio id="audio" controls preload="none"></audio>
+    <p class="note">Add your licensed MP3 files to <b>media/</b> and set their names in <b>app.js</b>.</p>
+  </div>
+</section>
+
+<section id="games" class="page">
+  <h2>🎮 GAME ZONE</h2>
+  <div class="game">
+    <p>Mini Click Game</p>
+    <button class="big" onclick="score()">CLICK!</button>
+    <div>SCORE: <b id="score">0</b></div>
+  </div>
+  <p class="note">More games can be added as separate HTML/JS modules.</p>
+</section>
+
+<section id="videos" class="page">
+  <h2>📺 VIDEO ZONE</h2>
+  <div class="video-card">
+    <h3>Featured Video</h3>
+    <div class="video-placeholder">VIDEO PLAYER<br><small>Add your authorized video embed here.</small></div>
+  </div>
+</section>
+
+<section id="news" class="page">
+  <h2>🔴 LIVE BREAKING NEWS</h2>
+  <div class="news-player">
+    <div class="live-badge">● LIVE</div>
+    <div class="video-placeholder">LIVE NEWS STREAM<br><small>Paste an authorized live-stream embed URL into app.js.</small></div>
+  </div>
+  <p class="note">Use a legitimate news provider's live embed/feed and follow its terms.</p>
+</section>
+
+<section id="posts" class="page">
+  <h2>💬 COMMUNITY POSTS</h2>
+  <div class="post"><b>Retro Hub</b><p>Welcome! Share your favorite music, games and videos.</p></div>
+  <div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
+</section>
+</main>
+
+<div id="mini" class="mini-player">
+  <span>🎵 <b id="miniTrack">Retro Demo Track</b></span>
+  <button onclick="toggleMusic()">▶/Ⅱ</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
