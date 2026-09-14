@@ -1,0 +1,9 @@
+{
+  "name":"Retro Hub",
+  "short_name":"RetroHub",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#090909",
+  "theme_color":"#1717ff",
+  "icons":[]
+}
