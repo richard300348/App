@@ -1,6 +1,10 @@
 const audio=document.getElementById('audio');
 const mini=document.getElementById('mini');
-const tracks=[{name:'Retro Demo Track',src:''}];
+const tracks=[
+  {name:'Georges Bizet — Carmen: Prelude to Act I',src:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Carmen_-_Prelude_to_Act_1.ogg'},
+  {name:'Georges Bizet — Carmen: Toreador Song',src:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bizet_-_Carmen_-_Toreador_Song_(French,_Musopen).ogg'},
+  {name:'Retro Demo Track',src:''}
+];
 let current=0, points=Number(localStorage.getItem('retroScore')||0);
 
 function show(id){
@@ -20,6 +24,7 @@ function toggleMusic(){
 }
 audio.addEventListener('play',()=>mini.style.display='flex');
 audio.addEventListener('ended',()=>{current=(current+1)%tracks.length;loadTrack(current);audio.play();});
+function selectTrack(i){current=i;loadTrack(i);if(tracks[i].src){audio.play().catch(()=>{});}}
 function loadTrack(i){
   const t=tracks[i];
   document.getElementById('track').textContent=t.name;
