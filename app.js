@@ -1,8 +1,8 @@
 const audio=document.getElementById('audio');
 const mini=document.getElementById('mini');
 const tracks=[
-  {name:'Georges Bizet — Carmen: Prelude to Act I',src:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Carmen_-_Prelude_to_Act_1.ogg'},
-  {name:'Georges Bizet — Carmen: Toreador Song',src:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bizet_-_Carmen_-_Toreador_Song_(French,_Musopen).ogg'},
+  {name:'Georges Bizet — Carmen: Prelude to Act I',src:'./media/carmen-prelude.ogg'},
+  {name:'Georges Bizet — Carmen: Toreador Song',src:'./media/carmen-toreador.ogg'},
   {name:'Retro Demo Track',src:''}
 ];
 let current=0, points=Number(localStorage.getItem('retroScore')||0);
