@@ -23,3 +23,6 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.16;background:
 .sol-card.red{color:#d90000}
 .sol-card::after{content:'♪';position:absolute;right:5px;bottom:2px;font-size:18px;opacity:.25;color:var(--blue)}
 .sol-waste{background:linear-gradient(135deg,#1717ff,#ff20b8);color:#fff;border-color:var(--yellow);text-shadow:2px 2px #111}
+
+.track-list{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.track-list button{font-size:11px;padding:9px}
