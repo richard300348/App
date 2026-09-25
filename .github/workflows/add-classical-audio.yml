@@ -1,0 +1,24 @@
+name: Add public-domain classical audio
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  add-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download CC0/public-domain Carmen recordings
+        run: |
+          mkdir -p media
+          curl -L --fail --retry 3 "https://upload.wikimedia.org/wikipedia/commons/9/9f/Carmen_-_Prelude_to_Act_1.ogg" -o media/carmen-prelude.ogg
+          curl -L --fail --retry 3 "https://upload.wikimedia.org/wikipedia/commons/b/bd/Bizet_-_Carmen_-_Toreador_Song_%28French%2C_Musopen%29.ogg" -o media/carmen-toreador.ogg
+      - name: Commit audio files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/carmen-prelude.ogg media/carmen-toreador.ogg
+          git diff --cached --quiet && exit 0
+          git commit -m "Add offline public-domain Carmen recordings"
+          git push
