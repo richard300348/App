@@ -46,9 +46,14 @@
   <h2>🎵 JUKEBOX</h2>
   <div class="player">
     <div class="disc">💿</div>
-    <h3 id="track">Retro Demo Track</h3>
-    <audio id="audio" controls preload="none"></audio>
-    <p class="note">Add your licensed MP3 files to <b>media/</b> and set their names in <b>app.js</b>.</p>
+    <h3 id="track">Georges Bizet — Carmen: Prelude to Act I</h3>
+    <audio id="audio" controls preload="metadata"></audio>
+    <div class="track-list">
+      <button onclick="selectTrack(0)">🎵 Carmen — Prelude</button>
+      <button onclick="selectTrack(1)">🎶 Carmen — Toreador Song</button>
+      <button onclick="selectTrack(2)">💿 Retro Demo</button>
+    </div>
+    <p class="note">The Carmen recordings above are identified as CC0/public-domain recordings on Wikimedia Commons. The underlying Carmen composition was written by Georges Bizet in 1875. </p>
   </div>
 </section>
 
