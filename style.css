@@ -15,3 +15,4 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.16;background:
 .sol-card{position:absolute;left:0;width:72px;height:96px;background:#fff;color:#111;border:3px solid #111;border-radius:7px;text-align:left;font-weight:900;font-size:18px;box-shadow:3px 3px 0 #000}
 .sol-card.red{color:#d90000}.sol-waste{min-width:110px;padding:12px;background:#111;border:3px dashed var(--pink);height:55px;font-weight:900}
 @media(max-width:650px){.sol-card{width:64px}.sol-col{min-width:68px}.solitaire-board{gap:4px}}
+.retro-platformer{background:linear-gradient(135deg,#111 0%,#1616aa 50%,#111 100%)}.retro-platformer h3{font-family:'Press Start 2P';color:var(--yellow);text-shadow:3px 3px var(--pink)}.retro-platformer canvas{box-shadow:0 0 18px var(--pink)}
