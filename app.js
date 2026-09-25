@@ -83,7 +83,7 @@ function drawPlatform(message){
 if(pg)startPlatformGame();
 
 /* RETRO SOLITAIRE */
-const suits=['♠','♥','♦','♣'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const suits=['♪','♫','♬','♩'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 let deck=[], tableau=[[],[],[],[],[],[],[]], waste=[], selected=null;
 function makeDeck(){return suits.flatMap(s=>ranks.map((r,i)=>({s,r,v:i+1,red:s==='♥'||s==='♦',face:false}))).sort(()=>Math.random()-.5);}
 function dealSolitaire(){
@@ -92,7 +92,7 @@ function dealSolitaire(){
   renderSolitaire();document.getElementById('solitaireStatus').textContent='Select a face-up card, then select another column.';
 }
 function drawSolitaire(){if(!deck.length){document.getElementById('solitaireStatus').textContent='No cards left to draw.';return;}const c=deck.pop();c.face=true;waste.push(c);renderSolitaire();}
-function cardText(c){return c.face?c.r+c.s:'🂠';}
+function cardText(c){return c.face?c.r+c.s:'🎵';}
 function renderSolitaire(){
   const b=document.getElementById('solitaireBoard');if(!b)return;
   b.innerHTML='';
