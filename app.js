@@ -44,11 +44,11 @@ if('serviceWorker' in navigator){
 /* RETRO PLATFORM RUN */
 const pg=document.getElementById('platformGame');
 const pctx=pg?pg.getContext('2d'):null;
-let pGame={x:40,y:235,vx:0,vy:0,onGround:true,coins:0,lives:3,running:false,enemyX:520};
+let pGame={x:40,y:235,vx:0,vy:0,onGround:true,notes:0,lives:3,running:false,enemyX:520};
 function startPlatformGame(){
   if(!pctx)return;
-  pGame={x:40,y:235,vx:0,vy:0,onGround:true,coins:0,lives:3,running:true,enemyX:520};
-  document.getElementById('coinCount').textContent=0;
+  pGame={x:40,y:235,vx:0,vy:0,onGround:true,notes:0,lives:3,running:true,enemyX:520};
+  document.getElementById('noteCount').textContent=0;
   document.getElementById('lives').textContent=3;
   platformLoop();
 }
@@ -61,7 +61,7 @@ function platformLoop(){
   if(pGame.y>=235){pGame.y=235;pGame.vy=0;pGame.onGround=true;}
   pGame.enemyX-=1.2;if(pGame.enemyX<0)pGame.enemyX=620;
   if(Math.abs(pGame.x-pGame.enemyX)<28&&pGame.y>205){pGame.lives--;document.getElementById('lives').textContent=pGame.lives;pGame.x=40;pGame.enemyX=520;if(pGame.lives<=0){pGame.running=false;drawPlatform('GAME OVER — PRESS RESTART');return;}}
-  if(pGame.x>260&&pGame.x<300&&pGame.y>175){pGame.coins++;document.getElementById('coinCount').textContent=pGame.coins;pGame.x+=30;}
+  if(pGame.x>260&&pGame.x<300&&pGame.y>175){pGame.notes++;document.getElementById('noteCount').textContent=pGame.notes;pGame.x+=30;}
   drawPlatform();
   requestAnimationFrame(platformLoop);
 }
@@ -71,10 +71,14 @@ function drawPlatform(message){
   pctx.fillStyle='#1717ff';pctx.fillRect(0,260,640,40);
   pctx.fillStyle='#ffe600';pctx.fillRect(250,150,70,15);
   pctx.fillStyle='#ff20b8';pctx.fillRect(90,205,75,15);
-  pctx.fillStyle='#ffe600';pctx.beginPath();pctx.arc(285,125,10,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#ff20b8';pctx.fillRect(pGame.enemyX,225,25,35);
+  pctx.fillStyle='#ffe600';pctx.font='28px serif';pctx.fillText('♪',278,135);
+  pctx.fillStyle='#f2c29b';pctx.beginPath();pctx.arc(pGame.enemyX+13,212,9,0,Math.PI*2);pctx.fill();
+  pctx.fillStyle='#111';pctx.fillRect(pGame.enemyX+3,220,20,40);
+  pctx.fillStyle='#fff';pctx.fillRect(pGame.enemyX+11,222,4,16);
+  pctx.fillStyle='#d90000';pctx.fillRect(pGame.enemyX+10,224,6,4);
   pctx.fillStyle='#00e5ff';pctx.fillRect(pGame.x,pGame.y,25,25);
-  pctx.fillStyle='#fff';pctx.font='16px monospace';pctx.fillText(message||'COLLECT THE COIN!',15,25);
+  pctx.fillStyle='#ffe600';pctx.font='16px monospace';pctx.fillText(message||'GRAB THE MUSIC NOTES!',15,25);
+  pctx.fillStyle='#ff20b8';pctx.font='12px monospace';pctx.fillText('♪ ♫ ♪ BEAT STREET ♪ ♫ ♪',440,25);
 }
 if(pg)startPlatformGame();
 
