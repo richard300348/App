@@ -59,7 +59,32 @@
     <button class="big" onclick="score()">CLICK!</button>
     <div>SCORE: <b id="score">0</b></div>
   </div>
-  <p class="note">More games can be added as separate HTML/JS modules.</p>
+
+  <div class="game retro-platformer">
+    <h3>🍄 RETRO PLATFORM RUN</h3>
+    <p>Mario-inspired platform action — jump, grab coins and avoid the enemy!</p>
+    <canvas id="platformGame" width="640" height="300"></canvas>
+    <div class="game-controls">
+      <button onclick="platformMove(-1)">◀ LEFT</button>
+      <button class="big" onclick="platformJump()">JUMP ⬆</button>
+      <button onclick="platformMove(1)">RIGHT ▶</button>
+    </div>
+    <div>COINS: <b id="coinCount">0</b> &nbsp; LIVES: <b id="lives">3</b></div>
+    <button onclick="startPlatformGame()">RESTART</button>
+  </div>
+
+  <div class="game solitaire">
+    <h3>🃏 RETRO SOLITAIRE</h3>
+    <p>Simple Klondike-style solitaire. Build four foundations from Ace to King.</p>
+    <div id="solitaireStatus" class="game-status">Press DEAL to start.</div>
+    <div id="solitaireBoard" class="solitaire-board"></div>
+    <div class="solitaire-actions">
+      <button onclick="dealSolitaire()">DEAL</button>
+      <button onclick="drawSolitaire()">DRAW CARD</button>
+      <button onclick="resetSolitaire()">NEW GAME</button>
+    </div>
+  </div>
+  <p class="note">Games run locally in the browser and can be played offline after the app is cached.</p>
 </section>
 
 <section id="videos" class="page">
