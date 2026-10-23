@@ -1,28 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Permanent+Marker&family=Roboto:wght@400;700;900&display=swap');
-:root{--blue:#1717ff;--pink:#ff20b8;--yellow:#ffe600;--black:#090909;--white:#f7f7f7}
-*{box-sizing:border-box}body{margin:0;background:var(--black);color:var(--white);font-family:Roboto,Arial,sans-serif}
-body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 3px 4px)}
-.topbar{position:sticky;top:0;z-index:10;background:#111;border-bottom:4px solid var(--blue);padding:12px 16px;box-shadow:0 0 20px var(--blue)}
-.logo{font-family:'Press Start 2P';font-size:20px;color:var(--yellow);text-shadow:3px 3px var(--pink);margin-bottom:12px}
-.logo span{color:#fff}nav{display:flex;gap:8px;flex-wrap:wrap}button{font-weight:900;border:3px solid #fff;background:var(--blue);color:#fff;padding:10px 13px;cursor:pointer;box-shadow:4px 4px 0 #fff}button:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--pink)}button.live{background:#d90000}.page{display:none;max-width:1100px;margin:auto;padding:35px 18px 110px}.page.active{display:block}h1,h2{font-family:'Press Start 2P';text-shadow:4px 4px var(--pink)}h1{font-size:clamp(34px,8vw,80px);color:var(--yellow)}h2{color:#fff}.hero{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#111 0%,#1616aa 50%,#111 100%);border:5px solid var(--white);box-shadow:10px 10px 0 var(--pink)}.glow{font-family:'Permanent Marker';color:var(--yellow);font-size:28px}.hero p{font-size:20px}.actions{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}.big{font-size:16px;padding:15px 20px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}.grid article,.post,.player,.game,.video-card,.news-player{background:#151515;border:4px solid var(--blue);padding:22px;box-shadow:6px 6px 0 #fff}.grid article{font-size:18px}.grid article.breaking{border-color:#f00}.player{text-align:center}.disc{font-size:90px;animation:spin 4s linear infinite;display:inline-block}@keyframes spin{to{transform:rotate(360deg)}}audio{width:100%;margin:15px 0}.note{opacity:.75}.video-placeholder{min-height:260px;display:grid;place-items:center;text-align:center;background:#000;border:3px dashed var(--pink);font-family:'Press Start 2P';padding:25px}.live-badge{display:inline-block;background:red;padding:8px 12px;font-weight:900;margin-bottom:10px}.mini-player{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:4px solid var(--yellow);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;z-index:20}.mini-player button{padding:7px 12px}.post{margin:15px 0}@media(max-width:650px){.grid{grid-template-columns:1fr}.topbar{position:relative}nav button{font-size:11px;padding:8px}.hero{padding:35px 12px}}
-
-.offline-status{position:fixed;top:8px;right:8px;z-index:30;background:#ffe600;color:#090909;border:2px solid #fff;padding:6px 9px;font-weight:900;font-size:11px;box-shadow:3px 3px 0 #ff20b8}
-.retro-platformer canvas{width:100%;max-width:640px;height:auto;display:block;margin:15px auto;border:4px solid #fff;background:#111;image-rendering:pixelated}
-.game-controls,.solitaire-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
-.game-status{margin:10px 0;padding:10px;border:2px dashed var(--yellow)}
-.solitaire-board{display:flex;gap:8px;min-height:300px;overflow-x:auto;padding:10px;background:#071b14;border:3px solid var(--blue)}
+:root{--blue:#0754d6;--deep:#032d8b;--cyan:#00d8ff;--pink:#ff32c8;--yellow:#ffe600;--black:#071124;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#06142d;color:#071b45;font-family:Roboto,Arial,sans-serif;background-image:conic-gradient(#fff 25%,#dcecff 0 50%,#fff 0 75%,#dcecff 0);background-size:28px 28px}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(#0754d6aa,#06142d99)}
+button{font-weight:900;border:2px solid #fff;border-radius:5px;background:linear-gradient(#147bff,#0343bd);color:#fff;padding:9px 12px;cursor:pointer;box-shadow:0 2px 0 #06265f,0 0 0 2px #0754d6}
+button:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.topbar{position:sticky;top:0;z-index:10;background:linear-gradient(#0b67f3,#0436a4);border:3px solid #5edfff;border-bottom:5px solid #021e68;padding:10px 14px;box-shadow:0 4px 0 #fff,0 8px 0 #05286d}
+.logo{font-family:'Permanent Marker',sans-serif;font-size:clamp(25px,5vw,43px);letter-spacing:1px;color:#fff;text-shadow:3px 3px #061a4b,-2px -2px var(--cyan),4px 4px var(--pink);margin:0 0 10px}
+.logo span{color:var(--yellow)}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+nav button{font-size:12px;background:linear-gradient(#fff,#d4e4ff);color:#09275f;border-color:#6fe7ff;box-shadow:0 2px 0 #031f61}
+.page{display:none;max-width:1080px;margin:18px auto;padding:14px 16px 110px}
+.page.active{display:block}
+h1,h2{font-family:'Press Start 2P',monospace;text-shadow:2px 2px #a5d9ff,4px 4px #072b80}
+h1{font-size:clamp(24px,6vw,58px);color:var(--yellow)}
+h2{font-size:clamp(17px,3vw,27px);color:#0645b5}
+h3{color:#063b9e}
+.hero{padding:34px 18px;text-align:center;background:linear-gradient(145deg,#fff,#d8eaff);border:4px solid #fff;border-radius:12px;box-shadow:0 0 0 4px #0754d6,8px 9px 0 #031e62;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;background:conic-gradient(#0754d6 25%,transparent 0 50%,#0754d6 0 75%,transparent 0);background-size:22px 22px}
+.hero>*{position:relative}
+.hero h1{color:#0754d6;text-shadow:3px 3px var(--cyan),5px 5px var(--pink)}
+.glow{font-family:'Permanent Marker';color:#e4009f;font-size:25px}
+.hero p{font-size:18px;font-weight:700}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.big{font-size:14px;padding:12px 16px}
+button.live{background:linear-gradient(#ff4b4b,#c50023)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.grid article,.post,.player,.game,.video-card,.news-player{background:linear-gradient(145deg,#fff,#e5efff);border:3px solid #0754d6;border-radius:10px;padding:18px;box-shadow:4px 5px 0 #031f61,0 0 0 2px #fff}
+.grid article{font-size:17px}
+.grid article.breaking{border-color:#ed193e}
+.player{text-align:center}
+.disc{font-size:78px;display:inline-block;animation:spin 4s linear infinite;filter:drop-shadow(2px 3px 0 #0754d6)}
+@keyframes spin{to{transform:rotate(360deg)}}
+audio{width:100%;margin:15px 0}
+.track-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.track-list button{font-size:11px}
+.note{color:#324b77;font-size:13px}
+.video-placeholder{min-height:240px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(135deg,#051b54,#0754d6,#101b40);border:4px solid #fff;outline:3px solid #0754d6;border-radius:8px;font-family:'Press Start 2P';font-size:14px;padding:24px}
+.live-badge{display:inline-block;background:#ed193e;color:#fff;border-radius:4px;padding:8px 12px;font-weight:900;margin-bottom:10px}
+.mini-player{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(#0754d6,#032b88);color:#fff;border-top:4px solid #70e8ff;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;z-index:20;box-shadow:0 -4px 0 #fff}
+.mini-player button{background:#fff;color:#0645b5}
+.offline-status{position:fixed;top:7px;right:8px;z-index:30;background:#ffe600;color:#09275f;border:2px solid #fff;border-radius:4px;padding:5px 8px;font-weight:900;font-size:10px;box-shadow:2px 2px 0 #031f61}
+.retro-platformer canvas{width:100%;max-width:640px;height:auto;display:block;margin:15px auto;border:4px solid #fff;outline:3px solid #0754d6;background:#111;image-rendering:pixelated}
+.game-controls,.solitaire-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.game-status{margin:10px 0;padding:10px;border:2px dashed #0754d6;background:#fff}
+.solitaire-board{display:flex;gap:8px;min-height:300px;overflow-x:auto;padding:10px;background:#073c32;border:3px solid #fff;outline:3px solid #0754d6;border-radius:7px}
 .sol-col{position:relative;min-width:78px;height:275px}
-.sol-card{position:absolute;left:0;width:72px;height:96px;background:#fff;color:#111;border:3px solid #111;border-radius:7px;text-align:left;font-weight:900;font-size:18px;box-shadow:3px 3px 0 #000}
-.sol-card.red{color:#d90000}.sol-waste{min-width:110px;padding:12px;background:#111;border:3px dashed var(--pink);height:55px;font-weight:900}
-@media(max-width:650px){.sol-card{width:64px}.sol-col{min-width:68px}.solitaire-board{gap:4px}}
-.retro-platformer{background:linear-gradient(135deg,#111 0%,#1616aa 50%,#111 100%)}.retro-platformer h3{font-family:'Press Start 2P';color:var(--yellow);text-shadow:3px 3px var(--pink)}.retro-platformer canvas{box-shadow:0 0 18px var(--pink)}
-.music-suits{font-family:serif;font-size:30px;letter-spacing:8px;color:var(--yellow);text-shadow:2px 2px var(--pink);margin:8px 0 14px}
-.solitaire{background:linear-gradient(135deg,#101010,#1717aa,#101010);border-color:var(--pink)}
-.solitaire h3{font-family:'Press Start 2P';color:var(--yellow);text-shadow:3px 3px var(--pink)}
-.sol-card{background:linear-gradient(145deg,#fff,#e8e8ff);border-color:var(--pink);box-shadow:3px 3px 0 var(--yellow);font-family:Georgia,serif}
+.sol-card{position:absolute;left:0;width:72px;height:96px;background:linear-gradient(145deg,#fff,#e8efff);color:#111;border:2px solid #0754d6;border-radius:7px;text-align:left;font-weight:900;font-size:18px;box-shadow:2px 3px 0 #031f61}
 .sol-card.red{color:#d90000}
-.sol-card::after{content:'♪';position:absolute;right:5px;bottom:2px;font-size:18px;opacity:.25;color:var(--blue)}
-.sol-waste{background:linear-gradient(135deg,#1717ff,#ff20b8);color:#fff;border-color:var(--yellow);text-shadow:2px 2px #111}
-
-.track-list{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
-.track-list button{font-size:11px;padding:9px}
+.sol-waste{min-width:110px;padding:12px;background:#fff;border:2px dashed #0754d6;height:55px;font-weight:900}
+.retro-platformer{background:linear-gradient(135deg,#fff,#d9e9ff,#fff)}
+.retro-platformer h3,.solitaire h3{font-family:'Press Start 2P';color:#0754d6;text-shadow:2px 2px #a5d9ff,3px 3px #ff32c8;font-size:14px;line-height:1.6}
+.retro-platformer canvas{box-shadow:0 0 12px #0754d6}
+.music-suits{font-family:serif;font-size:30px;letter-spacing:8px;color:#0754d6;text-shadow:2px 2px #a5d9ff;margin:8px 0 14px}
+.solitaire{background:linear-gradient(135deg,#fff,#dceaff);border-color:#0754d6}
+.sol-card::after{content:'♪';position:absolute;right:5px;bottom:2px;font-size:18px;opacity:.25;color:#0754d6}
+.sol-waste{background:linear-gradient(135deg,#0754d6,#168bff);color:#fff;border-color:#fff}
+@media(max-width:650px){
+ .topbar{position:sticky;padding:8px}
+ .logo{text-align:center;font-size:26px;margin:2px 0 8px}
+ nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ nav button{font-size:10px;padding:8px 3px;min-width:0}
+ .page{padding:18px 10px 100px;margin:8px auto}
+ .grid{grid-template-columns:1fr;gap:11px}
+ .hero{padding:28px 12px}
+ .hero p{font-size:15px}
+ .big{font-size:12px;padding:10px}
+ .grid article,.post,.player,.game,.video-card,.news-player{padding:13px}
+ .video-placeholder{min-height:190px;font-size:11px}
+ .sol-card{width:64px}
+ .sol-col{min-width:68px}
+ .solitaire-board{gap:4px}
+}
