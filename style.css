@@ -72,3 +72,14 @@ audio{width:100%;margin:15px 0}
  .sol-col{min-width:68px}
  .solitaire-board{gap:4px}
 }
+.home-banner{margin-top:18px;padding:12px;text-align:center;background:#0754d6;color:#fff;border:3px solid #fff;outline:3px solid #0754d6;font-family:'Permanent Marker';font-size:20px;text-shadow:2px 2px #031f61}
+.music-screen{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;padding:16px;background:linear-gradient(135deg,#051b54,#0754d6);color:#fff;border:3px solid #fff;border-radius:8px;text-align:left}
+.music-screen h3{color:#fff;margin:8px 0}.music-screen span{font-size:11px}.equalizer{color:#62f4ff;font-size:22px;letter-spacing:2px}
+.arcade-banner{margin:12px 0;padding:24px;text-align:center;background:#071124;color:#ff32c8;border:4px solid #fff;outline:4px solid #0754d6;font-family:'Press Start 2P';font-size:clamp(24px,5vw,44px);text-shadow:3px 3px #ffe600}
+.arcade-banner small{display:block;margin-top:12px;color:#fff;font:12px Roboto,Arial,sans-serif;letter-spacing:3px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:25;display:flex;justify-content:space-around;gap:3px;padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:linear-gradient(#071124,#020814);border-top:3px solid #66eaff;box-shadow:0 -3px 0 #fff}
+.bottom-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 2px;background:transparent;border:1px solid transparent;box-shadow:none;color:#fff;font-size:10px}
+.bottom-nav button span{font-size:19px}.bottom-nav button:focus,.bottom-nav button:hover{background:#0754d6;border-color:#fff}
+.mini-player{bottom:55px}
+.page{padding-bottom:135px}
+@media(max-width:650px){.topbar{padding-bottom:10px}.bottom-nav button{font-size:9px}.bottom-nav button span{font-size:18px}.music-screen{gap:8px;padding:10px}.page{padding-bottom:140px}}
