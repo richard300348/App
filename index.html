@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#1111ff">
-<meta name="description" content="Retro 90s–2000s interactive entertainment hub for music, games, videos, live breaking news and posts.">
-<title>RETRO HUB — Music • Games • Video • Live News</title>
+<meta name="theme-color" content="#0754d6">
+<meta name="description" content="Retro 90s–2000s interactive entertainment hub for music, games, videos, live news and posts.">
+<title>THE SWEET JOINT APP — Music • Games • Videos • Posts</title>
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="offlineStatus" class="offline-status">ONLINE</div>
+<div id="offlineStatus" class="offline-status">● ONLINE</div>
 <header class="topbar">
-  <div class="logo">RETRO<span>HUB</span></div>
-  <nav>
-    <button onclick="show('home')">HOME</button>
+  <div class="logo">THE <span>SWEET JOINT</span> APP</div>
+  <nav aria-label="Main navigation">
+    <button onclick="show('home')">🏠 HOME</button>
     <button onclick="show('music')">🎵 MUSIC</button>
     <button onclick="show('games')">🎮 GAMES</button>
     <button onclick="show('videos')">📺 VIDEOS</button>
@@ -22,106 +22,74 @@
     <button onclick="show('posts')">💬 POSTS</button>
   </nav>
 </header>
-
 <main>
 <section id="home" class="page active">
   <div class="hero">
-    <div class="glow">WELCOME TO</div>
-    <h1>RETRO HUB</h1>
-    <p>Your 90s–2000s-style spot for music, games, videos, breaking news and posts.</p>
+    <div class="glow">CONNECT • CREATE • VIBE</div>
+    <h1>THE SWEET JOINT APP</h1>
+    <p>Your 90s–2000s-inspired world for good music, arcade games, videos and good people.</p>
     <div class="actions">
       <button class="big" onclick="show('music')">▶ START MUSIC</button>
-      <button class="big live" onclick="show('news')">🔴 LIVE NEWS</button>
+      <button class="big" onclick="show('games')">🎮 PLAY GAMES</button>
     </div>
   </div>
   <div class="grid">
-    <article>🎵<h2>Background Music</h2><p>Music stays available while you browse.</p></article>
-    <article>🎮<h2>Games</h2><p>Play while your music keeps running.</p></article>
-    <article>📺<h2>Video</h2><p>Browse your video feed.</p></article>
-    <article class="breaking">🔴<h2>Breaking News</h2><p>Connect a live news stream here.</p></article>
+    <article>💿<h2>My Music</h2><p>Play your favorite tracks while you explore the app.</p><button onclick="show('music')">OPEN JUKEBOX</button></article>
+    <article>🕹️<h2>Arcade</h2><p>Classic-inspired games, scores and levels.</p><button onclick="show('games')">PLAY NOW</button></article>
+    <article>📺<h2>Video Center</h2><p>Watch saved clips and browse videos online.</p><button onclick="show('videos')">WATCH</button></article>
+    <article>💬<h2>Web Board</h2><p>Community posts and throwback vibes.</p><button onclick="show('posts')">VIEW POSTS</button></article>
   </div>
+  <div class="home-banner">GOOD MUSIC • GOOD PEOPLE • BETTER DAYS ✨</div>
 </section>
-
 <section id="music" class="page">
-  <h2>🎵 JUKEBOX</h2>
+  <h2>💿 MY MUSIC</h2>
   <div class="player">
-    <div class="disc">💿</div>
-    <h3 id="track">Georges Bizet — Carmen: Prelude to Act I</h3>
+    <div class="music-screen"><div class="disc">💿</div><div><b>NOW PLAYING</b><h3 id="track">Retro Demo Track</h3><span>THE SWEET JOINT • THROWBACK VIBES</span></div><div class="equalizer">▂ ▅ ▇ ▃ ▆ ▄ ▇</div></div>
     <audio id="audio" controls preload="metadata"></audio>
     <div class="track-list">
       <button onclick="selectTrack(0)">🎵 Carmen — Prelude</button>
       <button onclick="selectTrack(1)">🎶 Carmen — Toreador Song</button>
       <button onclick="selectTrack(2)">💿 Retro Demo</button>
     </div>
-    <p class="note">The Carmen recordings above are identified as CC0/public-domain recordings on Wikimedia Commons. The underlying Carmen composition was written by Georges Bizet in 1875.</p>
+    <p class="note">Add audio files you own or are licensed to use in the app's media folder to make the library playable offline.</p>
   </div>
 </section>
-
 <section id="games" class="page">
-  <h2>🎮 GAME ZONE</h2>
-  <div class="game">
-    <p>Mini Click Game</p>
-    <button class="big" onclick="score()">CLICK!</button>
-    <div>SCORE: <b id="score">0</b></div>
+  <h2>🕹️ GAME ZONE</h2>
+  <div class="arcade-banner">👾 ARCADE <small>PLAY • SCORE • LEVEL UP</small></div>
+  <div class="grid game-grid">
+    <article>👾<h3>Retro Clicker</h3><button class="big" onclick="score()">PLAY NOW</button><p>Score: <b id="score">0</b></p></article>
+    <article>🟡<h3>Pac-style Fun</h3><p>Maze-inspired retro challenge.</p><button onclick="show('games')">SELECT</button></article>
+    <article>🟦<h3>Pixel Puzzle</h3><p>Color and pattern mini-game.</p><button onclick="show('games')">SELECT</button></article>
   </div>
-
   <div class="game retro-platformer">
-    <h3>🍄 RETRO PLATFORM RUN</h3>
-    <p>Music-inspired platform action — jump, grab music notes and dodge the suit-wearing business people!</p>
+    <h3>🎼 RETRO PLATFORM RUN</h3>
+    <p>Grab music notes and dodge the suit-wearing business people!</p>
     <canvas id="platformGame" width="640" height="300"></canvas>
-    <div class="game-controls">
-      <button onclick="platformMove(-1)">◀ LEFT</button>
-      <button class="big" onclick="platformJump()">JUMP ⬆</button>
-      <button onclick="platformMove(1)">RIGHT ▶</button>
-    </div>
-    <div>NOTES: <b id="noteCount">0</b> &nbsp; LIVES: <b id="lives">3</b></div>
-    <button onclick="startPlatformGame()">RESTART</button>
+    <div class="game-controls"><button onclick="platformMove(-1)">◀ LEFT</button><button class="big" onclick="platformJump()">JUMP ⬆</button><button onclick="platformMove(1)">RIGHT ▶</button></div>
+    <div>NOTES: <b id="noteCount">0</b> &nbsp; LIVES: <b id="lives">3</b></div><button onclick="startPlatformGame()">RESTART</button>
   </div>
-
-  <div class="game solitaire">
-    <h3>🎵 RETRO MUSIC SOLITAIRE 🎵</h3>
-    <p>Music-themed Klondike solitaire. Build the decks while the beat keeps playing.</p>
-    <div class="music-suits" aria-label="Music card symbols">♪ ♫ ♬ ♩ 🎵 🎶</div>
-    <div id="solitaireStatus" class="game-status">Press DEAL to start.</div>
-    <div id="solitaireBoard" class="solitaire-board"></div>
-    <div class="solitaire-actions">
-      <button onclick="dealSolitaire()">DEAL</button>
-      <button onclick="drawSolitaire()">DRAW CARD</button>
-      <button onclick="resetSolitaire()">NEW GAME</button>
-    </div>
-  </div>
-  <p class="note">Games run locally in the browser and can be played offline after the app is cached.</p>
+  <div class="game solitaire"><h3>🎵 RETRO MUSIC SOLITAIRE</h3><div class="music-suits">♪ ♫ ♬ ♩ 🎵 🎶</div><div id="solitaireStatus" class="game-status">Press DEAL to start.</div><div id="solitaireBoard" class="solitaire-board"></div><div class="solitaire-actions"><button onclick="dealSolitaire()">DEAL</button><button onclick="drawSolitaire()">DRAW CARD</button><button onclick="resetSolitaire()">NEW GAME</button></div></div>
 </section>
-
 <section id="videos" class="page">
-  <h2>📺 VIDEO ZONE</h2>
-  <div class="video-card">
-    <h3>Featured Video</h3>
-    <div class="video-placeholder">VIDEO PLAYER<br><small>Add your authorized video embed here.</small></div>
-  </div>
+  <h2>📺 VIDEO CENTER</h2>
+  <div class="video-card"><h3>Featured Video</h3><div class="video-placeholder">▶ VIDEO PLAYER<br><small>Choose an online video or add a saved video file for offline playback.</small></div></div>
 </section>
-
 <section id="news" class="page">
-  <h2>🔴 LIVE BREAKING NEWS</h2>
-  <div class="news-player">
-    <div class="live-badge">● LIVE</div>
-    <div class="video-placeholder">LIVE NEWS STREAM<br><small>Paste an authorized live-stream embed URL into app.js.</small></div>
-  </div>
-  <p class="note">Use a legitimate news provider's live embed/feed and follow its terms.</p>
+  <h2>🔴 LIVE NEWS</h2><div class="news-player"><div class="live-badge">● LIVE</div><div class="video-placeholder">LIVE NEWS STREAM<br><small>Live streams require an internet connection.</small></div></div>
 </section>
-
 <section id="posts" class="page">
-  <h2>💬 COMMUNITY POSTS</h2>
-  <div class="post"><b>Retro Hub</b><p>Welcome! Share your favorite music, games and videos.</p></div>
-  <div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
+  <h2>💬 WEB BOARD</h2><div class="post"><b>SweetJointVibes 👑</b><p>Good food, good music, good people! 💙</p></div><div class="post"><b>RetroKid</b><p>This app brings back the real vibes! 🔥</p></div><div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
 </section>
 </main>
-
-<div id="mini" class="mini-player">
-  <span>🎵 <b id="miniTrack">Retro Demo Track</b></span>
-  <button onclick="toggleMusic()">▶/Ⅱ</button>
-</div>
-
+<nav class="bottom-nav" aria-label="App tabs">
+  <button onclick="show('home')"><span>⌂</span>Home</button>
+  <button onclick="show('music')"><span>♫</span>Music</button>
+  <button onclick="show('games')"><span>🎮</span>Games</button>
+  <button onclick="show('videos')"><span>▶</span>Videos</button>
+  <button onclick="show('posts')"><span>☷</span>Posts</button>
+</nav>
+<div id="mini" class="mini-player"><span>🎵 <b id="miniTrack">Retro Demo Track</b></span><button onclick="toggleMusic()">▶/Ⅱ</button></div>
 <script src="app.js"></script>
 </body>
 </html>
