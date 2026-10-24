@@ -41,17 +41,11 @@ audio{width:100%;margin:15px 0}
 .mini-player{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(#0754d6,#032b88);color:#fff;border-top:4px solid #70e8ff;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;z-index:20;box-shadow:0 -4px 0 #fff}
 .mini-player button{background:#fff;color:#0645b5}
 .offline-status{position:fixed;top:7px;right:8px;z-index:30;background:#ffe600;color:#09275f;border:2px solid #fff;border-radius:4px;padding:5px 8px;font-weight:900;font-size:10px;box-shadow:2px 2px 0 #031f61}
-.retro-platformer canvas{width:100%;max-width:640px;height:auto;display:block;margin:15px auto;border:4px solid #fff;outline:3px solid #0754d6;background:#111;image-rendering:pixelated}
-.game-controls,.solitaire-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.solitaire-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .game-status{margin:10px 0;padding:10px;border:2px dashed #0754d6;background:#fff}
 .solitaire-board{display:flex;gap:8px;min-height:300px;overflow-x:auto;padding:10px;background:#073c32;border:3px solid #fff;outline:3px solid #0754d6;border-radius:7px}
-.sol-col{position:relative;min-width:78px;height:275px}
-.sol-card{position:absolute;left:0;width:72px;height:96px;background:linear-gradient(145deg,#fff,#e8efff);color:#111;border:2px solid #0754d6;border-radius:7px;text-align:left;font-weight:900;font-size:18px;box-shadow:2px 3px 0 #031f61}
 .sol-card.red{color:#d90000}
 .sol-waste{min-width:110px;padding:12px;background:#fff;border:2px dashed #0754d6;height:55px;font-weight:900}
-.retro-platformer{background:linear-gradient(135deg,#fff,#d9e9ff,#fff)}
-.retro-platformer h3,.solitaire h3{font-family:'Press Start 2P';color:#0754d6;text-shadow:2px 2px #a5d9ff,3px 3px #ff32c8;font-size:14px;line-height:1.6}
-.retro-platformer canvas{box-shadow:0 0 12px #0754d6}
 .music-suits{font-family:serif;font-size:30px;letter-spacing:8px;color:#0754d6;text-shadow:2px 2px #a5d9ff;margin:8px 0 14px}
 .solitaire{background:linear-gradient(135deg,#fff,#dceaff);border-color:#0754d6}
 .sol-card::after{content:'♪';position:absolute;right:5px;bottom:2px;font-size:18px;opacity:.25;color:#0754d6}
@@ -68,8 +62,6 @@ audio{width:100%;margin:15px 0}
  .big{font-size:12px;padding:10px}
  .grid article,.post,.player,.game,.video-card,.news-player{padding:13px}
  .video-placeholder{min-height:190px;font-size:11px}
- .sol-card{width:64px}
- .sol-col{min-width:68px}
  .solitaire-board{gap:4px}
 }
 .home-banner{margin-top:18px;padding:12px;text-align:center;background:#0754d6;color:#fff;border:3px solid #fff;outline:3px solid #0754d6;font-family:'Permanent Marker';font-size:20px;text-shadow:2px 2px #031f61}
@@ -83,3 +75,26 @@ audio{width:100%;margin:15px 0}
 .mini-player{bottom:55px}
 .page{padding-bottom:135px}
 @media(max-width:650px){.topbar{padding-bottom:10px}.bottom-nav button{font-size:9px}.bottom-nav button span{font-size:18px}.music-screen{gap:8px;padding:10px}.page{padding-bottom:140px}}
+/* A seven-column table that stays inside a phone viewport. */
+.solitaire-board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;overflow:visible;padding:7px;min-height:210px;align-items:start}
+.sol-col{min-width:0;height:auto}
+.sol-card,.sol-slot{width:100%;height:76px;min-width:0;font-size:clamp(11px,2.6vw,18px);padding:5px 2px;box-shadow:none;border-width:1px;border-radius:4px;touch-action:manipulation}
+.sol-card:hover{transform:none}.sol-card.selected,.sol-waste.selected{outline:3px solid var(--yellow);outline-offset:-3px}
+.sol-slot{border:1px dashed #c6d9ce;background:transparent;color:#b7d0c2;box-shadow:none}
+.solitaire-stock{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.sol-waste{min-width:0;height:auto;padding:10px;font-size:12px}
+.solitaire-actions button{min-height:44px}.solitaire h3{overflow-wrap:anywhere}
+.beat-blocks{margin:24px 0;background:#17283e;color:#e1e9ec;border-color:#8aa8be}
+.beat-heading{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #496075;padding-bottom:8px}
+.beat-label{font:10px 'Press Start 2P',monospace;color:#edcb6f;line-height:1.8}
+.beat-heading h3{font:clamp(20px,4vw,30px) 'Press Start 2P',monospace;color:#f3dfaa;margin:14px 0}
+.beat-emblem{font:64px Georgia,serif;color:#68d8cf}.beat-layout{display:grid;grid-template-columns:minmax(0,240px) minmax(85px,130px);justify-content:center;gap:18px}
+#beatBoard{display:block;width:100%;height:auto;border:3px solid #67879e;background:#101e32;image-rendering:pixelated}
+.beat-panel{display:flex;flex-direction:column;gap:12px;min-width:0}.beat-stat{font-size:10px;letter-spacing:2px;color:#b0c3cf}.beat-stat strong{display:block;font:23px monospace;color:#f3dfaa;margin-top:4px}#beatNext{display:block;width:100%;max-width:100px}
+.beat-panel button,.beat-controls button{background:#29465a;border-color:#91b7bf;box-shadow:0 3px #0c1726;color:#f3dfaa;font-size:11px;min-height:44px;padding:8px 5px;touch-action:manipulation}
+.beat-controls{display:grid;grid-template-columns:repeat(4,1fr) 1.5fr;gap:8px;max-width:388px;margin:16px auto}.beat-status{text-align:center;min-height:2.4em;color:#edcb6f;font-size:14px}.beat-blocks .note{color:#b0c3cf;line-height:1.6}button:focus-visible{outline:3px solid #edcb6f;outline-offset:3px}button:disabled{opacity:.5;cursor:default}
+@media(max-width:420px){.solitaire-board{gap:3px;padding:4px}.sol-card,.sol-slot{height:70px}.solitaire .music-suits{margin:4px 0;font-size:23px}.beat-layout{gap:10px;grid-template-columns:minmax(0,220px) 85px}.beat-panel{gap:9px}.beat-heading h3{font-size:19px}.beat-label{font-size:8px}.beat-emblem{font-size:40px}}
+@media(prefers-reduced-motion:reduce){.disc{animation:none}button:hover{transform:none}}
+.sol-col{position:relative}
+.sol-card{position:absolute;left:0;background:linear-gradient(145deg,#fff,#e8efff);color:#152b3c;text-align:left;font-weight:900;border-color:#0754d6}
+.sol-card.red{color:#bd263c}

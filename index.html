@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0754d6">
 <meta name="description" content="Retro 90s–2000s interactive entertainment hub for music, games, videos, live news and posts.">
-<title>THE SWEET JOINT APP — Music • Games • Videos • Posts</title>
+<title>RetroHub — Music • Games • Videos • Posts</title>
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="offlineStatus" class="offline-status">● ONLINE</div>
 <header class="topbar">
-  <div class="logo">THE <span>SWEET JOINT</span> APP</div>
+  <div class="logo">Retro<span>Hub</span></div>
   <nav aria-label="Main navigation">
     <button onclick="show('home')">🏠 HOME</button>
     <button onclick="show('music')">🎵 MUSIC</button>
@@ -26,7 +26,7 @@
 <section id="home" class="page active">
   <div class="hero">
     <div class="glow">CONNECT • CREATE • VIBE</div>
-    <h1>THE SWEET JOINT APP</h1>
+    <h1>RetroHub</h1>
     <p>Your 90s–2000s-inspired world for good music, arcade games, videos and good people.</p>
     <div class="actions">
       <button class="big" onclick="show('music')">▶ START MUSIC</button>
@@ -44,7 +44,7 @@
 <section id="music" class="page">
   <h2>💿 MY MUSIC</h2>
   <div class="player">
-    <div class="music-screen"><div class="disc">💿</div><div><b>NOW PLAYING</b><h3 id="track">Retro Demo Track</h3><span>THE SWEET JOINT • THROWBACK VIBES</span></div><div class="equalizer">▂ ▅ ▇ ▃ ▆ ▄ ▇</div></div>
+    <div class="music-screen"><div class="disc">💿</div><div><b>NOW PLAYING</b><h3 id="track">Retro Demo Track</h3><span>RETROHUB • THROWBACK VIBES</span></div><div class="equalizer">▂ ▅ ▇ ▃ ▆ ▄ ▇</div></div>
     <audio id="audio" controls preload="metadata"></audio>
     <div class="track-list">
       <button onclick="selectTrack(0)">🎵 Carmen — Prelude</button>
@@ -57,19 +57,18 @@
 <section id="games" class="page">
   <h2>🕹️ GAME ZONE</h2>
   <div class="arcade-banner">👾 ARCADE <small>PLAY • SCORE • LEVEL UP</small></div>
-  <div class="grid game-grid">
-    <article>👾<h3>Retro Clicker</h3><button class="big" onclick="score()">PLAY NOW</button><p>Score: <b id="score">0</b></p></article>
-    <article>🟡<h3>Pac-style Fun</h3><p>Maze-inspired retro challenge.</p><button onclick="show('games')">SELECT</button></article>
-    <article>🟦<h3>Pixel Puzzle</h3><p>Color and pattern mini-game.</p><button onclick="show('games')">SELECT</button></article>
+  <div class="game beat-blocks">
+    <div class="beat-heading"><div><span class="beat-label">THE FALLING-BLOCK MIXTAPE</span><h3>BEAT BLOCKS</h3></div><span class="beat-emblem" aria-hidden="true">♫</span></div>
+    <p>Stack the notes. Complete a line. Build your next big chorus.</p>
+    <div class="beat-layout">
+      <canvas id="beatBoard" width="240" height="480" aria-label="Beat Blocks playfield: ten columns and twenty rows"></canvas>
+      <div class="beat-panel"><div class="beat-stat">SCORE<strong id="beatScore">0</strong></div><div class="beat-stat">LINES<strong id="beatLines">0</strong></div><div class="beat-stat">TEMPO<strong id="beatLevel">1</strong></div><div class="beat-stat">UP NEXT<canvas id="beatNext" width="100" height="80" aria-label="Next block preview"></canvas></div><button id="beatStart" onclick="startBeat()">START MIX</button><button id="beatPause" onclick="pauseBeat()" disabled>PAUSE</button><button id="beatSound" onclick="toggleBeatSound()" aria-pressed="false">SOUND: OFF</button></div>
+    </div>
+    <p id="beatStatus" class="beat-status" role="status">Press START MIX to play.</p>
+    <div class="beat-controls" aria-label="Block controls"><button onclick="beatAction('left')" aria-label="Move left">◀</button><button onclick="beatAction('rotate')" aria-label="Rotate block">↻</button><button onclick="beatAction('right')" aria-label="Move right">▶</button><button onclick="beatAction('down')" aria-label="Soft drop">▼</button><button onclick="beatAction('drop')">DROP</button></div>
+    <p class="note">Keyboard: ← → move · ↑ rotate · ↓ lower · Space drop · P pause. Sound plays original synth notes; pause the jukebox to hear them clearly.</p>
   </div>
-  <div class="game retro-platformer">
-    <h3>🎼 RETRO PLATFORM RUN</h3>
-    <p>Grab music notes and dodge the suit-wearing business people!</p>
-    <canvas id="platformGame" width="640" height="300"></canvas>
-    <div class="game-controls"><button onclick="platformMove(-1)">◀ LEFT</button><button class="big" onclick="platformJump()">JUMP ⬆</button><button onclick="platformMove(1)">RIGHT ▶</button></div>
-    <div>NOTES: <b id="noteCount">0</b> &nbsp; LIVES: <b id="lives">3</b></div><button onclick="startPlatformGame()">RESTART</button>
-  </div>
-  <div class="game solitaire"><h3>🎵 RETRO MUSIC SOLITAIRE</h3><div class="music-suits">♪ ♫ ♬ ♩ 🎵 🎶</div><div id="solitaireStatus" class="game-status">Press DEAL to start.</div><div id="solitaireBoard" class="solitaire-board"></div><div class="solitaire-actions"><button onclick="dealSolitaire()">DEAL</button><button onclick="drawSolitaire()">DRAW CARD</button><button onclick="resetSolitaire()">NEW GAME</button></div></div>
+  <div class="game solitaire"><h3>🎵 RETRO MUSIC SOLITAIRE</h3><div class="music-suits">♪ ♫ ♬ ♩ 🎵 🎶</div><div id="solitaireStatus" class="game-status">Press DEAL to start.</div><div id="solitaireStock" class="solitaire-stock"></div><div id="solitaireBoard" class="solitaire-board"></div><div class="solitaire-actions"><button onclick="dealSolitaire()">DEAL</button><button onclick="drawSolitaire()">DRAW CARD</button><button onclick="resetSolitaire()">NEW GAME</button></div></div>
 </section>
 <section id="videos" class="page">
   <h2>📺 VIDEO CENTER</h2>
@@ -79,7 +78,7 @@
   <h2>🔴 LIVE NEWS</h2><div class="news-player"><div class="live-badge">● LIVE</div><div class="video-placeholder">LIVE NEWS STREAM<br><small>Live streams require an internet connection.</small></div></div>
 </section>
 <section id="posts" class="page">
-  <h2>💬 WEB BOARD</h2><div class="post"><b>SweetJointVibes 👑</b><p>Good food, good music, good people! 💙</p></div><div class="post"><b>RetroKid</b><p>This app brings back the real vibes! 🔥</p></div><div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
+  <h2>💬 WEB BOARD</h2><div class="post"><b>RetroHubVibes 👑</b><p>Good food, good music, good people! 💙</p></div><div class="post"><b>RetroKid</b><p>This app brings back the real vibes! 🔥</p></div><div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
 </section>
 </main>
 <nav class="bottom-nav" aria-label="App tabs">
