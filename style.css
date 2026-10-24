@@ -44,16 +44,16 @@ audio{width:100%;margin:15px 0}
 .retro-platformer canvas{width:100%;max-width:640px;height:auto;display:block;margin:15px auto;border:4px solid #fff;outline:3px solid #0754d6;background:#111;image-rendering:pixelated}
 .game-controls,.solitaire-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .game-status{margin:10px 0;padding:10px;border:2px dashed #0754d6;background:#fff}
-.solitaire-board{display:flex;gap:8px;min-height:300px;overflow-x:auto;padding:10px;background:#073c32;border:3px solid #fff;outline:3px solid #0754d6;border-radius:7px}
-.sol-col{position:relative;min-width:78px;height:275px}
-.sol-card{position:absolute;left:0;width:72px;height:96px;background:linear-gradient(145deg,#fff,#e8efff);color:#111;border:2px solid #0754d6;border-radius:7px;text-align:left;font-weight:900;font-size:18px;box-shadow:2px 3px 0 #031f61}
+.solitaire-board{container-type:inline-size;--card-height:clamp(44px,17cqw,96px);--card-step:clamp(16px,4cqw,28px);display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;width:100%;max-width:660px;margin:0 auto;padding:10px;background:#073c32;border:3px solid #fff;outline:3px solid #0754d6;border-radius:7px}
+.sol-col{position:relative;min-width:0;height:calc(var(--stack-steps,6) * var(--card-step) + var(--card-height));border-radius:7px;background:#ffffff0d}
+.sol-card{position:absolute;left:0;top:calc(var(--card-index,0) * var(--card-step));width:100%;height:var(--card-height);padding:3px 2px;display:flex;align-items:flex-start;background:linear-gradient(145deg,#fff,#e8efff);color:#111;border:2px solid #0754d6;border-radius:7px;text-align:left;font-weight:900;font-size:clamp(10px,3.2cqw,18px);box-shadow:1px 2px 0 #031f61}
 .sol-card.red{color:#d90000}
-.sol-waste{min-width:110px;padding:12px;background:#fff;border:2px dashed #0754d6;height:55px;font-weight:900}
+.sol-waste{grid-column:1 / -1;grid-row:1;min-width:0;padding:10px;background:#fff;border:2px dashed #0754d6;min-height:42px;font-weight:900}
 .retro-platformer{background:linear-gradient(135deg,#fff,#d9e9ff,#fff)}
 .retro-platformer h3,.solitaire h3{font-family:'Press Start 2P';color:#0754d6;text-shadow:2px 2px #a5d9ff,3px 3px #ff32c8;font-size:14px;line-height:1.6}
 .retro-platformer canvas{box-shadow:0 0 12px #0754d6}
 .music-suits{font-family:serif;font-size:30px;letter-spacing:8px;color:#0754d6;text-shadow:2px 2px #a5d9ff;margin:8px 0 14px}
-.solitaire{background:linear-gradient(135deg,#fff,#dceaff);border-color:#0754d6}
+.solitaire{min-width:0;background:linear-gradient(135deg,#fff,#dceaff);border-color:#0754d6}
 .sol-card::after{content:'♪';position:absolute;right:5px;bottom:2px;font-size:18px;opacity:.25;color:#0754d6}
 .sol-waste{background:linear-gradient(135deg,#0754d6,#168bff);color:#fff;border-color:#fff}
 @media(max-width:650px){
@@ -68,9 +68,9 @@ audio{width:100%;margin:15px 0}
  .big{font-size:12px;padding:10px}
  .grid article,.post,.player,.game,.video-card,.news-player{padding:13px}
  .video-placeholder{min-height:190px;font-size:11px}
- .sol-card{width:64px}
- .sol-col{min-width:68px}
- .solitaire-board{gap:4px}
+ .solitaire-board{gap:4px;padding:6px}
+ .solitaire h3{font-size:12px;overflow-wrap:anywhere}
+ .music-suits{font-size:24px;letter-spacing:4px}
 }
 .home-banner{margin-top:18px;padding:12px;text-align:center;background:#0754d6;color:#fff;border:3px solid #fff;outline:3px solid #0754d6;font-family:'Permanent Marker';font-size:20px;text-shadow:2px 2px #031f61}
 .music-screen{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;padding:16px;background:linear-gradient(135deg,#051b54,#0754d6);color:#fff;border:3px solid #fff;border-radius:8px;text-align:left}
