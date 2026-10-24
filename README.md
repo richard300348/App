@@ -1,4 +1,4 @@
-# Retro Hub
+# RetroHub
 
 A starter web app for the planned 90s–2000s interactive entertainment experience.
 
