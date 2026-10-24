@@ -5,18 +5,13 @@ const tracks=[
   {name:'Georges Bizet — Carmen: Toreador Song',src:'./media/carmen-toreador.ogg'},
   {name:'Retro Demo Track',src:''}
 ];
-let current=0, points=Number(localStorage.getItem('retroScore')||0);
+let current=0;
 
 function show(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const page=document.getElementById(id);
   if(page) page.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
-}
-function score(){
-  points++;
-  localStorage.setItem('retroScore',points);
-  document.getElementById('score').textContent=points;
 }
 function toggleMusic(){
   if(!audio.src){alert('Add a licensed MP3 to media/ and set its path in app.js first.');return;}
@@ -31,7 +26,6 @@ function loadTrack(i){
   document.getElementById('miniTrack').textContent=t.name;
   if(t.src) audio.src=t.src;
 }
-document.getElementById('score').textContent=points;
 loadTrack(current);
 
 const offlineStatus=document.getElementById('offlineStatus');
@@ -101,8 +95,8 @@ function cardText(c){return c.face?c.r+c.s:'🎵';}
 function renderSolitaire(){
   const b=document.getElementById('solitaireBoard');if(!b)return;
   b.innerHTML='';
-  tableau.forEach((col,ci)=>{const d=document.createElement('div');d.className='sol-col';d.dataset.col=ci;
-    col.forEach((c,ri)=>{const el=document.createElement('button');el.className='sol-card '+(c.red?'red':'');el.textContent=cardText(c);el.style.top=(ri*28)+'px';el.onclick=()=>selectSolitaire(ci,ri);d.appendChild(el);});b.appendChild(d);});
+  tableau.forEach((col,ci)=>{const d=document.createElement('div');d.className='sol-col';d.dataset.col=ci;d.style.setProperty('--stack-steps',Math.max(6,col.length-1));
+    col.forEach((c,ri)=>{const el=document.createElement('button');el.className='sol-card '+(c.red?'red':'');el.textContent=cardText(c);el.style.setProperty('--card-index',ri);el.onclick=()=>selectSolitaire(ci,ri);d.appendChild(el);});b.appendChild(d);});
   const w=document.createElement('div');w.className='sol-waste';w.textContent=waste.length?'DRAWN: '+cardText(waste[waste.length-1]):'DRAW';b.appendChild(w);
 }
 function selectSolitaire(ci,ri){
