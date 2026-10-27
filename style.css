@@ -192,3 +192,21 @@ audio{width:100%;margin:15px 0}
 .sol-card.selected{outline:3px solid #ffe600;z-index:20!important;transform:translateY(-2px)}
 .sol-col{height:clamp(210px,65vw,360px)}
 @media(max-width:420px){.sol-top-row{gap:3px}.sol-pile{height:36px;font-size:9px}.sol-columns{gap:2px}.sol-col{height:clamp(190px,62vw,300px)}}
+
+
+/* Responsive arcade sizing and classic solitaire presentation */
+.tetris-game{padding:clamp(9px,2vw,18px)}
+#tetrisCanvas{width:min(100%,240px);max-height:48vh;object-fit:contain}
+.solitaire{background:linear-gradient(145deg,#f8fff8,#d8f0dc)!important;color:#102d1a!important;border:3px solid #0754d6!important}
+.solitaire h3{color:#0754d6!important;text-shadow:1px 1px #b8e8ff!important}
+.solitaire .music-suits{color:#0754d6!important;text-shadow:none!important}
+.solitaire .game-status{background:#fff!important;color:#102d1a!important;border-color:#0754d6}
+.solitaire-board{background:#176b43!important;background-image:none!important;border-color:#fff!important;outline:2px solid #0754d6!important}
+.sol-pile{background:linear-gradient(145deg,#fff,#dbe8ff)!important;color:#0754d6!important;border-color:#0754d6!important}
+.sol-card{background:linear-gradient(145deg,#fff,#f3f6ff)!important;border:1px solid #c3cfe0!important;box-shadow:0 1px 2px #071124!important;color:#152238}
+.sol-card.red{color:#d00035!important}
+.pac-melody{background:linear-gradient(145deg,#071124,#142d65);color:#fff;border:3px solid #62f4ff;box-shadow:0 0 0 2px #ff32c8,0 0 18px #0754d6}
+.pac-melody h3{font-family:'Press Start 2P';font-size:clamp(12px,3vw,17px);line-height:1.7;color:#ffe600}
+.pac-melody p{color:#e4f7ff}
+#pacCanvas{display:block;width:min(100%,420px);height:auto;margin:12px auto;border:3px solid #62f4ff;background:#020814;touch-action:manipulation}
+@media(max-width:650px){#tetrisCanvas{width:min(100%,210px);max-height:42vh}.pac-melody .game-controls button{min-width:52px}}
