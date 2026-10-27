@@ -268,3 +268,11 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .tetris-game,.pac-melody,.retro-platformer{background:linear-gradient(145deg,#030817,#06285f 54%,#3a071b)!important;border-color:#24e7ff}
 .solitaire{background:radial-gradient(ellipse at top,#092a62 0%,#071124 62%,#210615 100%)!important}.solitaire-board{border-color:#24e7ff!important}.sol-card.selected{outline-color:#ff344f}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Playable arcade controls and card piles. */
+#games .game.game-active{outline:3px solid #ffe600;outline-offset:4px}
+#games .game:focus-visible{outline:3px solid #ffe600;outline-offset:4px}
+#games .game-controls button{touch-action:none;min-height:44px}
+.sol-card.face-down{background:repeating-linear-gradient(45deg,#073b89,#073b89 5px,#0754d6 5px,#0754d6 10px)!important;color:#fff!important}
+.sol-col{min-height:100px}
+.solitaire-board{overflow:visible}
