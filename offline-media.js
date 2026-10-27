@@ -64,7 +64,7 @@
     section.appendChild(box);
     const input = box.querySelector('input');
     const list = box.querySelector('.saved-media-list');
-    const objectUrls = [];
+    let objectUrls = [];
     box.querySelector('.save-media').addEventListener('click', async () => {
       const files = Array.from(input.files || []);
       if (!files.length) { alert('Choose one or more files first.'); return; }
