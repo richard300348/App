@@ -174,3 +174,14 @@ audio{width:100%;margin:15px 0}
   .solitaire-board{gap:2px;padding:3px;background-size:14px 14px}
   .solitaire-actions button{flex-basis:78px;font-size:10px}
 }
+
+/* Beat Drop music-block arcade game */
+.tetris-game{background:linear-gradient(145deg,#071124,#0a2863);color:#fff;border:3px solid #62f4ff;box-shadow:0 0 0 2px #ff32c8,0 0 22px #0754d6}
+.tetris-game h3{font-family:'Press Start 2P';font-size:clamp(13px,3vw,18px);line-height:1.7;color:#ffe600;text-shadow:2px 2px #ff32c8}
+.tetris-game>p{color:#e4f7ff}
+.tetris-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:10px;background:#020814;border:1px solid #62f4ff;font-family:monospace;font-weight:900}
+.tetris-stats b{color:#ffe600}
+#tetrisCanvas{display:block;width:min(100%,300px);height:auto;margin:14px auto;background:#050b1a;border:3px solid #62f4ff;box-shadow:0 0 18px #0754d6;touch-action:manipulation}
+.tetris-controls{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.tetris-controls button{flex:1 1 82px;max-width:150px}
+.tetris-help{font-size:12px;text-align:center}
