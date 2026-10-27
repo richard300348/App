@@ -246,3 +246,25 @@ audio{width:100%;margin:15px 0}
 .sol-pile{background:linear-gradient(145deg,#123d7b,#071124)!important;color:#ffe600!important;border:2px solid #62f4ff!important;box-shadow:0 0 8px #0754d6!important}
 .sol-card::after{content:'♫';color:#0754d6;opacity:.32}
 @media(prefers-reduced-motion:reduce){.sol-vinyl,.sol-equalizer i{animation:none}}
+
+/* CYBER 2000s red-and-blue system skin */
+:root{--blue:#087cff;--deep:#03102e;--cyan:#24e7ff;--pink:#ff174f;--yellow:#ff344f;--black:#030817;--white:#f3f8ff}
+body{color:#eef5ff;background-color:#030817;background-image:radial-gradient(ellipse at 12% 8%,rgba(0,116,255,.42),transparent 38%),radial-gradient(ellipse at 88% 18%,rgba(255,20,65,.32),transparent 35%),linear-gradient(135deg,#020611 0%,#071b43 42%,#240817 75%,#030817 100%);background-attachment:fixed}
+body:before{z-index:-1;opacity:.52;background:repeating-linear-gradient(0deg,transparent 0 39px,rgba(36,231,255,.09) 40px,transparent 41px),repeating-linear-gradient(90deg,transparent 0 39px,rgba(255,23,79,.08) 40px,transparent 41px),linear-gradient(120deg,rgba(0,70,255,.14),rgba(255,0,64,.12))}
+.topbar{background:linear-gradient(100deg,#031b55 0%,#0754d6 45%,#a9002c 100%);border-color:#24e7ff;box-shadow:0 4px 0 #ff174f,0 8px 0 #03102e,0 0 22px #087cff}
+.logo{color:#f5fbff;text-shadow:2px 2px #ff174f,-2px -2px #24e7ff,0 0 18px #087cff}.logo span{color:#ff344f}
+nav button{background:linear-gradient(180deg,#123c80,#08152f)!important;color:#f5fbff!important;border-color:#24e7ff!important;box-shadow:0 2px 0 #ff174f,0 0 8px rgba(0,124,255,.4)!important}
+nav button.live{background:linear-gradient(#ff365c,#8e001d)!important;color:#fff!important}
+.page{color:#eef5ff}h1,h2{color:#f6faff;text-shadow:2px 2px #ff174f,4px 4px #087cff}h3{color:#24e7ff}
+.hero,.grid article,.post,.player,.game,.video-card,.news-player{background:linear-gradient(145deg,rgba(5,25,63,.97),rgba(32,7,29,.96))!important;color:#eef5ff;border:2px solid #24e7ff;box-shadow:0 0 0 1px #ff174f,0 0 20px rgba(0,124,255,.22)}
+.hero:before{opacity:.18;background:repeating-linear-gradient(135deg,transparent 0 16px,#087cff 17px,transparent 18px,#ff174f 19px,transparent 20px)}
+.hero h1{color:#fff;text-shadow:2px 2px #ff174f,4px 4px #087cff,0 0 18px #24e7ff}.hero p,.grid article p,.note{color:#d5e7ff}.glow{color:#ff365c;text-shadow:0 0 12px #ff174f}
+button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-color:#24e7ff;color:#fff;box-shadow:0 2px 0 #ff174f,0 0 9px rgba(0,124,255,.35)}button:hover{filter:brightness(1.18)}
+.home-banner,.arcade-banner{background:linear-gradient(100deg,#04245e,#087cff,#9b0029)!important;color:#fff;border-color:#24e7ff;outline-color:#ff174f;text-shadow:0 0 8px #24e7ff}
+.music-screen,.video-placeholder{background:linear-gradient(135deg,#020817,#063c91 52%,#7b0928)!important;border-color:#24e7ff}
+.mini-player{background:linear-gradient(90deg,#03102e,#0754d6,#8e001d);border-color:#24e7ff;box-shadow:0 -3px 0 #ff174f,0 0 18px #087cff}
+.bottom-nav{background:linear-gradient(90deg,#020817,#06265f,#5d071d);border-color:#24e7ff;box-shadow:0 -3px 0 #ff174f}.bottom-nav button{color:#fff!important}.bottom-nav button:focus,.bottom-nav button:hover{background:linear-gradient(90deg,#087cff,#a9002c)!important;border-color:#24e7ff}
+.offline-status{background:#ff174f;color:#fff;border-color:#24e7ff}
+.tetris-game,.pac-melody,.retro-platformer{background:linear-gradient(145deg,#030817,#06285f 54%,#3a071b)!important;border-color:#24e7ff}
+.solitaire{background:radial-gradient(ellipse at top,#092a62 0%,#071124 62%,#210615 100%)!important}.solitaire-board{border-color:#24e7ff!important}.sol-card.selected{outline-color:#ff344f}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
