@@ -83,3 +83,94 @@ audio{width:100%;margin:15px 0}
 .mini-player{bottom:55px}
 .page{padding-bottom:135px}
 @media(max-width:650px){.topbar{padding-bottom:10px}.bottom-nav button{font-size:9px}.bottom-nav button span{font-size:18px}.music-screen{gap:8px;padding:10px}.page{padding-bottom:140px}}
+
+
+/* Mobile-fit music-block solitaire refresh */
+.solitaire{
+  min-width:0;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(7,84,214,.96),rgba(3,27,84,.98)),
+    #06142d;
+  color:#fff;
+  border:3px solid #62f4ff;
+  box-shadow:0 0 0 2px #ff32c8,0 0 22px #0754d6;
+}
+.solitaire h3{color:#ffe600!important;text-shadow:2px 2px #ff32c8!important}
+.solitaire .music-suits{
+  color:#62f4ff;
+  letter-spacing:clamp(2px,2vw,8px);
+  font-size:clamp(20px,5vw,32px);
+  text-shadow:2px 2px #ff32c8;
+}
+.solitaire .game-status{color:#071b45;border-radius:6px;font-weight:700}
+.solitaire-board{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:clamp(2px,1vw,8px);
+  width:100%;
+  min-width:0;
+  min-height:0;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  padding:clamp(4px,1.5vw,10px);
+  background-color:#071124;
+  background-image:
+    linear-gradient(rgba(98,244,255,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(98,244,255,.12) 1px,transparent 1px);
+  background-size:18px 18px;
+  border:2px solid #62f4ff;
+  outline:0;
+}
+.sol-col{
+  position:relative;
+  min-width:0;
+  width:100%;
+  height:clamp(170px,52vw,275px);
+}
+.sol-card{
+  left:0;
+  width:100%;
+  height:clamp(43px,12vw,70px);
+  padding:2px 1px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:clamp(10px,2.7vw,17px);
+  line-height:1.2;
+  border:1px solid #62f4ff;
+  border-radius:5px;
+  background:linear-gradient(145deg,#fff,#d9eaff);
+  box-shadow:0 2px 0 #0754d6;
+}
+.sol-card:nth-child(4n+1){border-top:4px solid #ff32c8}
+.sol-card:nth-child(4n+2){border-top:4px solid #00d8ff}
+.sol-card:nth-child(4n+3){border-top:4px solid #ffe600}
+.sol-card:nth-child(4n){border-top:4px solid #56e39f}
+.sol-card.red{color:#d90045}
+.sol-card:focus-visible{outline:3px solid #ffe600;z-index:5}
+.sol-card::after{font-size:clamp(10px,2.7vw,16px);right:2px;bottom:0}
+.sol-waste{
+  grid-column:1/-1;
+  min-width:0;
+  width:100%;
+  height:auto;
+  min-height:36px;
+  padding:8px;
+  text-align:center;
+  border:2px solid #ff32c8;
+  background:linear-gradient(90deg,#0754d6,#ff32c8,#0754d6);
+  overflow-wrap:anywhere;
+}
+.solitaire-actions{gap:6px}
+.solitaire-actions button{flex:1 1 95px;min-width:0;font-size:11px;padding:9px 5px}
+@media(max-width:420px){
+  .solitaire{padding:9px!important}
+  .sol-col{height:clamp(160px,51vw,215px)}
+  .sol-card{height:clamp(38px,11vw,50px);font-size:10px}
+  .sol-card::after{content:'♪';}
+  .solitaire-board{gap:2px;padding:3px;background-size:14px 14px}
+  .solitaire-actions button{flex-basis:78px;font-size:10px}
+}
