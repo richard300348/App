@@ -3,7 +3,6 @@
   const DB_NAME = 'richie-hub-media';
   const STORE = 'files';
   let db;
-  let objectUrls = [];
   const openDB = () => new Promise((resolve, reject) => {
     if (db) return resolve(db);
     const request = indexedDB.open(DB_NAME, 1);
@@ -65,6 +64,7 @@
     section.appendChild(box);
     const input = box.querySelector('input');
     const list = box.querySelector('.saved-media-list');
+    const objectUrls = [];
     box.querySelector('.save-media').addEventListener('click', async () => {
       const files = Array.from(input.files || []);
       if (!files.length) { alert('Choose one or more files first.'); return; }
