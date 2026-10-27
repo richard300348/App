@@ -166,7 +166,17 @@ function tetrisTick(){if(!tRunning)return;if(!tetrisCollide(tPiece,0,1))tPiece.y
 function tetrisClearLines(){let cleared=0;for(let y=TH-1;y>=0;y--){if(tBoard[y].every(Boolean)){tBoard.splice(y,1);tBoard.unshift(Array(TW).fill(0));cleared++;y++;}}if(cleared){tLines+=cleared;tScore+=[0,100,300,500,800][cleared]*tLevel;tLevel=1+Math.floor(tLines/10);clearInterval(tTimer);tTimer=setInterval(tetrisTick,Math.max(100,650-(tLevel-1)*45));updateTetrisStats();}}
 function drawTetris(){if(!tx)return;tx.fillStyle='#050b1a';tx.fillRect(0,0,tc.width,tc.height);tx.strokeStyle='rgba(98,244,255,.13)';for(let x=0;x<=TW;x++){tx.beginPath();tx.moveTo(x*TS,0);tx.lineTo(x*TS,TH*TS);tx.stroke();}for(let y=0;y<=TH;y++){tx.beginPath();tx.moveTo(0,y*TS);tx.lineTo(TW*TS,y*TS);tx.stroke();}
 tBoard.forEach((row,y)=>row.forEach((c,x)=>{if(c)tetrisCell(x,y,c);}));if(tPiece)tPiece.shape.forEach((row,y)=>row.forEach((v,x)=>{if(v&&tPiece.y+y>=0)tetrisCell(tPiece.x+x,tPiece.y+y,tPiece.color);}));if(!tRunning){tx.fillStyle='rgba(0,0,0,.65)';tx.fillRect(0,250,300,100);tx.fillStyle='#ffe600';tx.font='bold 17px monospace';tx.textAlign='center';tx.fillText(tPiece?'PAUSED / GAME OVER':'PRESS NEW GAME',150,295);tx.textAlign='start';}}
-function tetrisCell(x,y,color){tx.fillStyle=color;tx.fillRect(x*TS+1,y*TS+1,TS-2,TS-2);tx.strokeStyle='#fff';tx.lineWidth=1.2;tx.strokeRect(x*TS+2,y*TS+2,TS-4,TS-4);tx.fillStyle='rgba(255,255,255,.25)';tx.fillRect(x*TS+4,y*TS+4,TS-8,4);}
+function tetrisCell(x,y,color){
+ const cx=x*TS+TS/2,cy=y*TS+TS/2,r=TS*.43;
+ const glow=tx.createRadialGradient(cx-r*.35,cy-r*.4,1,cx,cy,r);
+ glow.addColorStop(0,'#ffffff');glow.addColorStop(.18,color);glow.addColorStop(1,color);
+ tx.save();tx.shadowColor=color;tx.shadowBlur=7;
+ tx.beginPath();tx.arc(cx,cy,r,0,Math.PI*2);tx.fillStyle=glow;tx.fill();
+ tx.shadowBlur=0;tx.strokeStyle='#fff';tx.lineWidth=1.5;tx.stroke();
+ tx.fillStyle='#071124';tx.font='bold 17px serif';tx.textAlign='center';tx.textBaseline='middle';
+ tx.fillText(['♪','♫','♬','♩'][(x+y)%4],cx,cy+1);
+ tx.restore();
+}
 function updateTetrisStats(){[['tetrisScore',tScore],['tetrisLines',tLines],['tetrisLevel',tLevel]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.textContent=v;});}
 function tetrisMove(dir){if(tRunning&&!tetrisCollide(tPiece,dir,0)){tPiece.x+=dir;drawTetris();}}
 function tetrisRotate(){if(!tRunning)return;const shape=tPiece.shape[0].map((_,i)=>tPiece.shape.map(r=>r[i]).reverse());if(!tetrisCollide(tPiece,0,0,shape)){tPiece.shape=shape;drawTetris();}}
