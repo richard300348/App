@@ -185,3 +185,10 @@ audio{width:100%;margin:15px 0}
 .tetris-controls{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
 .tetris-controls button{flex:1 1 82px;max-width:150px}
 .tetris-help{font-size:12px;text-align:center}
+
+.sol-top-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:8px}
+.sol-pile{min-width:0;padding:6px 1px;height:42px;overflow:hidden;font-size:clamp(10px,2.6vw,15px);background:linear-gradient(135deg,#0754d6,#ff32c8);border:2px solid #62f4ff}
+.sol-columns{grid-column:1/-1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(2px,1vw,8px);min-width:0}
+.sol-card.selected{outline:3px solid #ffe600;z-index:20!important;transform:translateY(-2px)}
+.sol-col{height:clamp(210px,65vw,360px)}
+@media(max-width:420px){.sol-top-row{gap:3px}.sol-pile{height:36px;font-size:9px}.sol-columns{gap:2px}.sol-col{height:clamp(190px,62vw,300px)}}
