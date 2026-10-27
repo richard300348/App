@@ -185,3 +185,39 @@ function tetrisToggle(){if(!tPiece){startTetris();return;}tRunning=!tRunning;if(
 window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;if(['ArrowLeft','ArrowRight','ArrowDown','ArrowUp',' '].includes(e.key))e.preventDefault();if(e.key==='ArrowLeft')tetrisMove(-1);else if(e.key==='ArrowRight')tetrisMove(1);else if(e.key==='ArrowUp')tetrisRotate();else if(e.key==='ArrowDown')tetrisTick();else if(e.key===' ')tetrisDrop();else if(e.key.toLowerCase()==='p')tetrisToggle();});
 dealSolitaire();
 if(tx){tBoard=Array.from({length:TH},()=>Array(TW).fill(0));drawTetris();}
+
+
+/* Music-themed Pac-Melody maze */
+const pacCanvas=document.getElementById('pacCanvas');
+const pacCtx=pacCanvas?pacCanvas.getContext('2d'):null;
+const pacMap=[
+"#####################",
+"#.........#.........#",
+"#.###.###.#.###.###.#",
+"#o#...#...#...#...#o#",
+"#.###.#.#####.#.###.#",
+"#.....#...#...#.....#",
+"#####.###.#.###.#####",
+"#......... .........#",
+"#.###.##.###.##.###.#",
+"#...#....#....#...#.#",
+"###.#.##...##.#.###.#",
+"#...#....#....#...#.#",
+"#.###.#######.###.#.#",
+"#.........#.........#",
+"#.###.###.#.###.###.#",
+"#o..#...........#..o#",
+"#####################"
+];
+let pacState={x:1,y:1,score:0,dirs:[{x:19,y:1},{x:19,y:15},{x:10,y:9}],running:true};
+function startPacman(){pacState={x:1,y:1,score:0,dirs:[{x:19,y:1},{x:19,y:15},{x:10,y:9}],running:true};document.getElementById('pacScore').textContent='0';drawPacman();}
+function pacMove(dx,dy){if(!pacCtx)return;const nx=pacState.x+dx,ny=pacState.y+dy;if(pacMap[ny]&&pacMap[ny][nx]&&pacMap[ny][nx]!=='#'){pacState.x=nx;pacState.y=ny;if(pacMap[ny][nx]!=='.'&&pacMap[ny][nx]!==' '&&pacMap[ny][nx]!=='#'){}if(pacMap[ny][nx]==='.'||pacMap[ny][nx]==='o'){const row=pacMap[ny].split('');row[nx]=' ';pacMap[ny]=row.join('');pacState.score+=pacMap[ny][nx]==='o'?10:10;document.getElementById('pacScore').textContent=pacState.score;}}
+pacState.dirs.forEach((g,i)=>{if(Math.random()<.75){const opts=[[1,0],[-1,0],[0,1],[0,-1]].sort(()=>Math.random()-.5);for(const [gx,gy] of opts){const xx=g.x+gx,yy=g.y+gy;if(pacMap[yy]&&pacMap[yy][xx]&&pacMap[yy][xx]!=='#'){g.x=xx;g.y=yy;break;}}}if(g.x===pacState.x&&g.y===pacState.y){pacState.x=1;pacState.y=1;}});drawPacman();}
+function drawPacman(){if(!pacCtx)return;const cell=20;pacCtx.fillStyle='#020814';pacCtx.fillRect(0,0,pacCanvas.width,pacCanvas.height);pacMap.forEach((row,y)=>[...row].forEach((ch,x)=>{const px=x*cell,py=y*cell;if(ch==='#'){pacCtx.fillStyle='#0754d6';pacCtx.fillRect(px+1,py+1,cell-2,cell-2);pacCtx.strokeStyle='#62f4ff';pacCtx.strokeRect(px+3,py+3,cell-6,cell-6);}else if(ch==='.'||ch==='o'){pacCtx.fillStyle=ch==='o'?'#ff32c8':'#ffe600';pacCtx.font='14px serif';pacCtx.textAlign='center';pacCtx.fillText(ch==='o'?'♫':'♪',px+10,py+15);}}));pacCtx.fillStyle='#ffe600';pacCtx.beginPath();pacCtx.arc(pacState.x*cell+10,pacState.y*cell+10,8,0.25,Math.PI*1.8);pacCtx.lineTo(pacState.x*cell+10,pacState.y*cell+10);pacCtx.fill();pacState.dirs.forEach((g,i)=>{pacCtx.fillStyle=['#ff32c8','#00d8ff','#56e39f'][i];pacCtx.beginPath();pacCtx.arc(g.x*cell+10,g.y*cell+10,7,Math.PI,0);pacCtx.lineTo(g.x*cell+17,g.y*cell+16);pacCtx.lineTo(g.x*cell+13,g.y*cell+13);pacCtx.lineTo(g.x*cell+9,g.y*cell+16);pacCtx.lineTo(g.x*cell+3,g.y*cell+13);pacCtx.closePath();pacCtx.fill();});}
+window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;const dirs={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};if(dirs[e.key]&&document.activeElement?.tagName!=='INPUT'){e.preventDefault();pacMove(...dirs[e.key]);}});
+if(pacCtx)drawPacman();
+
+/* Platform controls: release movement cleanly and provide keyboard support */
+function platformMove(dir){if(pGame.running){pGame.vx=dir*4;}}
+window.addEventListener('keyup',e=>{if(['ArrowLeft','ArrowRight','a','d','A','D'].includes(e.key))pGame.vx=0;});
+window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;if(['a','A','ArrowLeft'].includes(e.key))platformMove(-1);if(['d','D','ArrowRight'].includes(e.key))platformMove(1);if(['w','W','ArrowUp'].includes(e.key))platformJump();});
