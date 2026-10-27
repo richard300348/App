@@ -57,15 +57,11 @@
 <section id="games" class="page">
   <h2>🕹️ GAME ZONE</h2>
   <div class="arcade-banner">👾 ARCADE <small>PLAY • SCORE • LEVEL UP</small></div>
-  <div class="grid game-grid">
-    <article>👾<h3>Retro Clicker</h3><button class="big" onclick="score()">PLAY NOW</button><p>Score: <b id="score">0</b></p></article>
-    <article>🟡<h3>Pac-style Fun</h3><p>Maze-inspired retro challenge.</p><button onclick="show('games')">SELECT</button></article>
-    <article>🟦<h3>Pixel Puzzle</h3><p>Color and pattern mini-game.</p><button onclick="show('games')">SELECT</button></article>
-  </div>
+  <div class="game pac-melody"><h3>🎵 PAC-MELODY: BEAT MAZE</h3><p>Collect music notes, avoid the roaming sound-eaters, and clear the maze!</p><canvas id="pacCanvas" width="420" height="420" aria-label="Music-themed maze game"></canvas><div class="game-controls"><button onclick="pacMove(0,-1)">▲</button><button onclick="pacMove(-1,0)">◀</button><button onclick="pacMove(0,1)">▼</button><button onclick="pacMove(1,0)">▶</button><button onclick="startPacman()">NEW GAME</button></div><p>NOTES: <b id="pacScore">0</b></p></div>
   <div class="game retro-platformer">
-    <h3>🎼 RETRO PLATFORM RUN</h3>
-    <p>Grab music notes and dodge the suit-wearing business people!</p>
-    <canvas id="platformGame" width="640" height="300"></canvas>
+    <h3>🎸 MARIO BEAT RUN</h3>
+    <p>Jump to the beat, collect glowing music notes, and dodge the suit-wearing music critics!</p>
+    <canvas id="platformGame" width="640" height="300" aria-label="Music-themed platform game"></canvas>
     <div class="game-controls"><button onclick="platformMove(-1)">◀ LEFT</button><button class="big" onclick="platformJump()">JUMP ⬆</button><button onclick="platformMove(1)">RIGHT ▶</button></div>
     <div>NOTES: <b id="noteCount">0</b> &nbsp; LIVES: <b id="lives">3</b></div><button onclick="startPlatformGame()">RESTART</button>
   </div>
