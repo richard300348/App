@@ -16,7 +16,7 @@ function show(id){
 function score(){
   points++;
   localStorage.setItem('retroScore',points);
-  document.getElementById('score').textContent=points;
+  const scoreEl=document.getElementById('score'); if(scoreEl) scoreEl.textContent=points;
 }
 function toggleMusic(){
   if(!audio.src){alert('Add a licensed MP3 to media/ and set its path in app.js first.');return;}
@@ -31,7 +31,7 @@ function loadTrack(i){
   document.getElementById('miniTrack').textContent=t.name;
   if(t.src) audio.src=t.src;
 }
-document.getElementById('score').textContent=points;
+const scoreEl=document.getElementById('score'); if(scoreEl) scoreEl.textContent=points;
 loadTrack(current);
 
 const offlineStatus=document.getElementById('offlineStatus');
@@ -221,3 +221,21 @@ if(pacCtx)drawPacman();
 function platformMove(dir){if(pGame.running){pGame.vx=dir*4;}}
 window.addEventListener('keyup',e=>{if(['ArrowLeft','ArrowRight','a','d','A','D'].includes(e.key))pGame.vx=0;});
 window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;if(['a','A','ArrowLeft'].includes(e.key))platformMove(-1);if(['d','D','ArrowRight'].includes(e.key))platformMove(1);if(['w','W','ArrowUp'].includes(e.key))platformJump();});
+
+/* CHOOSE-YOUR-OWN-PATH MUSIC ADVENTURE */
+let pathStep='start';
+function pathRender(title,body,choices){
+ const box=document.getElementById('pathStory');if(!box)return;box.innerHTML='';
+ const h=document.createElement('h4');h.textContent=title;box.appendChild(h);
+ const p=document.createElement('p');p.textContent=body;box.appendChild(p);
+ const wrap=document.createElement('div');wrap.className='path-choices';
+ choices.forEach(function(item){const b=document.createElement('button');b.textContent=item[0];b.onclick=function(){pathChoose(item[1]);};wrap.appendChild(b);});box.appendChild(wrap);
+}
+function pathChoose(choice){
+ if(pathStep==='start'){if(choice==='club'){pathStep='club';pathRender('THE UNDERGROUND CLUB','DJ Static reveals that Vex’s enforcers guard the stolen beat. Choose stealth or challenge the DJ.',[['🕶️ Sneak through the sound booth','sneak'],['🥁 Win the rhythm duel','duel']]);}else if(choice==='studio'){pathStep='studio';pathRender('THE ABANDONED STUDIO','A dusty sampler reveals a clue, but security drones wake up. Decode the sample or escape over the rooftops.',[['🎛️ Decode the sample','decode'],['🏃 Escape across rooftops','roof']]);}return;}
+ if(['sneak','duel','decode','roof'].includes(choice)){pathStep='clue';let story={sneak:['SECRET FREQUENCY FOUND','You slip past the guards and learn Vex’s hideout frequency.'],duel:['THE CROWD JOINS YOUR BEAT','You win the rhythm duel and gain an amp that weakens Vex’s shield.'],decode:['THE MASTER TRACK CLUE','You decode the melody and discover the weakness in Vex’s sound shield.'],roof:['ROOFTOP ALLY','You escape the drones and a beat-maker gives you a backup soundboard.']}[choice];pathRender(story[0],story[1],[['➡️ Head to Vex Tower','tower']]);return;}
+ if(choice==='tower'){pathStep='boss';pathRender('FINAL BOSS: DIRECTOR VEX','Vex activates the MEGA-MUTE machine. Choose your final move.',[['🔊 Bass Drop Attack','bass'],['🎚️ Remix the Signal','remix'],['📣 Rally the City','crowd']]);return;}
+ if(['bass','remix','crowd'].includes(choice)){pathStep='ending';let endings={bass:['ENDING: BASS BREAKER','Your massive bass drop shatters Vex’s shield. Music returns to every street, and you become the Bass Breaker of Neon City.'],remix:['ENDING: MASTER REMIXER','You flip Vex’s signal into a citywide remix. His machine becomes the biggest speaker in town, and the city dances again.'],crowd:['ENDING: THE CITY SINGS','You rally the whole city into one unstoppable chorus. Vex cannot mute thousands of voices and surrenders.']}[choice];pathRender(endings[0],endings[1],[['🏆 Play again','again']]);return;}
+ if(choice==='again')pathRestart();
+}
+function pathRestart(){pathStep='start';pathRender('THE CITY LOST ITS BEAT','It is 2004. Every speaker in Neon City suddenly goes silent. Director Vex stole the master track. How will you begin?',[['🎧 Search the underground club','club'],['🎹 Break into the old studio','studio']]);}
