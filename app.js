@@ -46,46 +46,52 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(console.error));
 }
 
-/* RETRO PLATFORM RUN */
+/* BEAT STREET — EASY MUSIC PLATFORM GAME */
 const pg=document.getElementById('platformGame');
 const pctx=pg?pg.getContext('2d'):null;
-let pGame={x:40,y:235,vx:0,vy:0,onGround:true,notes:0,lives:3,running:false,enemyX:520};
+const beatNotes=[{x:135,y:205,got:false},{x:245,y:155,got:false},{x:355,y:205,got:false},{x:465,y:155,got:false},{x:555,y:205,got:false}];
+let pGame={x:35,y:220,vy:0,onGround:true,notes:0,running:true,won:false};
 function startPlatformGame(){
-  if(!pctx)return;
-  pGame={x:40,y:235,vx:0,vy:0,onGround:true,notes:0,lives:3,running:true,enemyX:520};
-  document.getElementById('noteCount').textContent=0;
-  document.getElementById('lives').textContent=3;
-  platformLoop();
+ if(!pctx)return;
+ pGame={x:35,y:220,vy:0,onGround:true,notes:0,running:true,won:false};
+ beatNotes.forEach(n=>n.got=false);
+ const n=document.getElementById('noteCount');if(n)n.textContent='0';
+ drawPlatform();
 }
-function platformMove(dir){ if(pGame.running){pGame.vx=dir*4;} }
-function platformJump(){ if(pGame.running&&pGame.onGround){pGame.vy=-10;pGame.onGround=false;} }
+function platformMove(dir){
+ if(!pGame.running||!pctx)return;
+ pGame.x=Math.max(8,Math.min(600,pGame.x+dir*28));
+ if(pGame.onGround&&Math.random()<0.22){pGame.vy=-5;pGame.onGround=false;}
+ checkBeatNotes();drawPlatform();
+}
+function platformJump(){if(pGame.running&&pGame.onGround){pGame.vy=-10;pGame.onGround=false;}}
+function checkBeatNotes(){
+ beatNotes.forEach(n=>{if(!n.got&&Math.abs(pGame.x-n.x)<32&&Math.abs(pGame.y-n.y)<65){n.got=true;pGame.notes++;const el=document.getElementById('noteCount');if(el)el.textContent=pGame.notes;}});
+ if(pGame.x>=585){pGame.won=true;pGame.running=false;drawPlatform('YOU ROCK! BEAT RESTORED!');}
+}
 function platformLoop(){
-  if(!pGame.running)return;
-  pGame.x=Math.max(8,Math.min(600,pGame.x+pGame.vx)); pGame.vx*=.82;
-  pGame.vy+=.5; pGame.y+=pGame.vy;
-  if(pGame.y>=235){pGame.y=235;pGame.vy=0;pGame.onGround=true;}
-  pGame.enemyX-=1.2;if(pGame.enemyX<0)pGame.enemyX=620;
-  if(Math.abs(pGame.x-pGame.enemyX)<28&&pGame.y>205){pGame.lives--;document.getElementById('lives').textContent=pGame.lives;pGame.x=40;pGame.enemyX=520;if(pGame.lives<=0){pGame.running=false;drawPlatform('GAME OVER — PRESS RESTART');return;}}
-  if(pGame.x>260&&pGame.x<300&&pGame.y>175){pGame.notes++;document.getElementById('noteCount').textContent=pGame.notes;pGame.x+=30;}
-  drawPlatform();
-  requestAnimationFrame(platformLoop);
+ if(!pctx)return;
+ if(pGame.running&&!pGame.onGround){pGame.vy+=0.55;pGame.y+=pGame.vy;if(pGame.y>=220){pGame.y=220;pGame.vy=0;pGame.onGround=true;}checkBeatNotes();drawPlatform();}
+ requestAnimationFrame(platformLoop);
 }
 function drawPlatform(message){
-  pctx.clearRect(0,0,640,300);
-  pctx.fillStyle='#111';pctx.fillRect(0,0,640,300);
-  pctx.fillStyle='#1717ff';pctx.fillRect(0,260,640,40);
-  pctx.fillStyle='#ffe600';pctx.fillRect(250,150,70,15);
-  pctx.fillStyle='#ff20b8';pctx.fillRect(90,205,75,15);
-  pctx.fillStyle='#ffe600';pctx.font='28px serif';pctx.fillText('♪',278,135);
-  pctx.fillStyle='#f2c29b';pctx.beginPath();pctx.arc(pGame.enemyX+13,212,9,0,Math.PI*2);pctx.fill();
-  pctx.fillStyle='#111';pctx.fillRect(pGame.enemyX+3,220,20,40);
-  pctx.fillStyle='#fff';pctx.fillRect(pGame.enemyX+11,222,4,16);
-  pctx.fillStyle='#d90000';pctx.fillRect(pGame.enemyX+10,224,6,4);
-  pctx.fillStyle='#00e5ff';pctx.fillRect(pGame.x,pGame.y,25,25);
-  pctx.fillStyle='#ffe600';pctx.font='16px monospace';pctx.fillText(message||'GRAB THE MUSIC NOTES!',15,25);
-  pctx.fillStyle='#ff20b8';pctx.font='12px monospace';pctx.fillText('♪ ♫ ♪ BEAT STREET ♪ ♫ ♪',440,25);
+ if(!pctx)return;
+ pctx.clearRect(0,0,pg.width,pg.height);
+ const bg=pctx.createLinearGradient(0,0,0,300);bg.addColorStop(0,'#07112b');bg.addColorStop(1,'#32104f');pctx.fillStyle=bg;pctx.fillRect(0,0,640,300);
+ pctx.strokeStyle='rgba(0,229,255,.22)';pctx.lineWidth=1;
+ for(let y=52;y<=92;y+=10){pctx.beginPath();pctx.moveTo(0,y);pctx.lineTo(640,y);pctx.stroke();}
+ pctx.fillStyle='#ff32c8';pctx.font='25px serif';pctx.fillText('♫',28,75);pctx.fillText('♪',590,72);pctx.fillText('♬',520,110);
+ pctx.fillStyle='#00d8ff';pctx.fillRect(0,255,640,45);pctx.fillStyle='#0754d6';pctx.fillRect(0,265,640,35);
+ pctx.fillStyle='#ff32c8';pctx.fillRect(85,222,92,10);pctx.fillStyle='#ffe600';pctx.fillRect(205,175,90,10);pctx.fillStyle='#56e39f';pctx.fillRect(320,222,92,10);pctx.fillStyle='#b56bff';pctx.fillRect(425,175,92,10);
+ beatNotes.forEach(n=>{if(!n.got){pctx.save();pctx.shadowColor='#ffe600';pctx.shadowBlur=12;pctx.fillStyle='#ffe600';pctx.font='bold 29px serif';pctx.fillText('♪',n.x,n.y);pctx.restore();}});
+ pctx.fillStyle='#00e5ff';pctx.fillRect(pGame.x,pGame.y+5,25,25);
+ pctx.fillStyle='#ffd1a3';pctx.beginPath();pctx.arc(pGame.x+12,pGame.y,10,0,Math.PI*2);pctx.fill();
+ pctx.strokeStyle='#ff32c8';pctx.lineWidth=4;pctx.beginPath();pctx.arc(pGame.x+12,pGame.y,11,Math.PI,Math.PI*2);pctx.stroke();
+ pctx.fillStyle='#07112b';pctx.fillRect(pGame.x+5,pGame.y-2,4,3);pctx.fillRect(pGame.x+15,pGame.y-2,4,3);
+ pctx.fillStyle='#ffe600';pctx.font='bold 15px monospace';pctx.fillText(message||(pGame.running?'FOLLOW THE BEAT → COLLECT NOTES!':'LEVEL COMPLETE!'),14,25);
+ pctx.fillStyle='#fff';pctx.font='12px monospace';pctx.fillText('♫ '+pGame.notes+' / 5 NOTES',490,25);
 }
-if(pg)startPlatformGame();
+if(pg){startPlatformGame();platformLoop();}
 
 /* MUSIC-THEMED KLONDIKE SOLITAIRE */
 const suits=['♪','♫','♬','♩'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
@@ -217,10 +223,8 @@ function drawPacman(){if(!pacCtx)return;const cell=20;pacCtx.fillStyle='#020814'
 window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;const dirs={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};if(dirs[e.key]&&document.activeElement?.tagName!=='INPUT'){e.preventDefault();pacMove(...dirs[e.key]);}});
 if(pacCtx)drawPacman();
 
-/* Platform controls: release movement cleanly and provide keyboard support */
-function platformMove(dir){if(pGame.running){pGame.vx=dir*4;}}
-window.addEventListener('keyup',e=>{if(['ArrowLeft','ArrowRight','a','d','A','D'].includes(e.key))pGame.vx=0;});
-window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;if(['a','A','ArrowLeft'].includes(e.key))platformMove(-1);if(['d','D','ArrowRight'].includes(e.key))platformMove(1);if(['w','W','ArrowUp'].includes(e.key))platformJump();});
+/* Easy keyboard controls for Beat Street */
+window.addEventListener('keydown',e=>{if(!document.getElementById('games')?.classList.contains('active'))return;if(['a','A','ArrowLeft'].includes(e.key)){e.preventDefault();platformMove(-1);}if(['d','D','ArrowRight'].includes(e.key)){e.preventDefault();platformMove(1);}if(['w','W','ArrowUp',' '].includes(e.key)){e.preventDefault();platformJump();}});
 
 /* CHOOSE-YOUR-OWN-PATH MUSIC ADVENTURE */
 let pathStep='start';
