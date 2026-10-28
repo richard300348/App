@@ -290,3 +290,12 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .beat-controls button{min-height:58px;font-size:clamp(13px,3.5vw,18px);border:2px solid #00e5ff;background:linear-gradient(135deg,#0754d6,#4515a0);color:#fff;border-radius:12px;touch-action:manipulation;box-shadow:0 4px 0 #031c54}
 .beat-controls button:active{transform:translateY(3px);box-shadow:0 1px 0 #031c54}
 .beat-score{font-weight:800;color:#ffe600;padding:10px;text-align:center;font-family:monospace}
+
+/* Illustrated, voice-enabled Neon Frequency story */
+.path-art{width:100%;overflow:hidden;border:2px solid #00e5ff;border-radius:10px;box-shadow:0 0 20px #00d8ff33;margin-bottom:12px;background:#07112b}
+.path-art svg{display:block;width:100%;height:auto;min-height:150px}
+.path-audio-tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.path-audio-tools button{flex:1 1 130px;min-height:42px;background:linear-gradient(135deg,#10245a,#3b1767);border:1px solid #00e5ff;color:#fff;border-radius:8px;font-weight:800}
+.path-audio-tools button:focus-visible,.path-choices button:focus-visible{outline:3px solid #ffe600;outline-offset:2px}
+.path-story>p{font-size:1rem;line-height:1.65}
+@media(max-width:480px){.path-art svg{min-height:135px}.path-audio-tools button{min-height:48px}}
