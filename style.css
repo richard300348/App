@@ -268,3 +268,15 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .tetris-game,.pac-melody,.retro-platformer{background:linear-gradient(145deg,#030817,#06285f 54%,#3a071b)!important;border-color:#24e7ff}
 .solitaire{background:radial-gradient(ellipse at top,#092a62 0%,#071124 62%,#210615 100%)!important}.solitaire-board{border-color:#24e7ff!important}.sol-card.selected{outline-color:#ff344f}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Choose-your-own-path game and mobile game layout */
+.choose-path-game{border:2px solid #00d8ff;background:linear-gradient(145deg,#071124,#102b59);color:#fff;padding:18px;border-radius:12px;margin:18px 0;box-shadow:0 0 18px #00d8ff55}
+.choose-path-game h3{color:#ffe600}
+.path-story{background:#030b1b;border:1px solid #ff32c8;border-radius:8px;padding:16px;margin:12px 0;line-height:1.6;color:#fff}
+.path-story h4{color:#00d8ff;margin-top:0}
+.path-choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.path-choices button{flex:1 1 180px;min-height:46px;white-space:normal}
+.game canvas{max-width:100%;height:auto;touch-action:manipulation}
+.tetris-game canvas{width:min(100%,300px)}
+.solitaire-board{overflow-x:auto}
+@media(max-width:600px){.choose-path-game{padding:12px}.path-choices{display:grid;grid-template-columns:1fr}.path-choices button{width:100%}}
