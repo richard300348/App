@@ -278,6 +278,7 @@ function pathTravel(area){
  const choices=[data[2]];if(pathState.unlockedItem)choices.push(data[3]);choices.push(['↩️ Return to Neon Plaza','plaza']);pathStep=area;pathRender(data[0],data[1],choices,area);
 }
 function pathChoose(choice){
+ if(pathAreas[choice]){pathTravel(choice);return}
  if(choice==='plaza'){pathTravel('plaza');return}if(choice==='enter-club'){pathTravel('club');return}if(choice==='enter-studio'){pathTravel('studio');return}if(choice==='enter-subway'){pathTravel('subway');return}
  if(choice==='boss-enter'){pathStep='boss';pathRender('FINAL BOSS: DIRECTOR VEX','Vex powers up the MEGA-MUTE machine. Use the Echo Lyre to change the arena, then choose how to finish the battle.',[['🎼 Remix the arena with the Echo Lyre','magic-final'],['🔊 Bass Drop Attack','bass'],['📣 Rally the City','crowd']],'boss');return}
  if(['boss-club','boss-studio','boss-subway'].includes(choice)){const id=choice==='boss-club'?'club':choice==='boss-studio'?'studio':'subway';const names={club:'BASS BEAST',studio:'SAMPLE PHANTOM',subway:'TEMPO WARDEN'};pathStep='mini-boss';pathRender('MINI-BOSS BATTLE: '+names[id],'The dungeon guardian attacks with a corrupted sound wave. Choose a counter-melody to break its shield.',[['🎵 Play the counter-melody','win-'+id],['🌀 Dodge and strike','win-'+id]],id);pathBeep('boss');return}
