@@ -13,7 +13,14 @@
 <div id="offlineStatus" class="offline-status">● ONLINE</div>
 <header class="topbar">
   <div class="logo">Richie <span>Hub</span></div>
-  
+  <nav class="main-nav" aria-label="Main navigation">
+    <button type="button" onclick="show('home')">⌂ HOME</button>
+    <button type="button" onclick="show('music')">♫ MUSIC</button>
+    <button type="button" onclick="show('games')">▣ GAMES</button>
+    <button type="button" onclick="show('videos')">▶ VIDEOS</button>
+    <button type="button" onclick="show('news')">● NEWS</button>
+    <button type="button" onclick="show('posts')">✉ POSTS</button>
+  </nav>
 </header>
 <main>
 <section id="home" class="page active">
@@ -81,6 +88,14 @@
   <h2>💬 WEB BOARD</h2><div class="post"><b>SweetJointVibes 👑</b><p>Good food, good music, good people! 💙</p></div><div class="post"><b>RetroKid</b><p>This app brings back the real vibes! 🔥</p></div><div class="post"><b>Coming Soon</b><p>Profiles, likes, comments and notifications.</p></div>
 </section>
 </main>
+<nav class="bottom-nav" aria-label="Quick navigation">
+  <button type="button" onclick="show('home')"><span>⌂</span>HOME</button>
+  <button type="button" onclick="show('music')"><span>♫</span>MUSIC</button>
+  <button type="button" onclick="show('games')"><span>▣</span>GAMES</button>
+  <button type="button" onclick="show('videos')"><span>▶</span>VIDEOS</button>
+  <button type="button" onclick="show('news')"><span>●</span>NEWS</button>
+  <button type="button" onclick="show('posts')"><span>✉</span>POSTS</button>
+</nav>
 <div id="mini" class="mini-player"><span>🎵 <b id="miniTrack">Retro Demo Track</b></span><button onclick="toggleMusic()">▶/Ⅱ</button></div>
 <script src="app.js"></script>
 <script src="story-expansion.js"></script>
