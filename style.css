@@ -301,12 +301,18 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 @media(max-width:480px){.path-art svg{min-height:135px}.path-audio-tools button{min-height:48px}}
 
 
-/* Navigation-free immersive app layout */
-.topbar{position:relative;top:auto}
-.topbar nav,.bottom-nav{display:none!important}
-.topbar{min-height:0}
-.page{padding-bottom:90px}
-.mini-player{bottom:0}
+/* Navigation layout: visible desktop header links and mobile quick bar */
+.topbar{position:sticky;top:0;min-height:0}
+.topbar .main-nav{display:flex;gap:6px;flex-wrap:wrap}
+.topbar .main-nav button{font-size:11px;padding:8px 10px}
+.bottom-nav{display:flex}
+.page{padding-bottom:145px}
+.mini-player{bottom:58px}
+@media(min-width:651px){
+  .bottom-nav{display:none}
+  .page{padding-bottom:110px}
+  .mini-player{bottom:0}
+}
 .path-choices-hidden{display:none!important}
 .path-continue{display:block;width:100%;min-height:52px;margin:16px 0 8px;background:linear-gradient(100deg,#087cff,#a9002c);border:2px solid #24e7ff;border-radius:10px;color:#fff;font-weight:900;letter-spacing:.5px;box-shadow:0 4px 0 #03102e,0 0 15px #087cff}
 .path-cutscene-text{font-size:1.05rem;line-height:1.8;animation:pathFadeIn .65s ease both}
@@ -393,3 +399,64 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-save-tools [data-checkpoint]{border-color:#ffe600;color:#ffe600}
 .path-save-tools [data-restore]{border-color:#ff5d7e}
 @media(max-width:520px){.path-save-tools{gap:5px;padding:8px}.path-save-tools span{width:100%}.path-save-tools button{flex:1 1 27%;font-size:10px;min-height:38px;padding:5px}}
+
+
+/* NEON FREQUENCY — simpler NES-era adventure presentation */
+.choose-path-game{
+  max-width:760px;margin:18px auto;padding:12px;
+  border:4px solid #101b12;border-radius:2px;
+  background:#d7e5b5;color:#182817;box-shadow:4px 4px 0 #101b12;
+}
+.choose-path-game h3{
+  margin:0 0 8px;color:#183b27;font-family:'Press Start 2P',monospace;
+  font-size:clamp(12px,2.4vw,17px);line-height:1.7;text-shadow:none;
+}
+.choose-path-game>p{color:#263d2b;font-size:13px;line-height:1.5}
+.path-story{
+  background:#b7d18a;color:#1b2c1b;border:3px solid #263d2b;
+  border-radius:0;padding:12px;margin:10px 0;line-height:1.55;
+  box-shadow:inset 0 0 0 2px #e8f2cf;
+}
+.path-story h4{color:#183b27;font-family:'Press Start 2P',monospace;font-size:11px;line-height:1.7;margin:0 0 8px}
+.path-story>p,.path-cutscene-text{font-size:13px;line-height:1.65}
+.path-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px;margin-top:10px}
+.path-choices button,.path-audio-tools button{
+  min-height:42px;border:3px solid #1b2c1b;border-radius:0;
+  background:#d9e7b9;color:#1b2c1b;box-shadow:2px 2px 0 #1b2c1b;
+  font-family:Roboto,Arial,sans-serif;font-size:12px;line-height:1.4;
+}
+.path-choices button:hover,.path-audio-tools button:hover{background:#f2f6d8;transform:none}
+.path-art,.path-explorer,.path-world-map{
+  border:3px solid #263d2b;border-radius:0;box-shadow:none;
+  background:#b7d18a;color:#1b2c1b;
+}
+.path-art{margin-bottom:8px}
+.path-art svg{max-height:220px;object-fit:contain}
+.path-explorer h4,.path-world-map h4{color:#183b27;font-family:'Press Start 2P',monospace;font-size:10px;line-height:1.7}
+.path-explorer>p,.path-world-map>p{color:#263d2b}
+.path-grid{gap:3px;background:#263d2b;border:3px solid #263d2b;border-radius:0;max-width:350px}
+.path-tile{aspect-ratio:1;min-width:0;padding:2px;border:1px solid #53744b;border-radius:0;background:#7fa566;color:#eaf3cb;box-shadow:none;font-size:clamp(13px,3vw,22px)}
+.path-tile.path-object-tile{background:#d3e7a7;color:#1b2c1b;border:2px solid #263d2b}
+.path-tile.path-player-tile{background:#f3e9a0;border:2px solid #263d2b}
+.path-tile small{display:block;font-size:8px;line-height:1.2;white-space:normal}
+.path-explorer-controls button,.path-explorer-controls .path-interact{
+  border:3px solid #263d2b;border-radius:0;background:#d9e7b9;color:#1b2c1b;
+  box-shadow:2px 2px 0 #263d2b;min-height:42px;
+}
+.path-map-grid{gap:7px}
+.path-map-location{border:3px solid #263d2b;border-radius:0;background:#d9e7b9;color:#1b2c1b;box-shadow:2px 2px 0 #263d2b}
+.path-map-location strong,.path-map-location small{color:#1b2c1b}
+.path-map-location.current{outline:3px solid #f3e9a0;outline-offset:1px}
+.path-cinematic-overlay{border:3px solid #263d2b;border-radius:0;background:#263d2b;box-shadow:none}
+.path-cinematic-frame{border-radius:0}
+.path-continue{border:3px solid #263d2b;border-radius:0;background:#d9e7b9;color:#1b2c1b;box-shadow:2px 2px 0 #263d2b}
+@media(max-width:650px){
+  .topbar .main-nav{display:none}
+  .bottom-nav{gap:2px;padding:5px 3px calc(5px + env(safe-area-inset-bottom))}
+  .bottom-nav button{min-width:0;padding:5px 1px;font-size:9px}
+  .bottom-nav button span{font-size:17px}
+  .mini-player{bottom:57px}
+  .page{padding-bottom:145px}
+  .choose-path-game{padding:9px}
+  .path-story{padding:9px}
+}
