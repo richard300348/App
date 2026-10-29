@@ -359,3 +359,13 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-joystick button:active{transform:translateY(2px);box-shadow:0 1px 0 #ff174f;background:#a9002c}
 .path-world-controls .path-interact{flex:1;max-width:230px;min-height:55px;border:2px solid #ffe600;border-radius:12px;background:linear-gradient(100deg,#087cff,#a9002c);font-weight:900;letter-spacing:.5px}
 @media(max-width:520px){.path-world-play{padding:8px!important}.path-world-head p{font-size:12px}.path-world-controls{gap:8px}.path-joystick button{width:43px;height:42px;min-width:42px}.path-world-controls .path-interact{min-height:52px;font-size:12px}.path-world-hud{font-size:10px}.path-world-coord{font-size:9px}}
+
+
+/* Neon Frequency action-adventure combat HUD */
+.path-action-buttons{display:flex;flex:1;gap:6px;flex-wrap:wrap;justify-content:stretch}
+.path-action-buttons button{flex:1 1 92px;min-height:48px;padding:7px;border-radius:10px;font-size:12px;font-weight:900;touch-action:manipulation}
+.path-action-buttons .path-attack{background:linear-gradient(135deg,#ff174f,#7c092f);border:2px solid #ff8aa9;box-shadow:0 3px 0 #4c061e}
+.path-action-buttons .path-lyre{background:linear-gradient(135deg,#8c36ff,#0754d6);border:2px solid #ffe600;box-shadow:0 3px 0 #03102e}
+.path-action-buttons .path-interact{background:linear-gradient(135deg,#087cff,#087c68);border:2px solid #24e7ff;box-shadow:0 3px 0 #03102e}
+.path-world-hud .path-world-nearby{min-height:22px}
+@media(max-width:520px){.path-action-buttons{display:grid;grid-template-columns:1fr 1fr}.path-action-buttons .path-interact{grid-column:1/-1;max-width:none}.path-action-buttons button{min-height:46px;font-size:11px}}
