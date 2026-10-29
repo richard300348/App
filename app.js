@@ -307,9 +307,9 @@ function pathPlayCutscene(title,body,scene){
  overlay.innerHTML='<div class="path-cinematic-frame"><div class="gb-stage" aria-label="Animated Game Boy-style pixel scene"><div class="gb-sky"></div><div class="gb-moon"></div><div class="gb-cloud gb-cloud-one"></div><div class="gb-cloud gb-cloud-two"></div><div class="gb-city"><i></i><i></i><i></i><i></i><i></i></div><div class="gb-platform"></div><div class="gb-hero"><i></i></div><div class="gb-rival"><i></i></div><div class="gb-note gb-note-one">♪</div><div class="gb-note gb-note-two">♫</div><div class="gb-pixels"></div><div class="gb-scene-label">NEON FREQUENCY • 8-BIT STORY</div></div><div class="cinema-bars"></div><div class="cinema-caption"><span>NOW PLAYING • STORY CINEMATIC</span><h3></h3><p></p><div class="cinema-controls"><button type="button" class="cinema-speak">🗣️ Narrate</button><button type="button" class="cinema-skip">⏭ Close cutscene</button></div></div></div>';
  overlay.querySelector('h3').textContent=title;overlay.querySelector('p').textContent=body;
  overlay.querySelector('.cinema-speak').onclick=()=>pathSpeak(title+'. '+body);
- overlay.querySelector('.cinema-skip').onclick=()=>{pathSceneMode='explore';overlay.remove()};
+ overlay.querySelector('.cinema-skip').onclick=()=>{pathSceneMode='explore';const holder=document.createElement('div');holder.innerHTML=pathArt(scene);const restored=holder.firstElementChild;if(restored)overlay.replaceWith(restored);else overlay.remove()};
  /* Keep the cinematic inside the opening scene instead of appending a second panel below the game. */
- const topScene=box.querySelector(':scope > .path-art');
+ const topScene=box.querySelector(':scope > .path-art, :scope > .path-cinematic-overlay');
  if(topScene)topScene.replaceWith(overlay);else box.prepend(overlay);
  pathBeep('magic');
 }
