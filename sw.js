@@ -1,5 +1,5 @@
-const CACHE_NAME='richie-hub-v9';
-const APP_SHELL=['./','./index.html','./style.css','./app.js','./offline-media.js','./manifest.json'];
+const CACHE_NAME='richie-hub-v10';
+const APP_SHELL=['./','./index.html','./style.css','./app.js','./story-expansion.js','./offline-media.js','./manifest.json'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
