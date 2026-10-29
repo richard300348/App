@@ -274,11 +274,14 @@ function pathRender(title,body,choices){
  box.insertAdjacentHTML('beforeend',pathSceneArt());
  const toolbar=document.createElement('div');toolbar.className='path-audio-tools';
  const sound=document.createElement('button');sound.type='button';sound.textContent=pathSoundOn?'🔊 SOUND ON':'🔇 SOUND OFF';sound.setAttribute('aria-pressed',String(pathSoundOn));sound.onclick=()=>{pathSoundOn=!pathSoundOn;sound.textContent=pathSoundOn?'🔊 SOUND ON':'🔇 SOUND OFF';sound.setAttribute('aria-pressed',String(pathSoundOn));if(!pathSoundOn&&'speechSynthesis'in window)speechSynthesis.cancel();else pathBeep('choice');};toolbar.appendChild(sound);
- const voice=document.createElement('button');voice.type='button';voice.textContent='🗣️ HEAR SCENE';voice.onclick=()=>pathSpeak(title+'. '+body);toolbar.appendChild(voice);box.appendChild(toolbar);
+ const voice=document.createElement('button');voice.type='button';voice.textContent='🗣️ HEAR CUTSCENE';voice.onclick=()=>pathSpeak(title+'. '+body);toolbar.appendChild(voice);box.appendChild(toolbar);
  const h=document.createElement('h4');h.textContent=title;box.appendChild(h);
- const p=document.createElement('p');p.textContent=body;box.appendChild(p);
- const wrap=document.createElement('div');wrap.className='path-choices';
- choices.forEach(function(item){const b=document.createElement('button');b.textContent=item[0];b.onclick=function(){pathBeep(pathStep==='boss'?'boss':'choice');pathChoose(item[1]);};wrap.appendChild(b);});box.appendChild(wrap);
+ const p=document.createElement('p');p.className='path-cutscene-text';p.textContent=body;box.appendChild(p);
+ const continueBtn=document.createElement('button');continueBtn.type='button';continueBtn.className='path-continue';continueBtn.textContent=choices.length&&choices[0][1]!=='again'?'▶ CONTINUE TO YOUR CHOICE':'▶ CONTINUE';box.appendChild(continueBtn);
+ const wrap=document.createElement('div');wrap.className='path-choices path-choices-hidden';
+ choices.forEach(function(item){const b=document.createElement('button');b.textContent=item[0];b.onclick=function(){pathBeep(pathStep==='boss'?'boss':'choice');pathChoose(item[1]);};wrap.appendChild(b);});
+ continueBtn.onclick=()=>{continueBtn.remove();wrap.classList.remove('path-choices-hidden');pathBeep(pathStep==='boss'?'boss':'choice');if(pathStep==='boss')pathSpeak('Final boss encounter. Director Vex is powering up the Mega-Mute machine. Choose your move.');};
+ box.appendChild(wrap);
  if(pathStep==='boss')pathBeep('boss');
 }
 function pathChoose(choice){
