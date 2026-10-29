@@ -27,11 +27,10 @@ function addQuestPanel(){
  const box=document.getElementById('pathStory');if(!box)return;
  const panel=document.createElement('section');panel.className='path-quest-panel';
  const done=Object.values(pathState.quests).filter(x=>x==='done').length;
- panel.innerHTML='<h4>📜 QUESTS & SAVE SLOTS</h4><p>Side quests complete: '+done+' / 3. Your main adventure autosaves on this device.</p><div class="path-quest-list"></div><div class="path-save-grid"><strong>💾 SAVE SLOTS</strong><div class="path-slot-buttons"></div></div><button type="button" class="path-checkpoint">📍 Set checkpoint here</button><button type="button" class="path-restore-checkpoint">↩ Restore checkpoint</button>';
+ panel.innerHTML='<h4>📜 QUEST JOURNAL</h4><p>Side quests complete: '+done+' / 3. Use the adventure controls above for save slots and checkpoints.</p><div class="path-quest-list"></div>';
  const list=panel.querySelector('.path-quest-list');
  Object.entries(quests).forEach(([id,q])=>{const state=pathState.quests[id]||'available',row=document.createElement('div');row.className='path-quest-row';const label=document.createElement('span');label.textContent=q.name+' — '+state.toUpperCase();row.appendChild(label);const b=document.createElement('button');b.textContent=state==='available'?'Accept':state==='active'?'Track':'✓ Done';b.disabled=state==='done';b.onclick=()=>pathChoose((state==='available'?'quest-accept-':'quest-track-')+id);row.appendChild(b);list.appendChild(row)});
- const grid=panel.querySelector('.path-slot-buttons');for(let n=1;n<=3;n++){const a=document.createElement('button');a.textContent='Save '+n;a.onclick=()=>saveSlot(n);grid.appendChild(a);const b=document.createElement('button');b.textContent='Load '+n;b.onclick=()=>loadSlot(n);grid.appendChild(b)}
- panel.querySelector('.path-checkpoint').onclick=()=>{pathState.checkpoint={area:pathState.currentArea,x:neonWorld.x,y:neonWorld.y};pathSave();panel.querySelector('p').textContent='Checkpoint set in '+pathState.currentArea.toUpperCase()+'.';pathSpeak('Checkpoint saved.')};panel.querySelector('.path-restore-checkpoint').onclick=()=>{const cp=pathState.checkpoint;if(!cp){pathSpeak('No checkpoint saved yet.');return}pathTravel(cp.area||'plaza');neonWorld.x=Number.isFinite(cp.x)?cp.x:360;neonWorld.y=Number.isFinite(cp.y)?cp.y:340;pathSave();neonWorldDraw();pathSpeak('Checkpoint restored.')}
+
  box.appendChild(panel);
 }
 pathRender=function(title,body,choices,scene){baseRender(title,body,choices,scene);addQuestPanel()};
