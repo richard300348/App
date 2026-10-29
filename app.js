@@ -305,7 +305,13 @@ function pathPlayCutscene(title,body,scene){
  const box=document.getElementById('pathStory');if(!box)return;pathSceneMode='cutscene';
  const overlay=document.createElement('div');overlay.className='path-cinematic-overlay';
  overlay.innerHTML='<div class="path-cinematic-frame">'+pathArt(scene)+'<div class="cinema-bars"></div><div class="cinema-caption"><span>NOW PLAYING • STORY CINEMATIC</span><h3></h3><p></p><div class="cinema-controls"><button type="button" class="cinema-speak">🗣️ Narrate</button><button type="button" class="cinema-skip">⏭ Close cutscene</button></div></div></div>';
- overlay.querySelector('h3').textContent=title;overlay.querySelector('p').textContent=body;overlay.querySelector('.cinema-speak').onclick=()=>pathSpeak(title+'. '+body);overlay.querySelector('.cinema-skip').onclick=()=>{pathSceneMode='explore';overlay.remove()};box.appendChild(overlay);pathBeep('magic');
+ overlay.querySelector('h3').textContent=title;overlay.querySelector('p').textContent=body;
+ overlay.querySelector('.cinema-speak').onclick=()=>pathSpeak(title+'. '+body);
+ overlay.querySelector('.cinema-skip').onclick=()=>{pathSceneMode='explore';overlay.remove()};
+ /* Keep the cinematic inside the opening scene instead of appending a second panel below the game. */
+ const topScene=box.querySelector(':scope > .path-art');
+ if(topScene)topScene.replaceWith(overlay);else box.prepend(overlay);
+ pathBeep('magic');
 }
 
 function pathRenderExplorer(box,scene){
