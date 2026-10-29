@@ -313,3 +313,23 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-art{animation:pathFadeIn .8s ease both}
 @keyframes pathFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.path-cutscene-text,.path-art{animation:none}}
+
+
+/* Open-world Neon Frequency: dungeon map, magic item, cinematic cutscenes */
+.path-world-map{margin:18px 0;padding:14px;border:2px solid #24e7ff;border-radius:12px;background:linear-gradient(145deg,#030817,#102858 60%,#29091f);box-shadow:0 0 18px #087cff44}
+.path-world-map h4{color:#ffe600;margin:0 0 6px}.path-world-map>p{font-size:13px;color:#d9ecff;line-height:1.5}
+.path-map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.path-map-location{min-width:0;min-height:112px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;white-space:normal;background:linear-gradient(145deg,#0a1c45,#34103b);border:1px solid #24e7ff;border-radius:9px;color:#fff}
+.path-map-location .map-emoji{font-size:26px}.path-map-location strong{font-size:11px;line-height:1.4}.path-map-location small{font-size:10px;color:#ffe600;line-height:1.4}
+.path-map-location.current{outline:3px solid #ffe600;box-shadow:0 0 15px #ffe60055}.path-map-location:disabled{opacity:.48;filter:grayscale(.7);cursor:not-allowed}
+.path-progress{padding:10px;border:1px dashed #ff32c8;color:#62f4ff;font:700 12px monospace;text-align:center;line-height:1.6}
+.path-cinematic-overlay{position:relative;margin:12px 0;padding:10px;background:#020611;border:2px solid #ffe600;border-radius:12px;box-shadow:0 0 24px #ff32c866;overflow:hidden;animation:pathCinemaIn .45s ease both}
+.path-cinematic-frame{position:relative;overflow:hidden;border-radius:8px;background:#030817}.path-cinematic-frame .path-art{margin:0;border:0;border-radius:8px;animation:cinemaPan 7s ease-in-out infinite alternate}.path-cinematic-frame .path-art svg{width:120%;max-width:none;transform:translateX(-4%)}
+.cinema-bars{height:15px;background:#000;position:absolute;left:0;right:0;top:0;box-shadow:0 230px 0 #000;pointer-events:none;opacity:.8}
+.cinema-caption{position:relative;margin-top:-2px;padding:16px 12px 10px;background:linear-gradient(180deg,#030817,#071b43);border-top:2px solid #ff32c8;color:#fff}
+.cinema-caption>span{font:10px monospace;letter-spacing:2px;color:#62f4ff}.cinema-caption h3{color:#ffe600;margin:9px 0}.cinema-caption p{line-height:1.7;color:#eef5ff}
+.cinema-controls{display:flex;gap:8px;flex-wrap:wrap}.cinema-controls button{flex:1 1 130px;min-height:44px}
+.cinematic-art .scene-parallax{animation:sceneFloat 4s ease-in-out infinite alternate;transform-origin:center}
+@keyframes pathCinemaIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}@keyframes cinemaPan{from{transform:translateX(-4%) scale(1)}to{transform:translateX(-10%) scale(1.04)}}@keyframes sceneFloat{from{transform:translateY(2px)}to{transform:translateY(-5px)}}
+@media(max-width:480px){.path-map-grid{grid-template-columns:1fr 1fr;gap:6px}.path-map-location{min-height:105px;padding:8px 4px}.path-map-location strong{font-size:10px}.path-world-map{padding:9px}.path-cinematic-overlay{padding:5px}.cinema-bars{box-shadow:0 170px 0 #000}}
+@media(prefers-reduced-motion:reduce){.path-cinematic-overlay,.path-cinematic-frame .path-art,.cinematic-art .scene-parallax{animation:none}}
