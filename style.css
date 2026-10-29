@@ -369,3 +369,17 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-action-buttons .path-interact{background:linear-gradient(135deg,#087cff,#087c68);border:2px solid #24e7ff;box-shadow:0 3px 0 #03102e}
 .path-world-hud .path-world-nearby{min-height:22px}
 @media(max-width:520px){.path-action-buttons{display:grid;grid-template-columns:1fr 1fr}.path-action-buttons .path-interact{grid-column:1/-1;max-width:none}.path-action-buttons button{min-height:46px;font-size:11px}}
+
+
+/* Branching narrative, character quests and save-slot journal */
+.path-quest-panel{margin:16px 0;padding:13px;border:2px solid #ff32c8;border-radius:12px;background:linear-gradient(145deg,#071124,#21103a);color:#f4f8ff;box-shadow:0 0 18px #ff32c833}
+.path-quest-panel h4{margin:0 0 7px;color:#ffe600}.path-quest-panel>p{font-size:12px;color:#d5e9ff;line-height:1.5}
+.path-quest-list{display:grid;gap:8px;margin:10px 0 14px}
+.path-quest-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px;border:1px solid #244a7d;border-radius:8px;background:#07142c}
+.path-quest-row span{font-size:12px;line-height:1.45;color:#e8f4ff}.path-quest-row button{min-width:70px;min-height:38px;padding:5px 8px;font-size:11px}
+.path-quest-row button:disabled{opacity:.6;filter:saturate(.6)}
+.path-save-grid{margin-top:10px;padding:10px;border:1px dashed #24e7ff;border-radius:8px}.path-save-grid>strong{display:block;margin-bottom:8px;color:#62f4ff;font-size:12px}
+.path-slot-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.path-slot-buttons button{min-width:0;min-height:40px;padding:5px;font-size:11px}
+.path-quest-panel .path-checkpoint{width:100%;margin-top:10px;min-height:44px;border:1px solid #ffe600;background:linear-gradient(100deg,#0754d6,#78145b);font-weight:800}
+@media(max-width:480px){.path-quest-panel{padding:9px}.path-quest-row{align-items:flex-start;flex-direction:column}.path-quest-row button{width:100%}.path-slot-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
