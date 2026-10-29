@@ -383,3 +383,13 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-slot-buttons button{min-width:0;min-height:40px;padding:5px;font-size:11px}
 .path-quest-panel .path-checkpoint{width:100%;margin-top:10px;min-height:44px;border:1px solid #ffe600;background:linear-gradient(100deg,#0754d6,#78145b);font-weight:800}
 @media(max-width:480px){.path-quest-panel{padding:9px}.path-quest-row{align-items:flex-start;flex-direction:column}.path-quest-row button{width:100%}.path-slot-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* Neon Frequency story campaign: save slots, checkpoints, and quest controls */
+.path-save-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0 14px;padding:10px;border:1px solid rgba(34,231,255,.38);border-radius:12px;background:linear-gradient(135deg,rgba(5,18,52,.96),rgba(43,8,65,.9));}
+.path-save-tools span{font-size:11px;font-weight:900;letter-spacing:.08em;color:#22e7ff;margin-right:4px}
+.path-save-tools button{min-height:34px;padding:6px 10px;border-radius:8px;border:1px solid #ff38c9;background:#101c42;color:#fff;font-size:11px;font-weight:800;cursor:pointer}
+.path-save-tools button:hover,.path-save-tools button:focus-visible{background:#123c75;border-color:#22e7ff;outline:2px solid rgba(34,231,255,.45);outline-offset:1px}
+.path-save-tools [data-checkpoint]{border-color:#ffe600;color:#ffe600}
+.path-save-tools [data-restore]{border-color:#ff5d7e}
+@media(max-width:520px){.path-save-tools{gap:5px;padding:8px}.path-save-tools span{width:100%}.path-save-tools button{flex:1 1 27%;font-size:10px;min-height:38px;padding:5px}}
