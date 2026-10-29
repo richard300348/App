@@ -460,3 +460,13 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
   .choose-path-game{padding:9px}
   .path-story{padding:9px}
 }
+
+
+/* Final UI cleanup: keep Neon Frequency as one game and use clean white borders. */
+.choose-path-game{border-color:#fff!important}
+.path-story,.path-art,.path-explorer,.path-world-map,.path-grid,
+.path-tile,.path-tile.path-object-tile,.path-tile.path-player-tile,
+.path-map-location,.path-cinematic-overlay,.path-continue,
+.path-explorer-controls button,.path-explorer-controls .path-interact,
+.path-world-play,.neon-world-canvas,.path-quest-panel,.path-save-grid,
+.path-save-tools{border-color:#fff!important}
