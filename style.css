@@ -470,3 +470,42 @@ button{background:linear-gradient(135deg,#087cff,#073783 58%,#a9002c);border-col
 .path-explorer-controls button,.path-explorer-controls .path-interact,
 .path-world-play,.neon-world-canvas,.path-quest-panel,.path-save-grid,
 .path-save-tools{border-color:#fff!important}
+
+
+/* GAME BOY STORY CINEMATICS — animated 8-bit action, not static low-res art */
+.path-cinematic-overlay{padding:5px!important;background:#172a19!important;border:4px solid #fff!important;box-shadow:4px 4px 0 #172a19,0 0 0 2px #91b77a!important}
+.path-cinematic-frame{background:#9bbc0f!important;border:3px solid #0f380f;overflow:hidden}
+.gb-stage{position:relative;isolation:isolate;height:clamp(190px,42vw,290px);min-height:190px;overflow:hidden;background:#9bbc0f;image-rendering:pixelated}
+.gb-sky{position:absolute;inset:0;background:linear-gradient(#0f380f 0 18%,#306230 18% 42%,#8bac0f 42% 70%,#9bbc0f 70%);animation:gbSkyPulse 5s steps(4,end) infinite}
+.gb-moon{position:absolute;top:13%;right:13%;width:25px;height:25px;background:#e0f8cf;box-shadow:0 0 0 5px #8bac0f,0 0 0 10px #306230;animation:gbMoon 5s steps(2,end) infinite}
+.gb-cloud{position:absolute;width:56px;height:10px;background:#8bac0f;box-shadow:10px -8px #8bac0f,22px -8px #8bac0f,32px 0 #8bac0f;opacity:.8}
+.gb-cloud-one{top:25%;left:-70px;animation:gbCloud 12s linear infinite}
+.gb-cloud-two{top:38%;left:-90px;transform:scale(.65);animation:gbCloud 17s linear infinite reverse}
+.gb-city{position:absolute;bottom:24%;left:0;right:0;height:42%;display:flex;align-items:flex-end;justify-content:space-around;gap:3px}
+.gb-city i{display:block;width:15%;height:72%;background:#0f380f;border:4px solid #306230;box-shadow:inset 0 10px #8bac0f,inset 0 20px #306230}
+.gb-city i:nth-child(2){height:100%;width:19%}.gb-city i:nth-child(3){height:62%}.gb-city i:nth-child(4){height:84%;width:17%}.gb-city i:nth-child(5){height:54%}
+.gb-platform{position:absolute;bottom:0;left:0;right:0;height:24%;background:repeating-linear-gradient(90deg,#306230 0 16px,#0f380f 16px 20px);border-top:5px solid #0f380f}
+.gb-hero,.gb-rival{position:absolute;z-index:3;bottom:23%;width:16px;height:22px;background:#0f380f;image-rendering:pixelated;box-shadow:0 -8px 0 -1px #0f380f,0 -4px 0 2px #e0f8cf,4px 3px 0 #306230;animation:gbHeroMove 2.4s steps(4,end) infinite}
+.gb-hero{left:24%;background:#306230;box-shadow:0 -8px 0 -1px #306230,0 -4px 0 2px #e0f8cf,4px 3px 0 #0f380f;animation:gbHeroMove 2.4s steps(4,end) infinite}
+.gb-hero:before,.gb-rival:before{content:"";position:absolute;left:3px;top:5px;width:4px;height:4px;background:#e0f8cf;box-shadow:7px 0 #e0f8cf,0 7px #0f380f,7px 7px #0f380f}
+.gb-hero:after{content:"";position:absolute;left:-5px;top:-7px;width:25px;height:5px;background:#0f380f;box-shadow:5px -4px #0f380f}
+.gb-rival{right:22%;width:22px;height:28px;background:#0f380f;box-shadow:0 -8px 0 -1px #0f380f,0 -4px 0 2px #306230,-4px 5px 0 #306230;animation:gbRivalMove 3s steps(3,end) infinite}
+.gb-rival:before{background:#e0f8cf;box-shadow:9px 0 #e0f8cf,0 7px #0f380f,9px 7px #0f380f}
+.gb-rival:after{content:"";position:absolute;left:-5px;top:-8px;width:31px;height:6px;background:#0f380f;box-shadow:4px -4px #0f380f}
+.gb-note{position:absolute;z-index:4;font-family:monospace;font-weight:900;color:#e0f8cf;text-shadow:2px 2px #0f380f;font-size:25px;animation:gbNoteFloat 1.6s steps(4,end) infinite}
+.gb-note-one{left:42%;top:34%}.gb-note-two{left:65%;top:48%;animation-delay:.7s}
+.gb-pixels{position:absolute;z-index:5;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#0f380f16 3px 4px);opacity:.7}
+.gb-scene-label{position:absolute;z-index:6;top:8px;left:8px;padding:5px 7px;background:#0f380f;color:#e0f8cf;font:9px monospace;letter-spacing:1px;box-shadow:3px 3px #306230}
+.cinema-caption{background:#d8e9a3!important;border-top:3px solid #0f380f!important;color:#172a19!important}
+.cinema-caption>span{color:#306230!important;font-family:monospace;font-weight:900}
+.cinema-caption h3{color:#0f380f!important;font-family:'Press Start 2P',monospace;font-size:clamp(10px,2.5vw,14px);line-height:1.8;text-shadow:none}
+.cinema-caption p{color:#172a19!important;font-size:13px;line-height:1.65}
+.cinema-controls button{background:#d8e9a3!important;color:#0f380f!important;border:3px solid #0f380f!important;box-shadow:3px 3px #306230!important;border-radius:0!important}
+@keyframes gbSkyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
+@keyframes gbMoon{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes gbCloud{from{left:-90px}to{left:110%}}
+@keyframes gbHeroMove{0%,100%{transform:translateY(0)}25%{transform:translateY(-5px)}50%{transform:translateY(0)}75%{transform:translateY(-2px)}}
+@keyframes gbRivalMove{0%,100%{transform:translateX(0)}50%{transform:translateX(-10px)}}
+@keyframes gbNoteFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-13px) rotate(8deg)}}
+@media(max-width:480px){.gb-stage{height:195px;min-height:195px}.gb-scene-label{font-size:8px}.cinema-caption{padding:11px 9px 9px}}
+@media(prefers-reduced-motion:reduce){.gb-sky,.gb-moon,.gb-cloud,.gb-hero,.gb-rival,.gb-note{animation:none!important}}
