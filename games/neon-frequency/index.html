@@ -175,10 +175,34 @@ html,body{background:#050b0a;color:#f4f3df;font-family:ui-monospace,"Courier New
 #combatStatus{position:absolute;z-index:6;top:112px;right:12px;padding:6px 9px;background:#071b18e8;border:1px solid #ff4d9d;color:#ffd36b;font-size:10px;display:none}
 #combatStatus.show{display:block}
 @keyframes enemyHit{25%{filter:brightness(3) drop-shadow(0 0 20px #fff)}100%{filter:brightness(1)}}
+
+/* Cinematic 32-bit title screen */
+#titleScreen{position:absolute;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 38%,#244d48 0%,#102a30 34%,#050b12 78%);color:#f9f1d0;text-align:center;padding:24px}
+#titleScreen:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 3px,#0005 4px 5px),linear-gradient(90deg,#020609aa,transparent 20%,transparent 80%,#020609aa);pointer-events:none}
+#titleScreen:after{content:"";position:absolute;inset:0;opacity:.38;background-image:linear-gradient(#5df6cf22 1px,transparent 1px),linear-gradient(90deg,#5df6cf22 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(transparent,#000 35%,#000 80%,transparent);animation:titleGrid 12s linear infinite;pointer-events:none}
+@keyframes titleGrid{to{background-position:0 28px,28px 0}}
+.title-content{position:relative;z-index:2;width:min(680px,100%);padding:30px 18px;border:2px solid #b18b48;background:linear-gradient(145deg,#061b1beF,#10152bf2);box-shadow:0 0 0 5px #07120f,0 0 55px #5df6cf44,inset 0 0 40px #5df6cf12}
+.title-kicker{font-size:10px;letter-spacing:.42em;color:#5df6cf;text-transform:uppercase}
+.title-logo{margin:13px 0 2px;font:1000 clamp(34px,9vw,76px)/.95 Georgia,serif;letter-spacing:.035em;color:#ffe08a;text-shadow:4px 4px 0 #713b4e,7px 7px 0 #07110f,0 0 28px #ffd36b99}
+.title-sub{font-size:clamp(10px,2.5vw,14px);letter-spacing:.36em;color:#f4f3df;margin:13px 0 24px}
+.title-art{height:112px;display:flex;align-items:center;justify-content:center;gap:9px;margin:5px auto 20px}
+.title-art span{display:block;width:clamp(12px,3vw,22px);height:var(--h);background:linear-gradient(#ffe08a,#5df6cf);border:2px solid #07110f;box-shadow:0 0 15px #5df6cf88;image-rendering:pixelated;animation:equalizer .8s steps(4,end) infinite alternate}
+.title-art span:nth-child(2n){animation-delay:-.4s}.title-art span:nth-child(3n){animation-delay:-.2s}
+@keyframes equalizer{to{transform:scaleY(.32);filter:hue-rotate(45deg)}}
+.title-tagline{color:#b5d8c7;font-size:11px;letter-spacing:.12em;margin:0 0 22px}
+.title-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.title-button{min-width:170px;padding:13px 18px;border:2px solid #ffd36b;background:#142e28;color:#ffe08a;font:900 12px ui-monospace,monospace;letter-spacing:.16em;box-shadow:4px 4px 0 #b18b48;transition:transform .15s,filter .15s}
+.title-button.primary{background:linear-gradient(110deg,#165c4d,#6a214b);color:white;border-color:#5df6cf}
+.title-button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #b18b48}
+.title-foot{margin-top:20px;color:#7eaa9a;font-size:9px;letter-spacing:.2em}
+#titleScreen.leaving{animation:titleFade .8s ease forwards;pointer-events:none}
+@keyframes titleFade{to{opacity:0;transform:scale(1.04);visibility:hidden}}
+@media(max-width:420px){.title-content{padding:24px 12px}.title-art{height:82px;margin-bottom:15px}.title-button{width:100%}}
 </style>
 </head>
 <body>
 <main id="game" aria-label="Neon Frequency first person adventure">
+<div id="titleScreen" role="dialog" aria-label="Neon Frequency title screen"><div class="title-content"><div class="title-kicker">A 32-BIT SOUND ADVENTURE</div><h1 class="title-logo">NEON<br>FREQUENCY</h1><div class="title-sub">THE LOST SIGNAL</div><div class="title-art" aria-hidden="true"><span style="--h:30%"></span><span style="--h:65%"></span><span style="--h:100%"></span><span style="--h:48%"></span><span style="--h:82%"></span><span style="--h:38%"></span><span style="--h:72%"></span><span style="--h:100%"></span><span style="--h:55%"></span><span style="--h:30%"></span><span style="--h:78%"></span></div><p class="title-tagline">THE WORLD IS OUT OF TUNE. FIND THE FREQUENCY.</p><div class="title-buttons"><button class="title-button" id="themeMusicButton" type="button">♫ PLAY THEME</button><button class="title-button primary" id="startGameButton" type="button">PRESS START ▶</button></div><div class="title-foot">ORIGINAL CHIPTUNE SCORE · BEST WITH SOUND</div></div></div>
 <div id="view"><div id="threeWorld" aria-label="Free-roaming 3D adventure world"></div><div id="cameraHint">DRAG TO LOOK · WASD / ARROWS TO MOVE · E TO INTERACT</div>
 <svg id="world" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="First person view of the neon city">
 <defs>
@@ -433,6 +457,17 @@ function interactNearby(){
  target.dispatchEvent(new Event("click"));
 }
 $("interact").addEventListener("click",interactNearby);$("noticeClose").addEventListener("click",()=>$("notice").classList.remove("open"));
+
+/* Original synthesized 32-bit-style title theme. Audio begins only after a user tap. */
+let titleAudio=null,titleTimer=null,titleStep=0,titleMusicOn=false;
+const titleMelody=[659,784,988,784,587,659,880,659,523,659,784,659,494,587,740,587,659,784,988,1175,988,784,880,784,587,659,784,988,880,784,659,523];
+function titleTone(freq,duration,when,type="square",gain=.045){if(!titleAudio)return;const o=titleAudio.createOscillator(),v=titleAudio.createGain();o.type=type;o.frequency.setValueAtTime(freq,when);v.gain.setValueAtTime(.0001,when);v.gain.exponentialRampToValueAtTime(gain,when+.012);v.gain.exponentialRampToValueAtTime(.0001,when+duration);o.connect(v);v.connect(titleAudio.destination);o.start(when);o.stop(when+duration+.03)}
+function titleBeat(){if(!titleMusicOn||!titleAudio)return;const t=titleAudio.currentTime+.015,step=titleStep%titleMelody.length,n=titleMelody[step];titleTone(n,.19,t,"square",.035);titleTone(n/2,.23,t,"triangle",.045);if(step%4===0)titleTone(110,.12,t,"triangle",.06);if(step%8===4)titleTone(165,.08,t+.12,"square",.025);titleStep++}
+function startTitleMusic(){const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx){$("themeMusicButton").textContent="AUDIO NOT SUPPORTED";return}if(!titleAudio)titleAudio=new Ctx();titleAudio.resume();if(titleMusicOn){titleMusicOn=false;clearInterval(titleTimer);$("themeMusicButton").textContent="♫ PLAY THEME";return}titleMusicOn=true;titleBeat();titleTimer=setInterval(titleBeat,220);$("themeMusicButton").textContent="♫ THEME PLAYING · MUTE"}
+function enterGame(){if(titleMusicOn){titleMusicOn=false;clearInterval(titleTimer);if(titleAudio){const now=titleAudio.currentTime;titleAudio.gainNode=null;titleAudio.suspend()}}$("titleScreen").classList.add("leaving");setTimeout(()=>{$("titleScreen").remove();},850)}
+$("themeMusicButton").addEventListener("click",startTitleMusic);
+$("startGameButton").addEventListener("click",enterGame);
+
 render();setInterval(enemyWorldTick,250);
 </script>
 </body></html>
