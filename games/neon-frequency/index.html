@@ -78,6 +78,46 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}butto
 @keyframes cameraImpact{0%{transform:translate(0,0) scale(1)}25%{transform:translate(-8px,5px) scale(1.025)}55%{transform:translate(7px,-4px) scale(1.015)}100%{transform:translate(0,0) scale(1)}}
 #bossFlash{background:radial-gradient(ellipse at 50% 42%,#ff315a88,transparent 65%),#ff255522}
 @media(prefers-reduced-motion:reduce){#world{transition:none!important}}
+
+/* CYBERNETIC RUINS THEME: retro fantasy adventure meets underground neon punk. */
+:root{--cyan:#5df6cf;--pink:#ff4d9d;--gold:#ffd36b;--ink:#07110f;--glass:#071b1add}
+html,body{background:#050b0a;color:#f4f3df;font-family:ui-monospace,"Courier New",monospace}
+#game{background:#07130f;box-shadow:0 0 0 2px #b18b48,0 0 35px #38f2c522}
+#view{background:radial-gradient(ellipse at 50% 36%,#1b765244,transparent 42%),linear-gradient(#101d2c 0%,#172e32 44%,#07110e 100%)}
+#view:before{background:radial-gradient(ellipse at 50% 39%,#ffcf6b22,transparent 31%),linear-gradient(90deg,#020806aa,transparent 26%,transparent 74%,#020806aa)}
+#topHud{background:linear-gradient(#06110fee,transparent);border-top:3px solid #b18b48}
+.brand{font-family:Georgia,serif;font-size:14px;letter-spacing:.2em;color:#ffd36b;text-shadow:0 0 10px #ffd36b77}
+.brand:before{content:"◈ ";color:#5df6cf}
+#sceneTitle{font-family:Georgia,serif;color:#5df6cf;letter-spacing:.18em}
+.vital{background:#071b18dd;border:1px solid #b18b4888;border-radius:3px;box-shadow:inset 0 0 10px #5df6cf12}
+.vital b{color:#ffd36b}
+#quest{border-left:3px solid #ff4d9d;background:#07130fe8;box-shadow:4px 4px 0 #b18b4844;color:#f4f3df}
+#bottomHud{background:linear-gradient(transparent,#050d0bf7 23%);border-bottom:3px solid #b18b48}
+#message{border:1px solid #b18b48;border-radius:3px;background:linear-gradient(110deg,#071b18ee,#101a20ee);box-shadow:0 0 18px #5df6cf18,inset 0 0 18px #5df6cf0c}
+#message strong{color:#ffd36b}
+#prompt{color:#8de9c8}
+.action{border:1px solid #5df6cf;border-radius:3px;background:linear-gradient(135deg,#103b32,#17212a);box-shadow:3px 3px 0 #b18b4866;color:#f4f3df}
+.action.primary{background:linear-gradient(110deg,#165c4d,#6a214b);border-color:#ffd36b;box-shadow:3px 3px 0 #b18b48}
+.slot{border:1px solid #b18b48;border-radius:3px;background:#071b18;box-shadow:inset 0 0 9px #5df6cf1c}
+#movePad button{border:1px solid #b18b48;border-radius:3px;background:#071b18e8;color:#ffd36b;box-shadow:2px 2px 0 #0008}
+#interact{border:3px solid #ffd36b;border-radius:8px 22px 8px 22px;background:linear-gradient(145deg,#8b3c34dd,#142d26ee);box-shadow:0 0 18px #ffd36b44,3px 3px 0 #b18b48}
+#crosshair:before,#crosshair:after{background:#ffd36b;box-shadow:0 0 8px #ffd36b}
+#choicePanel{border:2px solid #b18b48;border-radius:5px;background:linear-gradient(145deg,#0a211bfa,#111b20fa);box-shadow:0 0 35px #5df6cf2b,inset 0 0 25px #b18b4810}
+#choicePanel h2{font-family:Georgia,serif;color:#ffd36b}
+.choice{border:1px solid #5df6cf77;border-radius:3px;background:linear-gradient(110deg,#112e28,#17212a)}
+.choice b{color:#ffd36b}.choice small{color:#a9d9c4}
+#menuPanel{border:1px solid #b18b48;border-radius:4px;background:#071b18f5}
+#menuPanel button{border:1px solid #5df6cf66;border-radius:3px;background:#102a24}
+#notice{border:2px solid #ffd36b;border-radius:5px;background:#081b16f7}
+#notice h2{font-family:Georgia,serif;color:#ffd36b}
+#world .window{fill:#5df6cf;filter:drop-shadow(0 0 7px #5df6cf)}
+#world .floorline{stroke:#5df6cf}
+#world .object{filter:drop-shadow(0 0 8px #ffd36b)}
+#world .object text{font-family:ui-monospace,"Courier New",monospace}
+#world .object path{fill:#0a211b;stroke:#b18b48}
+#bossFlash{background:radial-gradient(ellipse at 50% 42%,#ff4d9d99,transparent 65%),#ff255522}
+#sceneObjects .object:nth-of-type(odd){animation-duration:3.4s}
+@media(max-width:420px){.brand{font-size:12px}#quest{border-left-width:2px}}
 </style>
 </head>
 <body>
@@ -85,14 +125,17 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}butto
 <div id="view">
 <svg id="world" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="First person view of the neon city">
 <defs>
- <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#101a42"/><stop offset="1" stop-color="#451d58"/></linearGradient>
- <linearGradient id="ground" x2="0" y2="1"><stop stop-color="#1c2947"/><stop offset="1" stop-color="#050a17"/></linearGradient>
- <linearGradient id="hall" x2="0" y2="1"><stop stop-color="#19294c"/><stop offset="1" stop-color="#080d1e"/></linearGradient>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#101e2b"/><stop offset=".58" stop-color="#244a42"/><stop offset="1" stop-color="#17201d"/></linearGradient>
+ <linearGradient id="ground" x2="0" y2="1"><stop stop-color="#24463d"/><stop offset=".42" stop-color="#12251f"/><stop offset="1" stop-color="#050b09"/></linearGradient>
+ <linearGradient id="hall" x2="0" y2="1"><stop stop-color="#24483e"/><stop offset="1" stop-color="#091511"/></linearGradient>
  <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <g id="environment">
  <rect width="1000" height="700" fill="url(#sky)"/>
- <circle cx="800" cy="120" r="75" fill="#ff4b9a" opacity=".17"/>
+ <circle cx="800" cy="120" r="75" fill="#ffd36b" opacity=".14"/>
+ <path d="M500 42L540 82 500 122 460 82Z" fill="none" stroke="#ffd36b" stroke-width="3" opacity=".55"/>
+ <path d="M500 55L527 82 500 109 473 82Z" fill="none" stroke="#5df6cf" stroke-width="2" opacity=".55"/>
+ <path d="M35 300L70 270 105 300M895 292L930 262 965 292" fill="none" stroke="#ff4d9d" stroke-width="7" opacity=".7" filter="url(#glow)"/>
  <path d="M0 330L0 190 90 190 90 280 170 280 170 140 280 140 280 300 370 300 370 185 480 185 480 300 580 300 580 120 710 120 710 290 820 290 820 170 940 170 940 270 1000 270 1000 390Z" fill="#111b3b"/>
  <g class="window"><path d="M110 218h24v38h-24zm88-46h25v43h-25zm93 102h26v24h-26zm130-58h24v34h-24zm150-42h29v40h-29zm163 49h26v34h-26zm111-19h28v37h-28z"/></g>
  <path d="M0 355L1000 355 1000 700 0 700Z" fill="url(#ground)"/>
@@ -111,7 +154,7 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}butto
 </svg>
 <div id="crosshair"></div><div id="vignette"></div><div id="bossFlash"></div>
 </div>
-<header id="topHud"><div><div class="brand">NEON / FREQUENCY</div><div id="sceneTitle">THE LAST TRACK</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
+<header id="topHud"><div><div class="brand">NEON / FREQUENCY · WILD SIGNAL</div><div id="sceneTitle">THE LAST TRACK</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
 <div id="quest">OBJECTIVE: Find the source of the forbidden signal.</div>
 <div id="inventoryPeek" aria-label="Quick item slots"></div>
 <div id="movePad" aria-label="Move through the world"><button class="up" data-move="forward">▲</button><button class="left" data-move="left">◀</button><button class="down" data-move="back">▼</button><button class="right" data-move="right">▶</button></div>
@@ -155,6 +198,8 @@ const scenes={
 };
 let state={id:"start",health:100,energy:3,rep:0,trust:0,items:["MP3 Player"],crew:[],history:[],visited:[],used:[],voice:true,position:0,cameraYaw:0,cameraDepth:0,bossHealth:100};
 const palettes={start:["#14244b","#29386b","#54f7ed"],signal:["#10284b","#2c4972","#79f3d4"],juno:["#1c1d48","#49346a","#ff83d0"],arcade:["#28194d","#503278","#ff83c9"],terminal:["#13224b","#344c76","#6ff5ed"],sampler:["#132744","#294f64","#ff83d0"],subway:["#111e39","#33465c","#71ffc2"],duel:["#281b46","#55416e","#ffe28a"],mira:["#151d42","#3a3c70","#73f3ee"],library:["#201b49","#47376c","#f3d77b"],control:["#24183d","#5c285a","#ff718f"],broadcast:["#172147","#374879","#54f7ed"],boss:["#29133c","#63234e","#ff5b82"],bossHard:["#35122d","#742447","#ff5b82"],bossVictory:["#182447","#315e78","#ffe28a"],bossExpose:["#1b2146","#4a3d72","#54f7ed"],bossCrew:["#182447","#315e78","#ffe28a"],goodEnding:["#174254","#3b7a7a","#ffe28a"],purgeEnding:["#17213b","#3b435c","#ff8d8d"],rebelEnding:["#351842","#78406e","#ff73c7"],libraryEnding:["#17384a","#477b83","#ffe28a"],crewEnding:["#183d45","#427b74","#ffe28a"],collectorEnding:["#281c43","#574069","#d6b4ff"]};
+// Shared palette ties the fantasy ruins and neon-punk machinery together.
+Object.keys(palettes).forEach((key,i)=>{const boss=["boss","bossHard","bossVictory","bossExpose","bossCrew"].includes(key);const ending=/Ending$/.test(key);palettes[key]=boss?["#1c1526","#503044","#ff4d9d"]:ending?["#17372f","#38634e","#ffd36b"]:["#10251f","#285044",i%3===0?"#ffd36b":"#5df6cf"]});
 function applyFx(f={}){state.rep=Math.max(0,state.rep+(f.rep||0));state.energy=Math.max(0,Math.min(5,state.energy+(f.energy||0)));state.trust+=f.trust||0;(f.items||[]).forEach(x=>{if(!state.items.includes(x))state.items.push(x)});(f.crew||[]).forEach(x=>{if(!state.crew.includes(x))state.crew.push(x)})}
 function save(){try{localStorage.setItem("neon-frequency-pov-save",JSON.stringify(state));message("GAME SAVED","Your progress is stored on this device.")}catch(e){message("SAVE UNAVAILABLE","This browser could not store the game.")}}
 function load(){try{const s=JSON.parse(localStorage.getItem("neon-frequency-pov-save"));if(!s||!scenes[s.id])throw Error();state=s;render();message("RUN RESTORED","Welcome back to Neon City.")}catch(e){message("NO SAVE FOUND","Start a new run and save at any time.")}}
@@ -163,7 +208,10 @@ $("noticeClose").onclick=()=>$("notice").classList.remove("open");
 function say(line,role="Narrator"){if(!state.voice||!("speechSynthesis"in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(line);u.lang="en-US";u.rate=.94;u.pitch=role==="Director Vex"?.68:role==="Juno"?1.2:role==="Mira"?1.03:.92;speechSynthesis.speak(u)}
 function updateHud(){const s=scenes[state.id];$("sceneTitle").textContent=s.title.toUpperCase();$("quest").textContent="OBJECTIVE: "+s.objective;$("health").textContent=state.health;$("energy").textContent=state.energy;$("rep").textContent=state.rep;const inv=$("inventoryPeek");inv.innerHTML="";const icons={"MP3 Player":"🎧","Encrypted Track":"📼","Decoded Coordinates":"🧭","Beat Sampler":"🎛️","Arcade Token":"🪙","DJ ZERO Cassette":"📼","Access Key":"🗝️","Master Library":"💿"};state.items.slice(0,5).forEach((x,i)=>{const d=document.createElement("div");d.className="slot";d.title=x;d.textContent=icons[x]||"✦";const sm=document.createElement("small");sm.textContent=i+1;d.append(sm);inv.append(d)});$("quickbar").innerHTML="";state.items.slice(0,4).forEach((x,i)=>{const d=document.createElement("div");d.className="slot";d.title=x;d.textContent=icons[x]||"✦";const sm=document.createElement("small");sm.textContent=i+1;d.append(sm);$("quickbar").append(d)});while($("quickbar").children.length<4){const d=document.createElement("div");d.className="slot";d.textContent="—";$("quickbar").append(d)}}
 function buildWorld(){const s=scenes[state.id],pal=palettes[state.id]||palettes.start;const root=$("environment");root.querySelector("rect").setAttribute("fill",pal[0]);const objs=$("sceneObjects");objs.innerHTML="";const isInterior=["juno","arcade","terminal","sampler","subway","duel","mira","library","control","boss","bossHard","bossVictory","bossExpose","bossCrew"].includes(state.id);const wall=document.createElementNS("http://www.w3.org/2000/svg","path");wall.setAttribute("d",isInterior?"M90 365V150L500 70 910 150V365Z":"M0 355L1000 355 1000 700 0 700Z");wall.setAttribute("fill",isInterior?pal[1]:"none");wall.setAttribute("opacity",".68");objs.append(wall);
-const glow=document.createElementNS("http://www.w3.org/2000/svg","path");glow.setAttribute("d","M250 355L500 170 750 355");glow.setAttribute("stroke",pal[2]);glow.setAttribute("stroke-width","9");glow.setAttribute("fill","none");glow.setAttribute("filter","url(#glow)");objs.append(glow);
+// Ancient signal-gate arch: a fantasy ruin rebuilt with cybernetic circuitry.
+ const runeArch=document.createElementNS("http://www.w3.org/2000/svg","path");runeArch.setAttribute("d","M165 365V235Q165 105 500 105Q835 105 835 235V365");runeArch.setAttribute("fill","none");runeArch.setAttribute("stroke","#b18b48");runeArch.setAttribute("stroke-width","13");runeArch.setAttribute("opacity",".65");runeArch.setAttribute("filter","url(#glow)");objs.append(runeArch);
+ const runeCore=document.createElementNS("http://www.w3.org/2000/svg","path");runeCore.setAttribute("d","M500 135L535 170 500 205 465 170Z M500 148V192 M478 170H522");runeCore.setAttribute("fill","none");runeCore.setAttribute("stroke","#5df6cf");runeCore.setAttribute("stroke-width","5");runeCore.setAttribute("opacity",".85");objs.append(runeCore);
+ const glow=document.createElementNS("http://www.w3.org/2000/svg","path");glow.setAttribute("d","M250 355L500 170 750 355");glow.setAttribute("stroke",pal[2]);glow.setAttribute("stroke-width","9");glow.setAttribute("fill","none");glow.setAttribute("filter","url(#glow)");objs.append(glow);
  // Layered perspective rails and drifting atmospheric lights make forward motion read as depth.
  const depth=document.createElementNS("http://www.w3.org/2000/svg","g");depth.setAttribute("class","depth-lines");
  ["M0 405L500 455L1000 405","M0 500L500 520L1000 500","M0 620L500 590L1000 620","M500 445L120 700","M500 445L880 700","M500 445V700"].forEach((d,i)=>{const p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",d);p.setAttribute("fill","none");p.setAttribute("stroke",pal[2]);p.setAttribute("stroke-width",i<3?"2":"1.5");p.setAttribute("stroke-opacity",i<3?".26":".2");depth.append(p)});objs.append(depth);
