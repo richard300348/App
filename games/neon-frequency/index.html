@@ -11,13 +11,13 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}butto
 #game{position:relative;width:min(100%,1180px);height:100svh;min-height:570px;margin:auto;overflow:hidden;background:#081329;isolation:isolate}
 #view{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#101c43 0%,#1d2351 43%,#090e20 100%)}
 #view:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 36%,#ff5ca533,transparent 35%),linear-gradient(90deg,#03071388,transparent 30%,transparent 70%,#03071388);z-index:1;pointer-events:none}
-#world{position:absolute;inset:0;width:100%;height:100%;display:block;transition:filter .3s,transform .25s}
+#world{position:absolute;inset:0;width:100%;height:100%;display:block;transition:filter .3s,transform .32s cubic-bezier(.2,.8,.2,1);transform-origin:50% 54%}
 #world .neon{filter:drop-shadow(0 0 9px var(--cyan))}
 #world .window{fill:#62f8ed;opacity:.8;filter:drop-shadow(0 0 8px #55fff2)}
 #world .floorline{stroke:#4cf7e8;stroke-opacity:.34;stroke-width:2}
 #world .object{cursor:pointer;filter:drop-shadow(0 0 9px #ffdc79);transform-box:fill-box;transform-origin:center;animation:float 2.5s ease-in-out infinite}
 #world .object:focus{outline:none;filter:drop-shadow(0 0 15px white)}
-@keyframes float{50%{transform:translateY(-7px)}}
+@keyframes float{50%{transform:translateY(-7px)}}\n#sceneObjects .object:nth-of-type(odd){animation:float 3s ease-in-out infinite}#sceneObjects .object:nth-of-type(even){animation:float 2.3s ease-in-out infinite reverse}\n#view:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(transparent 88%,#54f7ed10);animation:scan 5s linear infinite}@keyframes scan{0%{opacity:.15}50%{opacity:.38}100%{opacity:.15}}
 #crosshair{position:absolute;z-index:4;left:50%;top:49%;width:19px;height:19px;transform:translate(-50%,-50%);opacity:.8;pointer-events:none}
 #crosshair:before,#crosshair:after{content:"";position:absolute;background:#d9ffff;box-shadow:0 0 7px var(--cyan)}
 #crosshair:before{width:1px;height:19px;left:9px}#crosshair:after{height:1px;width:19px;top:9px}
@@ -133,7 +133,7 @@ const scenes={
  crewEnding:{title:"No One Plays Alone",zone:"ENDING · THE SOUND FAMILY",ending:"SOUND FAMILY",objective:"The crew kept the signal alive.",text:"Juno reroutes the arcade speakers while Mira opens the archive gates. Your crew keeps the signal alive. The city wakes to music, and your crew becomes a legend.",objects:[["🎛️","Juno’s sampler","The beat that brought everyone together.","ending"],["🛰️","Mira’s signal","The archive is finally free.","ending"]]},
  collectorEnding:{title:"The Golden Cage",zone:"ENDING · THE PRIVATE COLLECTION",ending:"GOLDEN CAGE",objective:"You own every song—but who will share it?",text:"You escape with the complete master library. Collectors adore you, but your old crew stops calling. You have every song—and almost nobody to share them with.",objects:[["💿","Master library","Every lost recording is yours.","ending"],["📻","Silent radio","The silence between tracks feels different now.","ending"]]}
 };
-let state={id:"start",health:100,energy:3,rep:0,trust:0,items:["MP3 Player"],crew:[],history:[],visited:[],used:[],voice:true,position:0};
+let state={id:"start",health:100,energy:3,rep:0,trust:0,items:["MP3 Player"],crew:[],history:[],visited:[],used:[],voice:true,position:0,cameraYaw:0,cameraDepth:0,bossHealth:100};
 const palettes={start:["#14244b","#29386b","#54f7ed"],signal:["#10284b","#2c4972","#79f3d4"],juno:["#1c1d48","#49346a","#ff83d0"],arcade:["#28194d","#503278","#ff83c9"],terminal:["#13224b","#344c76","#6ff5ed"],sampler:["#132744","#294f64","#ff83d0"],subway:["#111e39","#33465c","#71ffc2"],duel:["#281b46","#55416e","#ffe28a"],mira:["#151d42","#3a3c70","#73f3ee"],library:["#201b49","#47376c","#f3d77b"],control:["#24183d","#5c285a","#ff718f"],broadcast:["#172147","#374879","#54f7ed"],boss:["#29133c","#63234e","#ff5b82"],bossHard:["#35122d","#742447","#ff5b82"],bossVictory:["#182447","#315e78","#ffe28a"],bossExpose:["#1b2146","#4a3d72","#54f7ed"],bossCrew:["#182447","#315e78","#ffe28a"],goodEnding:["#174254","#3b7a7a","#ffe28a"],purgeEnding:["#17213b","#3b435c","#ff8d8d"],rebelEnding:["#351842","#78406e","#ff73c7"],libraryEnding:["#17384a","#477b83","#ffe28a"],crewEnding:["#183d45","#427b74","#ffe28a"],collectorEnding:["#281c43","#574069","#d6b4ff"]};
 function applyFx(f={}){state.rep=Math.max(0,state.rep+(f.rep||0));state.energy=Math.max(0,Math.min(5,state.energy+(f.energy||0)));state.trust+=f.trust||0;(f.items||[]).forEach(x=>{if(!state.items.includes(x))state.items.push(x)});(f.crew||[]).forEach(x=>{if(!state.crew.includes(x))state.crew.push(x)})}
 function save(){try{localStorage.setItem("neon-frequency-pov-save",JSON.stringify(state));message("GAME SAVED","Your progress is stored on this device.")}catch(e){message("SAVE UNAVAILABLE","This browser could not store the game.")}}
@@ -148,13 +148,51 @@ s.objects.forEach((o,i)=>{const x=[240,500,760][i%3],y=[350,300,355][i%3],g=docu
 if(s.boss){$("bossFlash").style.opacity=".35";setTimeout(()=>$("bossFlash").style.opacity="0",240)}}
 function interact(o){$("message").innerHTML="<strong>"+o[1].toUpperCase()+"</strong> — "+o[2];$("prompt").textContent="INTERACTION LOGGED · CHOOSE YOUR NEXT MOVE";if(o[3]==="disc"&&!state.items.includes("DJ ZERO Cassette")){state.items.push("DJ ZERO Cassette");updateHud()}if(o[3]==="battery"){state.energy=Math.min(5,state.energy+1);updateHud()}if(o[3]==="note"||o[3]==="token"){state.rep++;updateHud()}if(o[3]==="mira"&&state.voice)say(o[2],"Mira");if(o[3]==="vex"&&state.voice)say(o[2],"Director Vex")}
 function openChoices(){const s=scenes[state.id];if(!s.choices)return;$("choiceTitle").textContent=s.ending?"THE STORY CONTINUES IN YOU":s.boss?"CHOOSE YOUR ATTACK":"WHAT DO YOU DO?";$("choiceText").textContent=s.ending?"You reached the "+s.ending+" ending. Start another run to discover a different path.":"Your decision changes your route, your allies, and the ending.";const host=$("choices");host.innerHTML="";s.choices.forEach(c=>{const b=document.createElement("button");b.className="choice";b.innerHTML="<b>"+c[0]+"</b><small>"+c[1]+"</small>";b.onclick=()=>{state.history.push(state.id);applyFx(c[3]);state.id=c[2];render();$("choiceLayer").classList.remove("open")};host.append(b)});$("choiceLayer").classList.add("open")}
-function render(){const s=scenes[state.id];if(!s)return;buildWorld();updateHud();$("message").innerHTML="<strong>"+s.zone+"</strong> — "+s.text;if(s.speaker&&s.line){$("message").innerHTML+="<br><strong>"+s.speaker+":</strong> “"+s.line+"”";if(state.voice)say(s.line,s.speaker)}$("prompt").textContent=s.ending?"ENDING UNLOCKED · "+s.ending:"Explore the scene, interact with objects, then choose your next move.";if(s.ending){$("talk").textContent="✦ ENDING";$("talk").onclick=()=>message(s.ending,s.text)}else{$("talk").textContent="💬 TALK / DECIDE";$("talk").onclick=openChoices}state.visited.push(state.id)}
-function move(dir){state.position=(state.position+1)%3;const w=$("world");w.style.transform=dir==="left"?"translateX(2%) scale(1.02)":dir==="right"?"translateX(-2%) scale(1.02)":dir==="forward"?"scale(1.06) translateY(1%)":"scale(1) translateY(-1%)";$("prompt").textContent="YOU MOVE "+dir.toUpperCase()+" · LOOK AROUND AND INTERACT";setTimeout(()=>w.style.transform="",180);const s=scenes[state.id];$("message").innerHTML="<strong>"+s.zone+"</strong> — You move through the scene. The neon reflections shift across the floor."}
-function pulse(){if(state.energy<=0){$("message").textContent="Your Echo Lyre is out of energy. Find a signal battery or make your next move.";return}state.energy--;updateHud();$("world").style.filter="brightness(1.5) saturate(1.7)";setTimeout(()=>$("world").style.filter="",350);$("message").innerHTML="<strong>ECHO PULSE</strong> — A blue-green wave ripples through the room, revealing hidden traces of sound.";state.rep++;updateHud()}
+function render(){const s=scenes[state.id];if(!s)return;state.cameraYaw=0;state.cameraDepth=0;$("world").style.transform="";buildWorld();updateHud();$("message").innerHTML="<strong>"+s.zone+"</strong> — "+s.text;if(s.speaker&&s.line){$("message").innerHTML+="<br><strong>"+s.speaker+":</strong> “"+s.line+"”";if(state.voice)say(s.line,s.speaker)}$("prompt").textContent=s.ending?"ENDING UNLOCKED · "+s.ending:"Explore the scene, interact with objects, then choose your next move.";if(s.ending){$("talk").textContent="✦ ENDING";$("talk").onclick=()=>message(s.ending,s.text)}else{$("talk").textContent="💬 TALK / DECIDE";$("talk").onclick=openChoices}state.visited.push(state.id)}
+function move(dir){
+ const w=$("world");
+ if(dir==="left")state.cameraYaw=Math.max(-1,+(state.cameraYaw-.34).toFixed(2));
+ if(dir==="right")state.cameraYaw=Math.min(1,+(state.cameraYaw+.34).toFixed(2));
+ if(dir==="forward")state.cameraDepth=Math.min(1,+(state.cameraDepth+.22).toFixed(2));
+ if(dir==="back")state.cameraDepth=Math.max(0,+(state.cameraDepth-.22).toFixed(2));
+ state.position=targetObjectIndex();
+ const pan=-state.cameraYaw*155,zoom=1+state.cameraDepth*.16,lift=state.cameraDepth*28;
+ w.style.transform="translate("+pan+"px,"+lift+"px) scale("+zoom+")";
+ $("prompt").textContent="VIEW: "+(state.cameraYaw<-.3?"LEFT":state.cameraYaw>.3?"RIGHT":"CENTER")+" · "+(state.cameraDepth>.65?"CLOSE":"MOVING")+" · PRESS A TO INTERACT";
+ const obj=scenes[state.id].objects[state.position];
+ $("message").innerHTML="<strong>"+scenes[state.id].zone+"</strong> — "+(obj?"You line up your view with "+obj[1]+".":"You scan the environment.");
+}
+function pulse(){if(state.energy<=0){$("message").textContent="Your Echo Lyre is out of energy. Find a signal battery or make your next move.";return}
+ state.energy--;state.rep++;
+ $("world").style.filter="brightness(1.65) saturate(1.8)";
+ setTimeout(()=>$("world").style.filter="",420);
+ if(scenes[state.id].boss){
+  state.bossHealth=Math.max(0,(state.bossHealth??100)-25);
+  $("message").innerHTML="<strong>ECHO STRIKE</strong> — Your sound wave hits the Silence Engine. Boss integrity: "+state.bossHealth+"%.";
+  if(state.bossHealth===0){$("message").innerHTML+=" <strong>CORE EXPOSED!</strong> Choose your finishing move.";openChoices()}
+ }else{
+  $("message").innerHTML="<strong>ECHO PULSE</strong> — A blue-green wave ripples through the room, revealing hidden traces of sound.";
+ }
+ updateHud();
+}
 document.querySelectorAll("[data-move]").forEach(b=>b.addEventListener("click",()=>move(b.dataset.move)));$("talk").onclick=openChoices;$("pulse").onclick=pulse;$("save").onclick=save;
-$("menuButton").onclick=()=>$("menuPanel").classList.toggle("open");$("voice").onclick=()=>{state.voice=!state.voice;$("voice").textContent=state.voice?"🔊 Character voices: ON":"🔇 Character voices: OFF";if(!state.voice&&"speechSynthesis"in window)speechSynthesis.cancel()};$("read").onclick=()=>{const s=scenes[state.id];say(s.text+" "+(s.line||""),s.speaker||"Narrator")};$("stop").onclick=()=>{if("speechSynthesis"in window)speechSynthesis.cancel()};$("load").onclick=load;$("restart").onclick=()=>{state={id:"start",health:100,energy:3,rep:0,trust:0,items:["MP3 Player"],crew:[],history:[],visited:[],used:[],voice:state.voice,position:0};$("menuPanel").classList.remove("open");render()};$("menuPanel").addEventListener("click",e=>{if(e.target.tagName==="BUTTON")$("menuPanel").classList.remove("open")});
+$("menuButton").onclick=()=>$("menuPanel").classList.toggle("open");$("voice").onclick=()=>{state.voice=!state.voice;$("voice").textContent=state.voice?"🔊 Character voices: ON":"🔇 Character voices: OFF";if(!state.voice&&"speechSynthesis"in window)speechSynthesis.cancel()};$("read").onclick=()=>{const s=scenes[state.id];say(s.text+" "+(s.line||""),s.speaker||"Narrator")};$("stop").onclick=()=>{if("speechSynthesis"in window)speechSynthesis.cancel()};$("load").onclick=load;$("restart").onclick=()=>{state={id:"start",health:100,energy:3,rep:0,trust:0,items:["MP3 Player"],crew:[],history:[],visited:[],used:[],voice:state.voice,position:0,cameraYaw:0,cameraDepth:0,bossHealth:100};$("menuPanel").classList.remove("open");render()};$("menuPanel").addEventListener("click",e=>{if(e.target.tagName==="BUTTON")$("menuPanel").classList.remove("open")});
 document.addEventListener("keydown",e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;const tag=e.target?.tagName;if(["BUTTON","INPUT","TEXTAREA"].includes(tag))return;const keys={ArrowUp:"forward",w:"forward",W:"forward",ArrowDown:"back",s:"back",S:"back",ArrowLeft:"left",a:"left",A:"left",ArrowRight:"right",d:"right",D:"right"};if(keys[e.key]){e.preventDefault();move(keys[e.key])}else if(e.key==="e"||e.key==="E"){interactNearby()}else if(e.key===" "){e.preventDefault();openChoices()}});
-function interactNearby(){const objs=[...$("sceneObjects").querySelectorAll(".object")];if(!objs.length)return;objs[state.position%objs.length].dispatchEvent(new Event("click"))}
+function targetObjectIndex(){
+ const count=scenes[state.id].objects.length;
+ return Math.max(0,Math.min(count-1,Math.round((state.cameraYaw+1)*.5*(count-1))));
+}
+function interactNearby(){
+ const objs=[...$("sceneObjects").querySelectorAll(".object")];
+ if(!objs.length)return;
+ const target=objs[targetObjectIndex()];
+ if(state.cameraDepth<.18){
+  $("message").innerHTML="<strong>TOO FAR AWAY</strong> — Move forward to get closer before interacting.";
+  $("prompt").textContent="MOVE FORWARD TO APPROACH THE HIGHLIGHTED OBJECT";
+  return;
+ }
+ target.dispatchEvent(new Event("click"));
+}
 $("interact").addEventListener("click",interactNearby);$("noticeClose").addEventListener("click",()=>$("notice").classList.remove("open"));
 render();
 </script>
