@@ -198,6 +198,73 @@ html,body{background:#050b0a;color:#f4f3df;font-family:ui-monospace,"Courier New
 #titleScreen.leaving{animation:titleFade .8s ease forwards;pointer-events:none}
 @keyframes titleFade{to{opacity:0;transform:scale(1.04);visibility:hidden}}
 @media(max-width:420px){.title-content{padding:24px 12px}.title-art{height:82px;margin-bottom:15px}.title-button{width:100%}}
+
+/* CLEAN HUD PASS — predictable zones, compact controls, no floating-panel collisions */
+#game{height:100svh;min-height:520px;overflow:hidden}
+#topHud{min-height:64px;padding:calc(8px + env(safe-area-inset-top)) 12px 12px;align-items:center;gap:8px}
+#topHud>div:first-child{min-width:0}
+.brand{font-size:clamp(10px,2vw,13px);letter-spacing:.12em;white-space:nowrap}
+#sceneTitle{margin-top:3px;font-size:10px}
+#vitals{display:flex;flex-wrap:nowrap;justify-content:flex-end;gap:4px}
+.vital{padding:4px 7px;font-size:10px}
+#quest{top:76px;left:12px;right:auto;width:min(54%,350px);max-width:350px;padding:6px 9px;font-size:10px;line-height:1.3}
+#inventoryPeek{top:76px;right:12px;max-width:42%;flex-wrap:wrap;justify-content:flex-end}
+#combatStatus{top:118px;right:12px;max-width:45%;text-align:right}
+#cameraHint{top:126px;max-width:calc(100% - 24px);white-space:nowrap;font-size:9px}
+#menu{top:calc(8px + env(safe-area-inset-top));right:10px;z-index:16}
+#menu>.action{min-width:38px;min-height:36px;padding:6px 10px}
+#menuPanel{z-index:18}
+#bottomHud{left:0;right:0;bottom:0;padding:13px 12px calc(9px + env(safe-area-inset-bottom));gap:6px;background:linear-gradient(transparent,#030713f7 14%);display:grid;grid-template-rows:auto auto auto;align-content:end}
+#message{min-height:36px;max-height:66px;overflow:auto;padding:7px 10px;font-size:12px;line-height:1.35}
+#prompt{min-height:12px;font-size:9px;line-height:1.2}
+#actionRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;width:min(680px,100%);margin:0 auto}
+#actionRow .action{min-width:0;width:100%;min-height:34px;padding:7px 4px;font-size:clamp(9px,2.2vw,11px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#quickbar{display:none}
+#movePad{left:12px;bottom:calc(188px + env(safe-area-inset-bottom));width:104px;height:104px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;opacity:.96}
+#movePad button{min-width:0;min-height:0;font-size:13px}
+#interact{right:14px;bottom:calc(204px + env(safe-area-inset-bottom));width:62px;height:62px;font-size:10px}
+#choiceLayer{z-index:24;padding:10px;align-items:flex-end}
+#choicePanel{max-height:min(66%,520px);padding:12px}
+#notice{z-index:30;max-height:80%;overflow:auto}
+#sceneTransition{z-index:22}
+@media(min-width:760px){
+ #topHud{padding-left:22px;padding-right:72px}
+ #quest{left:22px;top:82px}
+ #inventoryPeek{right:22px;top:82px}
+ #bottomHud{padding-left:110px;padding-right:110px}
+ #actionRow{grid-template-columns:repeat(6,minmax(0,1fr));max-width:850px}
+ #movePad{left:22px;bottom:calc(170px + env(safe-area-inset-bottom));width:112px;height:112px}
+ #interact{right:24px;bottom:calc(190px + env(safe-area-inset-bottom));width:72px;height:72px}
+ #cameraHint{top:132px}
+}
+@media(max-width:520px){
+ #topHud{min-height:58px;padding-left:9px;padding-right:54px}
+ .brand{font-size:9px;letter-spacing:.08em}
+ #sceneTitle{font-size:9px;letter-spacing:.1em}
+ .vital{font-size:9px;padding:3px 5px}
+ #quest{top:68px;left:9px;width:57%;font-size:9px;padding:5px 7px}
+ #inventoryPeek{top:68px;right:8px;max-width:39%;gap:3px}
+ #inventoryPeek .slot{width:25px;height:25px;min-width:25px;font-size:12px}
+ #combatStatus{top:105px;font-size:9px}
+ #cameraHint{top:116px;font-size:8px}
+ #bottomHud{padding-left:8px;padding-right:8px;gap:5px}
+ #message{font-size:11px;min-height:34px;max-height:54px}
+ #actionRow{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+ #actionRow .action{font-size:8.5px;min-height:32px;padding:6px 2px;letter-spacing:-.02em}
+ #movePad{left:7px;bottom:calc(166px + env(safe-area-inset-bottom));width:91px;height:91px;transform:none}
+ #movePad button{font-size:12px}
+ #interact{right:8px;bottom:calc(180px + env(safe-area-inset-bottom));width:56px;height:56px;font-size:9px}
+ #choicePanel{max-height:72%}
+}
+@media(max-height:650px){
+ #bottomHud{padding-top:7px;gap:4px}
+ #message{max-height:42px;min-height:30px}
+ #movePad{bottom:calc(150px + env(safe-area-inset-bottom));width:82px;height:82px}
+ #interact{bottom:calc(164px + env(safe-area-inset-bottom));width:52px;height:52px}
+ #cameraHint{top:108px}
+}
+@media(prefers-reduced-motion:reduce){#titleScreen:after,.title-art span{animation:none!important}}
+
 </style>
 </head>
 <body>
