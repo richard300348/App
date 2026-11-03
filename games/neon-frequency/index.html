@@ -394,7 +394,7 @@ html,body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!impor
 #view{background:linear-gradient(#73b9e3,#c8e6c2 28%,#3c793f 55%,#1a4328)!important}
 #cameraHint{background:#183e27e8!important;border:1px solid #d9bd69!important;color:#f7e9bd!important;border-radius:20px!important}
 #runnerControls button,#runnerAction{background:linear-gradient(150deg,#376d38,#1c4829)!important;border:2px solid #e2c66e!important;color:#fff0be!important;border-radius:14px!important;box-shadow:0 4px 0 #765325!important}
-</style>
+#world #hands{display:none!important}#sceneTitle{font-family:Georgia,"Palatino Linotype",serif!important;color:#f5df9b!important;letter-spacing:.09em!important}#quest{font-family:Georgia,serif!important;background:linear-gradient(90deg,#1b4829f5,#1b4829cc)!important;border-left-color:#e0c46e!important;color:#f7e9c4!important}#bottomHud #prompt{color:#f3e2a5!important;font-family:Georgia,serif!important}#bottomHud .action{font-family:Georgia,serif!important;background:linear-gradient(150deg,#386c3c,#1b4829)!important;border-color:#d9bc67!important;color:#fff0c2!important;border-radius:10px!important;box-shadow:0 3px 0 #705021!important}#vitals .vital{background:#173d25e8!important;border-color:#d3b763!important;color:#ffedb2!important;border-radius:12px!important}</style>
 </head>
 <body>
 <main id="game" aria-label="Neon Frequency first person adventure">
@@ -429,15 +429,15 @@ html,body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!impor
  <path d="M115 647l50-13m-35 31 57-16m648-2 50 13m-35-31-57-16" stroke="#54f7ed" stroke-width="5" opacity=".7"/>
 </g>
 </svg>
-<div id="crosshair"></div><div id="vignette"></div><div id="bossFlash"></div><div id="sceneTransition" aria-live="polite"><div id="transitionTitle">ENTERING NEW AREA</div><small id="transitionSubtitle">NEON FREQUENCY</small></div>
+<div id="crosshair"></div><div id="vignette"></div><div id="bossFlash"></div><div id="sceneTransition" aria-live="polite"><div id="transitionTitle">ENTERING NEW AREA</div><small id="transitionSubtitle">THE ANCIENT ECHOES</small></div>
 </div>
-<header id="topHud"><div><div class="brand">THE ANCIENT ECHOES · RELIC OF THE LOST REALM</div><div id="sceneTitle">THE LAST TRACK</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
-<div id="quest">OBJECTIVE: Find the source of the forbidden signal.</div>
+<header id="topHud"><div><div class="brand">THE ANCIENT ECHOES · RELIC OF THE LOST REALM</div><div id="sceneTitle">THE FORGOTTEN PATH</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
+<div id="quest">OBJECTIVE: Follow the ancient melody and awaken the lost relic.</div>
 <div id="inventoryPeek" aria-label="Quick item slots"></div><div id="combatStatus" aria-live="polite"></div>
 <div id="movePad" aria-label="Move through the world"><button class="left" data-move="left" aria-label="Move left">◀</button><div id="slideMovePad" class="verticalSlide" role="slider" aria-label="Slide up to move forward, slide down to move backward" tabindex="0"><span>SLIDE</span><b>↕</b><small>UP / DOWN</small></div><button class="right" data-move="right" aria-label="Move right">▶</button></div>
 <button id="interact" aria-label="Interact with the object ahead">A<br>INTERACT</button>
 <section id="bottomHud">
- <div id="message" aria-live="polite"><strong>11:47 PM</strong> — Rain hits the pavement. Your MP3 player lights up with a track that should not exist.</div>
+ <div id="message" aria-live="polite"><strong>11:47 PM</strong> — The old kingdom lies silent. A forgotten melody calls from beyond the temple gate.</div>
  <div id="prompt">WASD / ARROW KEYS TO MOVE · E / A TO INTERACT</div>
  <div id="actionRow"><button class="action primary" id="talk">💬 TALK</button><button class="action" id="pulse">♫ ECHO PULSE</button><button class="action" id="weaponSwitch">⚔️ WEAPON</button><button class="action" id="naviAssist">♫ NAVI HELP: ON</button><button class="action" id="dodge">↗ DODGE</button><button class="action" id="save">▣ SAVE</button></div>
  <div id="quickbar" aria-label="Quick inventory slots"><span class="slot">🎧</span><span class="slot">—</span><span class="slot">—</span><span class="slot">—</span></div>
