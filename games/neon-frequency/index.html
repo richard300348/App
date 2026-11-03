@@ -378,6 +378,22 @@ html,body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!impor
 #cameraHint{border-radius:24px!important;background:#183d28dd!important;border:1px solid #c9ad62!important;color:#fff1c6!important;font-family:Georgia,serif!important;letter-spacing:.06em!important}
 #runnerControls button{border-radius:16px!important;background:linear-gradient(145deg,#244d32ee,#14331fee)!important;border-color:#d6b75e!important;color:#ffefc1!important;box-shadow:0 4px 0 #5c421e,0 5px 18px #0004!important}
 #runnerAction{background:linear-gradient(145deg,#91662a,#5b3d1c)!important;border-color:#f4d77a!important;border-radius:18px!important}
+
+/* Match the gameplay HUD to the lush painted ancient temple concept */
+#world{background:#2c6738!important}
+#world #environment>rect:first-child{fill:#2f6d3d!important}
+#world .temple-run-illustration{filter:saturate(1.08) contrast(1.04)}
+#world .ancient-hero{filter:drop-shadow(0 7px 8px #142a1644)!important}
+#world #playerAvatar.walking{animation:heroStride .34s ease-in-out infinite alternate!important}
+#world #playerAvatar.dodging{animation:heroRoll .58s ease-in-out!important}
+#world .depth-lines,#world .ambient{display:none!important}
+#topHud{background:linear-gradient(180deg,#193b24f5,#193b2400)!important;border-color:#d3b763!important}
+#topHud .brand{font-family:Georgia,serif!important;color:#f7e5a5!important;letter-spacing:.08em!important}
+#objective{background:#173c25e8!important;border-color:#d4b760!important;color:#f9edc7!important}
+#message,#dialogue,#storyPanel{background:linear-gradient(150deg,#1a4829f5,#102b1bf5)!important;border-color:#cbb05e!important;color:#f5e9c6!important;box-shadow:0 8px 20px #0004!important}
+#view{background:linear-gradient(#73b9e3,#c8e6c2 28%,#3c793f 55%,#1a4328)!important}
+#cameraHint{background:#183e27e8!important;border:1px solid #d9bd69!important;color:#f7e9bd!important;border-radius:20px!important}
+#runnerControls button,#runnerAction{background:linear-gradient(150deg,#376d38,#1c4829)!important;border:2px solid #e2c66e!important;color:#fff0be!important;border-radius:14px!important;box-shadow:0 4px 0 #765325!important}
 </style>
 </head>
 <body>
@@ -415,7 +431,7 @@ html,body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!impor
 </svg>
 <div id="crosshair"></div><div id="vignette"></div><div id="bossFlash"></div><div id="sceneTransition" aria-live="polite"><div id="transitionTitle">ENTERING NEW AREA</div><small id="transitionSubtitle">NEON FREQUENCY</small></div>
 </div>
-<header id="topHud"><div><div class="brand">NEON / FREQUENCY · WILD SIGNAL</div><div id="sceneTitle">THE LAST TRACK</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
+<header id="topHud"><div><div class="brand">THE ANCIENT ECHOES · RELIC OF THE LOST REALM</div><div id="sceneTitle">THE LAST TRACK</div></div><div id="vitals"><div class="vital">♥ <b id="health">100</b></div><div class="vital">♫ <b id="energy">3</b></div><div class="vital">REP <b id="rep">0</b></div></div></header>
 <div id="quest">OBJECTIVE: Find the source of the forbidden signal.</div>
 <div id="inventoryPeek" aria-label="Quick item slots"></div><div id="combatStatus" aria-live="polite"></div>
 <div id="movePad" aria-label="Move through the world"><button class="left" data-move="left" aria-label="Move left">◀</button><div id="slideMovePad" class="verticalSlide" role="slider" aria-label="Slide up to move forward, slide down to move backward" tabindex="0"><span>SLIDE</span><b>↕</b><small>UP / DOWN</small></div><button class="right" data-move="right" aria-label="Move right">▶</button></div>
@@ -608,13 +624,28 @@ if(s.boss){
 }
 const hazardSets={forest:{x:245,y:525,w:150,h:38,label:"THORN ROOTS"},cave:{x:690,y:525,w:170,h:42,label:"CRYSTAL ACID"},temple:{x:500,y:545,w:220,h:34,label:"RUNE FLAME"},dungeon:{x:285,y:545,w:190,h:38,label:"SIGNAL VENT"}};
 const hz=hazardSets[state.id];if(hz){const g=document.createElementNS("http://www.w3.org/2000/svg","g");g.setAttribute("class","hazard-pulse");g.dataset.hazard=hz.label;const path=document.createElementNS("http://www.w3.org/2000/svg","path");path.setAttribute("d",`M${hz.x-hz.w/2} ${hz.y}q${hz.w/4} -${hz.h} ${hz.w/2} 0t${hz.w/2} 0`);path.setAttribute("fill","none");path.setAttribute("stroke","#ff4d9d");path.setAttribute("stroke-width","13");path.setAttribute("stroke-linecap","round");g.append(path);const label=document.createElementNS("http://www.w3.org/2000/svg","text");label.setAttribute("x",hz.x);label.setAttribute("y",hz.y+24);label.setAttribute("text-anchor","middle");label.setAttribute("fill","#ffd36b");label.setAttribute("font-size","13");label.textContent=hz.label;g.append(label);objs.append(g)}
-const hero=document.createElementNS("http://www.w3.org/2000/svg","g");hero.setAttribute("id","playerAvatar");hero.setAttribute("transform","translate("+(500+(state.cameraYaw||0)*130)+" "+(590-(state.cameraDepth||0)*42)+")");
-const shadow=document.createElementNS("http://www.w3.org/2000/svg","ellipse");shadow.setAttribute("cy","5");shadow.setAttribute("rx","34");shadow.setAttribute("ry","9");shadow.setAttribute("fill","#02090c");shadow.setAttribute("opacity",".8");hero.append(shadow);
-const cape=document.createElementNS("http://www.w3.org/2000/svg","path");cape.setAttribute("d","M-20 -42L-31 8L0 24 31 8 20 -42Z");cape.setAttribute("fill","#172d43");cape.setAttribute("stroke","#5df6cf");cape.setAttribute("stroke-width","3");hero.append(cape);
-const body=document.createElementNS("http://www.w3.org/2000/svg","path");body.setAttribute("d","M-17 -58Q0 -72 17 -58L22 -20H-22Z");body.setAttribute("fill","#253f58");body.setAttribute("stroke","#d6fff2");body.setAttribute("stroke-width","3");hero.append(body);
-const head=document.createElementNS("http://www.w3.org/2000/svg","circle");head.setAttribute("cy","-76");head.setAttribute("r","16");head.setAttribute("fill","#d3b18a");head.setAttribute("stroke","#5df6cf");head.setAttribute("stroke-width","3");hero.append(head);
-const visor=document.createElementNS("http://www.w3.org/2000/svg","path");visor.setAttribute("d","M-14 -80H14L10 -69H-10Z");visor.setAttribute("fill","#54f7ed");visor.setAttribute("filter","url(#glow)");hero.append(visor);
-const legs=document.createElementNS("http://www.w3.org/2000/svg","path");legs.setAttribute("d","M-13 -20L-18 0M13 -20L18 0");legs.setAttribute("stroke","#d6fff2");legs.setAttribute("stroke-width","8");legs.setAttribute("stroke-linecap","round");hero.append(legs);objs.append(hero);
+
+const hero=document.createElementNS(ns,"g");hero.setAttribute("id","playerAvatar");hero.setAttribute("transform","translate("+(500+(state.cameraYaw||0)*130)+" "+(590-(state.cameraDepth||0)*42)+")");
+hero.setAttribute("class","ancient-hero");
+const addHero=(tag,attrs)=>{const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));hero.append(e);return e};
+addHero("ellipse",{cy:"5",rx:"39",ry:"10",fill:"#20301b",opacity:".5"});
+// forest-green tunic, leather boots, flowing cap and cape
+addHero("path",{d:"M-23 -42Q-37 -5 -25 8L0 25 25 8Q37 -5 23 -42Z",fill:"#255a32",stroke:"#b99a50","stroke-width":"4"});
+addHero("path",{d:"M-17 -58L-25 -24 -12 -18 0 -28 12 -18 25 -24 17 -58Z",fill:"#347b3d",stroke:"#e0c36b","stroke-width":"3"});
+addHero("path",{d:"M-15 -24L-19 0M15 -24L19 0",stroke:"#76502c","stroke-width":"12","stroke-linecap":"round"});
+addHero("path",{d:"M-23 0H-9M9 0H23",stroke:"#3a2617","stroke-width":"12","stroke-linecap":"round"});
+addHero("circle",{cy:"-78",r:"17",fill:"#e5bd91",stroke:"#b58d4c","stroke-width":"3"});
+addHero("path",{d:"M-21 -82Q-23 -111 0 -122Q24 -110 22 -82L8 -86 -5 -91 -19 -85Z",fill:"#2e793b",stroke:"#d7bb64","stroke-width":"4"});
+addHero("path",{d:"M-4 -122L-15 -154Q13 -147 29 -122L5 -113Z",fill:"#3e8b44",stroke:"#d7bb64","stroke-width":"3"});
+addHero("path",{d:"M-15 -78Q0 -87 15 -78L12 -68H-12Z",fill:"#6b3d25"});
+// round blue shield with gold crest, held at left
+addHero("path",{d:"M-43 -60L-74 -48 -70 -12Q-58 8 -43 14Q-28 8 -16 -12L-12 -48Z",fill:"#214b86",stroke:"#e5c86b","stroke-width":"5"});
+addHero("path",{d:"M-44 -51L-29 -35 -44 -19 -59 -35Z M-44 -46V-24 M-54 -35H-34",fill:"none",stroke:"#f3d875","stroke-width":"4"});
+// sword on right, silver blade with golden hilt
+addHero("path",{d:"M40 -34L67 -100 58 -107 34 -40Z",fill:"#dce7eb",stroke:"#8c9ca3","stroke-width":"3"});
+addHero("path",{d:"M29 -37L48 -31 54 -39 35 -45Z",fill:"#d6b65d",stroke:"#76532a","stroke-width":"3"});
+addHero("path",{d:"M41 -40L24 -24",stroke:"#6a4524","stroke-width":"7","stroke-linecap":"round"});
+objs.append(hero);
 // Crew members become visible companions and follow the player through each explored zone.
 const crewNames=(state.crew||[]).filter((n,i,a)=>a.indexOf(n)===i).slice(0,2);
 crewNames.forEach((name,i)=>{
