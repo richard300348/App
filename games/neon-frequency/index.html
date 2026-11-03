@@ -339,11 +339,32 @@ html,body{background:#050b0a;color:#f4f3df;font-family:ui-monospace,"Courier New
 .title-foot{margin-top:12px;color:#c4d69c;font:700 9px/1.5 Georgia,serif;letter-spacing:.17em}
 @media(max-height:740px){.title-art{height:clamp(115px,22vh,175px)}.title-content{padding:10px 12px}.title-tagline{margin:5px auto 8px}.title-foot{margin-top:8px}}
 @media(min-width:600px){.title-art{height:220px}.title-buttons{grid-template-columns:1fr}}
+
+/* Remove pixel-art / 32-bit presentation: polished cinematic fantasy styling */
+html,body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;background:#07150d!important;color:#f8edc9!important}
+#game{background:#0c2114!important;box-shadow:0 0 0 1px #c4a45b,0 0 55px #d2ad4b22!important}
+#view{background:linear-gradient(180deg,#3b7943 0%,#1d492c 44%,#0c2417 100%)!important}
+#view:before{background:radial-gradient(ellipse at 50% 42%,#f8e6a333,transparent 50%),linear-gradient(90deg,#08190b77,transparent 20%,transparent 80%,#08190b77)!important}
+#topHud{background:linear-gradient(#07170ce8,#07170c00)!important;border-top:2px solid #bda05b!important}
+.brand,.title-kicker,.title-foot,.title-button,#cameraHint,.title-tagline{font-family:Georgia,"Times New Roman",serif!important;letter-spacing:.07em!important}
+.title-kicker{font-size:clamp(10px,2.4vw,14px)!important;letter-spacing:.24em!important}
+.title-logo{font-family:Georgia,"Times New Roman",serif!important;font-weight:900!important;letter-spacing:-.025em!important;text-shadow:0 2px 0 #b28c3f,0 5px 0 #4a3518,0 9px 22px #0008!important;-webkit-text-stroke:0!important}
+.title-content{border-radius:6px!important;background:linear-gradient(150deg,#1b4827f2,#0d2816f8 68%,#102d1a)!important;box-shadow:0 0 0 3px #5c4520,0 18px 35px #0008,inset 0 0 40px #c9ad5412!important}
+#titleScreen{background:radial-gradient(ellipse at 50% 20%,#4d8a47,#1c4a2a 46%,#08190e 100%)!important}
+#titleScreen:before{background:linear-gradient(180deg,#f0d88a16,transparent 45%,#04100866)!important}
+#titleScreen:after{background-image:radial-gradient(ellipse at 50% 90%,#d5c17118,transparent 55%),linear-gradient(90deg,#d8c47c0b 1px,transparent 1px)!important;background-size:auto,96px 100%!important;animation:none!important;opacity:.22!important}
+.title-art{border-radius:5px!important;border-color:#d7bb6d!important;box-shadow:inset 0 0 0 1px #f6e7b344,0 10px 22px #0004!important}
+.title-art:before{border-radius:48% 48% 0 0!important;border-color:#a68a4a!important;background:linear-gradient(180deg,#2a6037,#183b25)!important;box-shadow:inset 0 0 0 4px #476e3c,0 0 0 2px #56421e!important}
+.title-art:after{font-family:Georgia,serif!important;text-shadow:0 0 20px #ffdf65,0 2px 4px #76521b!important}
+.title-button{font-family:Georgia,"Times New Roman",serif!important;letter-spacing:.06em!important;border-radius:5px!important;background:linear-gradient(180deg,#5a9140,#285a2c 68%,#194123)!important;box-shadow:0 4px 0 #6c5127,inset 0 0 0 1px #f5d873!important}
+#cameraHint{background:#10291be8!important;border:1px solid #c6a65d!important;color:#f2e6bd!important}
+#runnerAction{font-family:Georgia,serif!important;border-radius:8px!important}
+#runnerControls button,.runnerPad button{font-family:system-ui,sans-serif!important}
 </style>
 </head>
 <body>
 <main id="game" aria-label="Neon Frequency first person adventure">
-<div id="titleScreen" role="dialog" aria-label="Neon Frequency title screen"><div class="title-content"><div class="title-kicker">A 32-BIT LEGEND OF THE FORGOTTEN AGE</div><h1 class="title-logo">THE ANCIENT<br>ECHOES</h1><div class="title-sub">RELIC OF THE LOST REALM</div><div class="title-art" aria-hidden="true"><span style="--h:30%"></span><span style="--h:65%"></span><span style="--h:100%"></span><span style="--h:48%"></span><span style="--h:82%"></span><span style="--h:38%"></span><span style="--h:72%"></span><span style="--h:100%"></span><span style="--h:55%"></span><span style="--h:30%"></span><span style="--h:78%"></span></div><p class="title-tagline">THE OLD KINGDOM HAS FALLEN SILENT. AWAKEN THE RELIC.</p><div class="title-buttons"><button class="title-button primary" id="startGameButton" type="button">PLAY · START CINEMATIC ▶</button></div><div class="title-foot">ORIGINAL CHIPTUNE SCORE · BEST WITH SOUND</div></div></div>
+<div id="titleScreen" role="dialog" aria-label="Neon Frequency title screen"><div class="title-content"><div class="title-kicker">A LEGEND OF THE FORGOTTEN AGE</div><h1 class="title-logo">THE ANCIENT<br>ECHOES</h1><div class="title-sub">RELIC OF THE LOST REALM</div><div class="title-art" aria-hidden="true"><span style="--h:30%"></span><span style="--h:65%"></span><span style="--h:100%"></span><span style="--h:48%"></span><span style="--h:82%"></span><span style="--h:38%"></span><span style="--h:72%"></span><span style="--h:100%"></span><span style="--h:55%"></span><span style="--h:30%"></span><span style="--h:78%"></span></div><p class="title-tagline">THE OLD KINGDOM HAS FALLEN SILENT. AWAKEN THE RELIC.</p><div class="title-buttons"><button class="title-button primary" id="startGameButton" type="button">BEGIN ADVENTURE ▶</button></div><div class="title-foot">ORIGINAL FANTASY SCORE · BEST WITH SOUND</div></div></div>
 <div id="view"><div id="threeWorld" aria-label="Free-roaming 3D adventure world"></div><div id="cameraHint">SWIPE TO MOVE · TAP TO INTERACT</div><div id="runnerControls" aria-label="Movement controls"><div class="runnerPad"><div><button type="button" data-move="left" aria-label="Move left">◀</button><button type="button" data-move="right" aria-label="Move right">▶</button></div><div id="runnerSlidePad" class="verticalSlide" role="slider" aria-label="Slide down to dodge, slide up to surge" tabindex="0"><span>SLIDE</span><b>↕</b><small>UP / DOWN</small></div></div><button type="button" id="runnerAction" aria-label="Attack obstacle or dodge">⚔ ATTACK<br><small>TAP ATTACK · ROLL DODGE</small></button></div>
 <svg id="world" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="First person view of the neon city">
 <defs>
